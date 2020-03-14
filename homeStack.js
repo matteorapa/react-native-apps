@@ -1,0 +1,30 @@
+import * as React from 'react';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
+import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
+import Home from './Home';
+import Profile from './Profile';
+import CreateAnAccount from './CreateAnAccount';
+import Settings from './Settings';
+import UpcomingEvents from './UpcomingEvents';
+import Analytics from './Analytics';
+import Financials from './Financials';
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+            <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
+            <Stack.Screen name="CreateAnAccount" component={CreateAnAccount} options={{headerShown:false}}/>
+            <Stack.Screen name="Settings" component={Settings} options={{headerShown:false}}/>
+            <Stack.Screen name="UpcomingEvents" component={UpcomingEvents} options={{headerShown:false}}/>
+            <Stack.Screen name="Analytics" component={Analytics} options={{headerShown:false}}/>
+            <Stack.Screen name="Financials" component={Financials} options={{headerShown:false}}/>
+        </Stack.Navigator>
+    </NavigationContainer>
+  );
+}

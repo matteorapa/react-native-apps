@@ -7,10 +7,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import Navigator from './homeStack';
 
-export default class App extends React.Component{
-  render(){
+export default class App extends React.Component {
+  render() {
     return (
-      <Navigator/>
+      <Navigator />
     );
   }
 }

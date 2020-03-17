@@ -10,6 +10,7 @@ import Settings from './Settings';
 import UpcomingEvents from './UpcomingEvents';
 import Analytics from './Analytics';
 import Financials from './Financials';
+import PersonalDetails from './PersonalDetails';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ export default function App() {
             <Stack.Screen name="UpcomingEvents" component={UpcomingEvents} options={{headerShown:false}}/>
             <Stack.Screen name="Analytics" component={Analytics} options={{headerShown:false}}/>
             <Stack.Screen name="Financials" component={Financials} options={{headerShown:false}}/>
+            <Stack.Screen name="PersonalDetails" component={PersonalDetails} options={{headerShown:false}}/>
         </Stack.Navigator>
     </NavigationContainer>
   );

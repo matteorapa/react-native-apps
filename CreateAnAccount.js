@@ -5,192 +5,120 @@ import { createStackNavigator, createAppContainer } from '@react-navigation/stac
 //import {createAppContainer} from 'react-navigation';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import Home from './Home';
+import styles from './MyStyleSheet';
+var Name;
+var Surname;
+var Email;
+var Password;
 
-class thisones{
-  async componentDidMount(){
-  
+export default class CreateAnAccountScreen extends React.Component {
+
+  constructor({ navigation }) {
+    super();
+    this.state = {
+      nav: navigation,
+      name: '',
+      surname: '',
+      email: '',
+      password: '',
+    };
   }
-}
 
-export default function CreateAnAccountScreen({ navigation }) {
+  componentDidMount() {
+    this.apiCall();
+  }
+
+  async apiCall() {
+    try {
+      fetch('https://myvault.technology/api/users', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: this.state.name,
+          surname: this.state.surname,
+          email: this.state.email,
+          password:this.state.password,
+        }),
+      });
+    }
+    catch (e) { 
+      console.log(e);
+    }
+  }
+
+  async signup() {
+    //post request
+    this.componentDidMount();
+    console.log('Sending credentials post to express server using name: ' + this.state.name + ' surname: ' + this.state.surname + ' email: ' + this.state.email + ' password: ' + this.state.password);
+  }
+
+  render() {
 
     return (
+
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Text style ={styles.HeaderText}>Create an Account</Text>
+          <Text style={styles.HeaderText}>Create an Account</Text>
         </View >
-  
+
         <View style={styles.CreateAccountFormContainer}>
+          <ScrollView>
             <View style={styles.CreateAccountForm}>
-              <Text style={styles.UsernamePasswordText}>Name</Text>
-              <TextInput style={styles.UsernamePasswordInput} placeholder={"John"}></TextInput>
-              <Text style={styles.UsernamePasswordText}>Surname</Text>
-              <TextInput style={styles.UsernamePasswordInput} placeholder={"Doe"}></TextInput>
-              <Text style={styles.UsernamePasswordText}>Email</Text>
-              <TextInput style={styles.UsernamePasswordInput} placeholder={"johndoe@mailbox.com"}></TextInput>
-              <Text style={styles.UsernamePasswordText}>Pasword</Text>
-              <TextInput style={styles.UsernamePasswordInput} placeholder={"*********"}></TextInput>
+
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.CreateAccountLabel}>Name</Text>
+                <TextInput style={styles.CreateAccountInput}
+                  placeholder={"John"}
+                  onChangeText={(name) => this.setState({ name })}
+                  value={this.state.name}
+                  Name={this.state.name}
+                />
+              </View>
+
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.CreateAccountLabel}>Surname</Text>
+                <TextInput style={styles.CreateAccountInput}
+                  placeholder={"Doe"}
+                  onChangeText={(surname) => this.setState({ surname })}
+                  value={this.state.surname}
+                  Surname={this.state.surname}
+                />
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.CreateAccountLabel}>Email</Text>
+                <TextInput style={styles.CreateAccountInput}
+                  placeholder={"johndoe@mailbox.com"}
+                  onChangeText={(email) => this.setState({ email })}
+                  value={this.state.email}
+                  Email={this.state.email}
+                />
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.CreateAccountLabel}>Pasword</Text>
+                <TextInput style={styles.CreateAccountInput}
+                  placeholder={"*********"}
+                  onChangeText={(password) => this.setState({ password })}
+                  value={this.state.password}
+                  Password={this.state.password}
+                />
+              </View>
+
             </View>
-        </View> 
-  
-        <View style={{flex:2}}> 
-          <TouchableOpacity style={styles.SignInButton}>
-            <Text style={{fontSize: 20, textAlign:'center', color: '#26baee'}}>Go!</Text>
+          </ScrollView>
+        </View >
+        <View style={{ flex: 1 }}></View>
+        <View style={{ flex: 3 }}>
+          <TouchableOpacity style={styles.SignUpButton} onPress={()=>this.signup()}>
+            <Text style={{ fontSize: 20, textAlign: 'center', color: '#26baee' }}  >Go!</Text>
           </TouchableOpacity>
-          <View style={{flex:1}}></View>
-  
+          <View style={{ flex: 3 }}></View>
+
         </View>
-      </View>
+      </View >
+
     );
   }
-
-  const styles = StyleSheet.create({
-
-    header:{
-      flex: 2,
-    },
-  
-    body:{
-      flex:10,
-    },
-  
-    footer:{
-      flex:1,
-    },
-  
-    headerContainer:{
-      flex:2, 
-      justifyContent:'center',
-    },
-  
-    HeaderText: {
-      fontSize: 30, 
-      color: '#26baee', 
-      textAlign: 'center', 
-      top: 0, 
-      fontWeight: 'bold',
-    },
-  
-    button:{
-      width: 150,
-      height: 150,
-      margin: 0,
-      borderRadius: 80,
-      backgroundColor: '#26baee',
-      alignContent: 'center',
-      justifyContent: 'center',
-    },
-  
-    SettingsButton:{
-      width:35, 
-      resizeMode:'contain', 
-      position:'absolute', 
-    },
-    
-    column:{
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    
-    row:{
-      display: 'flex',
-      flexDirection: 'row',
-    },
-  
-    buttonGrid:{
-      flex: 1, 
-      backgroundColor: 'transparent', 
-      alignItems: 'center', 
-      justifyContent: 'center'
-    },
-  
-    container:{
-      flex: 1, 
-      backgroundColor: '#323232',
-      width: '100%', 
-      height: '100%',
-      alignContent: 'center',
-      justifyContent: 'center',
-    },
-  
-    text:{
-      textAlign:'center',
-      fontSize: 15,
-    },
-  
-   SignInFormContainer:{
-      flex:5, 
-      alignSelf: 'center',
-      justifyContent: 'center',
-      width: '70%',
-      borderTopLeftRadius: 50,
-      borderTopRightRadius: 50,
-      borderBottomLeftRadius: 50,
-      borderBottomRightRadius: 50,
-      backgroundColor: 'lightgray',
-    },
-  
-    SignInForm:{
-      flex: 1,
-      height: '100%',
-      alignContent: 'center',
-      justifyContent: 'center',
-      //paddingBottom: 150,
-    },
-  
-    UsernamePasswordText:{
-      flex:1, 
-      alignSelf: 'center', 
-      top:20, 
-      fontSize: 20, 
-      fontWeight: 'bold',
-    },
-  
-    UsernamePasswordInput:{
-      flex: 1, 
-      alignSelf: 'center',
-    },
-  
-    SignInButton:{
-      flex: 1,
-      alignSelf: 'center',
-      justifyContent: 'center',
-      top: 30,
-      width: '50%',
-      borderTopLeftRadius: 50,
-      borderTopRightRadius: 50,
-      borderBottomLeftRadius: 50,
-      borderBottomRightRadius: 50,
-      backgroundColor: 'lightgrey',
-    },
-  
-    CreateAnAccountTouchableOpacity:{
-      textAlign:'center', 
-      padding: 5, 
-      top:40,
-    },
-  
-    CreateAnAccountTouchableOpacityText:{
-      textAlign:'center',
-      color: "#26baee",
-    },
-  
-    CreateAccountFormContainer:{
-      flex:6, 
-      alignSelf: 'center',
-      justifyContent: 'center',
-      width: '70%',
-      borderTopLeftRadius: 50,
-      borderTopRightRadius: 50,
-      borderBottomLeftRadius: 50,
-      borderBottomRightRadius: 50,
-      backgroundColor: 'lightgray',
-    },
-  
-    CreateAccountForm:{
-      flex: 1,
-      height: '100%',
-      alignContent: 'center',
-      justifyContent: 'center',
-    }
-  }); 
+}

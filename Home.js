@@ -25,45 +25,74 @@ export default class Home extends React.Component {
         </View>
 
         <View style={styles.body}>
+        <Text style={{top:0, textAlign: 'center', color: '#26baee', fontWeight:'600', fontSize: 15}}>Welcome Back!</Text>
 
-          <View className="buttonGrid" style={styles.buttonGrid}>
+          <ScrollView horizontal={true} contentOffset={{x:95, y:0}}>
+            <View className="buttonGrid" style={styles.buttonGrid}>
 
-            <View className="column" style={styles.column}>
-              <View className="row" style={styles.row}>
+              <View className="column" style={styles.column}>
+                <View className="row" style={styles.row}>
 
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.text}>Add Expense</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity style={styles.Homebutton1} >
+                    <Text style={styles.text}>New Income</Text>
+                  </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.text}>Add Income</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity style={styles.Homebutton3}>
+                    <Image source={require('./assets/euro.png')} style={{resizeMode: 'contain', width: '50%', left: 30}}></Image>
+                  </TouchableOpacity>
 
-              </View >
-              <View className="row" style={styles.row}>
+                  <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
+                    <Text style={styles.text}>New Expense</Text>
+                  </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.text}>Add Target</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity style={styles.Homebutton3}>
+                  <Image source={require('./assets/yuan.png')} style={{resizeMode: 'contain', width: '50%', left: 38}}></Image>
+                  </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.text}>Revert Expense</Text>
-                </TouchableOpacity>
+                </View >
+                <View className="row" style={styles.row}>
 
+                  <TouchableOpacity style={styles.Homebutton2}>
+                  <Image source={require('./assets/barchart.png')} style={{resizeMode: 'contain', width: '50%', left: 35}}></Image>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.Homebutton1}>
+                    <Text style={styles.text}>My Overview</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.Homebutton3}>
+                  <Image source={require('./assets/dollar.png')} style={{resizeMode: 'contain', width: '55%', left: 35}}></Image>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.Homebutton1}>
+                    <Text style={styles.text}>Revert Expense</Text>
+                  </TouchableOpacity>
+
+                </View>
+                <View className="row" style={styles.row}>
+
+                  <TouchableOpacity style={styles.Homebutton1}>
+                    <Text style={styles.text}>New Target</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.Homebutton4}>
+                  <Image source={require('./assets/pound.png')} style={{resizeMode: 'contain', width: '55%', left: 35}}></Image>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.Homebutton1}>
+                    <Text style={styles.text}>Analytics</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.Homebutton2}>
+                  <Image source={require('./assets/piechart.png')} style={{resizeMode: 'contain', width: '50%', left: 38}}></Image>
+                  </TouchableOpacity>
+
+                </View>
               </View>
-              <View className="row" style={styles.row}>
 
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.text}>My Overview</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.text}>Expense Chart</Text>
-                </TouchableOpacity>
-
-              </View>
+              
             </View>
-          </View>
+          </ScrollView>
         </View>
 
         < View style={styles.footer} >

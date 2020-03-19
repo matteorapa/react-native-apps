@@ -5,23 +5,23 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import Stack from './homeStack';
 import styles from './MyStyleSheet';
+var APILink = 'http://myvault.technology/api/users/';
 
 export default class PersonalDetails extends React.Component {
 
     constructor({ navigation }) {
         super();
-        this.state = { nav: navigation };
-
-        this.state = {
+        this.state = { 
+            nav: navigation, 
             isLoading: true,
-            dataSource: null
+            dataSource: null 
         };
     }
 
 
     componentDidMount() {
-
-        return fetch('http://myvault.technology/api/users')
+        APILink = APILink + 'Test@test.com';
+        return fetch(APILink)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
@@ -42,50 +42,26 @@ export default class PersonalDetails extends React.Component {
         if (this.state.isLoading) {
             return (
                 <View style={styles.container}>
-                    <View style={styles.header}>
-                        <View style={styles.headerContainer}>
-                            <Text style={styles.HeaderText}>PersonalDetails loaded </Text>
-                        </View>
-                    </View>
 
-                    <View style={styles.body}>
-
-                    </View>
-
-                    <View style={styles.footer}>
-                        <View style={{ flexDirection: 'row' }}>
-
-                            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Home')}>
-                                <Image source={require('./assets/wallet.png')} style={{ width: '50%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('UpcomingEvents')}>
-                                <Image source={require('./assets/calendar.png')} style={{ width: '70%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Analytics')}>
-                                <Image source={require('./assets/chart.png')} style={{ width: '60%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Financials')}>
-                                <Image source={require('./assets/coins.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Profile')}>
-                                <Image source={require('./assets/profile.png')} style={{ width: '60%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
-                            </TouchableOpacity>
-
-                        </View>
-                    </View>
                 </View>
             );
-        } 
+        }
         else {
             let users = this.state.dataSource.map((val, key) => {
-                return <View key={key} style={styles.text} >
-                    <Text>{val.name}</Text>
-                    <Text>{val.surname}</Text>
-                    <Text>{val.email}</Text>
+                return <View style={styles.container} >
+
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.Label1}>Name</Text>
+                        <Text style={styles.Input1}>{val.name}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.Label1}>Surname</Text>
+                        <Text style={styles.Input1}>{val.surname}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.Label1}>Email</Text>
+                        <Text style={styles.Input1}>{val.email}</Text>
+                    </View>
                 </View>
             });
 
@@ -93,7 +69,7 @@ export default class PersonalDetails extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <View style={styles.headerContainer}>
-                            <Text style={styles.HeaderText}>PersonalDetails didnt load</Text>
+                            <Text style={styles.HeaderText}>Personal Details</Text>
                         </View>
                     </View>
 
@@ -104,7 +80,7 @@ export default class PersonalDetails extends React.Component {
                     </View>
 
                     <View style={styles.footer}>
-                        
+
                     </View>
                 </View>
             );

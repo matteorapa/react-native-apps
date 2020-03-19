@@ -1,9 +1,10 @@
-import { StyleSheet, YellowBox } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
 
     header: {
         flex: 2,
+        
     },
 
     body: {
@@ -27,12 +28,42 @@ export default StyleSheet.create({
         fontWeight: 'bold',
     },
 
-    button: {
+    Homebutton1: {
         width: 150,
         height: 150,
         margin: 0,
         borderRadius: 80,
         backgroundColor: '#26baee',
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+
+    Homebutton2: {
+        width: 150,
+        height: 150,
+        margin: 0,
+        borderRadius: 80,
+        backgroundColor: 'grey',
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+
+    Homebutton3: {
+        width: 150,
+        height: 150,
+        margin: 0,
+        borderRadius: 80,
+        backgroundColor: 'darkgrey',
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+
+    Homebutton4: {
+        width: 150,
+        height: 150,
+        margin: 0,
+        borderRadius: 80,
+        backgroundColor: 'lightgrey',
         alignContent: 'center',
         justifyContent: 'center',
     },
@@ -125,7 +156,7 @@ export default StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         width: '50%',
-        padding:10,
+        padding: 10,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
         borderBottomLeftRadius: 50,
@@ -144,24 +175,21 @@ export default StyleSheet.create({
         color: "#26baee",
     },
 
-    CreateAccountFormContainer: {
+    FormContainer1: {
         flex: 4,
         alignSelf: 'center',
         justifyContent: 'center',
         width: '90%',
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
+        borderRadius: 50,
         backgroundColor: 'lightgray',
     },
 
-    CreateAccountForm: {
+    Form1: {
         alignContent: 'center',
         justifyContent: 'center',
     },
 
-    CreateAccountLabel: {
+    Label1: {
         flex: 1,
         left: 40,
         padding: 20,
@@ -169,11 +197,92 @@ export default StyleSheet.create({
         fontWeight: 'bold',
     },
 
-    CreateAccountInput: {
+    Input1: {
         flex: 1,
         padding: 20,
         right: 30,
         width: '40%',
-        borderRightColor: 'black',
     },
+
+    FormContainer2: {
+        flex: 4,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        width: '90%',
+        height: 200,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
+        borderBottomLeftRadius: 50,
+        borderBottomRightRadius: 50,
+    },
+
+    Form2: {
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+
+    Label2: {
+        flex: 1,
+        padding: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        top: Platform.OS === 'ios' ? 75 : -60
+    },
+
+    Input2: {
+        flex: 1,
+        padding: 20,
+        right: 20,
+        width: '10%',
+        backgroundColor: 'darkgrey',
+        borderRadius: 50,
+    },
+
+    Label3: {
+        flex: 1,
+        zIndex: 11,
+        padding: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        left: 30
+    },
+
+    AddExpenseContainer: {
+        height: Platform.OS === 'ios' ? 420 : 250, 
+        backgroundColor: 'lightgrey', 
+        justifyContent: 'center', 
+        borderRadius: 50
+    },
+
+    currencyPicker:{
+        width: Platform.OS ==='ios' ? 50: 80, 
+        right: Platform.OS ==='ios' ? 60: 30, 
+        top: Platform.OS === 'ios'? 0: -50
+    },
+
+    amountInput:{
+        width: 120, 
+        backgroundColor: 'darkgrey', 
+        height: 40, 
+        right: 20, 
+        top: Platform.OS ==='ios' ? 85: -45, 
+        borderRadius: 50, 
+        padding: 10
+    },
+
+    categoryPicker:{
+        width: Platform.OS ==='ios' ? 180: 200, 
+        bottom: Platform.OS === 'ios' ? 30 : 60, 
+        left: Platform.OS ==='ios' ? 20: 120
+    },
+
+    addExpenseCancel:{
+        backgroundColor: 'lightgrey', 
+        width: 90, 
+        height: 90, 
+        borderRadius: 50, 
+        justifyContent: 'space-evenly', 
+        bottom: Platform.OS === 'ios' ? 210 : 210, 
+        right: 20 
+    }
 }); 

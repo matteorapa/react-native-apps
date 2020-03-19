@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
+import { createStackNavigator, createAppContainer, HeaderTitle } from '@react-navigation/stack';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import Home from './Home';
 import Profile from './Profile';
@@ -11,7 +11,8 @@ import UpcomingEvents from './UpcomingEvents';
 import Analytics from './Analytics';
 import Financials from './Financials';
 import PersonalDetails from './PersonalDetails';
-
+import AddExpense from './AddExpense';
+import Footer from './Footer';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
             <Stack.Screen name="Analytics" component={Analytics} options={{headerShown:false}}/>
             <Stack.Screen name="Financials" component={Financials} options={{headerShown:false}}/>
             <Stack.Screen name="PersonalDetails" component={PersonalDetails} options={{headerShown:false}}/>
+            <Stack.Screen name="AddExpense" component={AddExpense} options={{headerShown:false}}/>
         </Stack.Navigator>
     </NavigationContainer>
   );

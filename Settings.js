@@ -48,7 +48,7 @@ export default class Settings extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => this.state.nav.navigate('Profile')} style={{ backgroundColor: 'darkgrey', padding: 20, }}>
+            <TouchableOpacity onPress={() => this.state.nav.navigate('Profile')} >
               <Text style={{ fontSize: 20, left: 80, color: 'red' }}>Log out</Text>
             </TouchableOpacity>
           </View>

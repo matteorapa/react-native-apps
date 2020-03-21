@@ -3,8 +3,7 @@ import { StyleSheet, Platform } from 'react-native';
 export default StyleSheet.create({
 
     header: {
-        flex: 2,
-        
+        flex: 1.5,
     },
 
     body: {
@@ -13,6 +12,10 @@ export default StyleSheet.create({
 
     footer: {
         flex: 1,
+    },
+
+    loginHeader:{
+        flex: 3.5,
     },
 
     headerContainer: {
@@ -31,8 +34,7 @@ export default StyleSheet.create({
     Homebutton1: {
         width: 150,
         height: 150,
-        margin: 0,
-        borderRadius: 80,
+        borderRadius: 50,
         backgroundColor: '#26baee',
         alignContent: 'center',
         justifyContent: 'center',
@@ -88,7 +90,9 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: 'transparent',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        display: 'flex',
+        flexDirection: 'column',
     },
 
     container: {
@@ -106,7 +110,7 @@ export default StyleSheet.create({
     },
 
     SignInFormContainer: {
-        flex: 5,
+        flex: 4,
         alignSelf: 'center',
         justifyContent: 'center',
         width: '70%',
@@ -119,7 +123,6 @@ export default StyleSheet.create({
 
     SignInForm: {
         flex: 1,
-        height: '100%',
         alignContent: 'center',
         justifyContent: 'center',
         //paddingBottom: 150,
@@ -136,6 +139,8 @@ export default StyleSheet.create({
     UsernamePasswordInput: {
         flex: 1,
         alignSelf: 'center',
+        textAlign: 'center',
+        width: 200,
     },
 
     SignInButton: {

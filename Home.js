@@ -2,9 +2,7 @@ import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
-import Stack from './homeStack';
-import Footer from './Footer';
+import { TextInput, Switch, ScrollView, AutoScrolling } from 'react-native-gesture-handler';
 import styles from './MyStyleSheet';
 
 export default class Home extends React.Component {
@@ -25,72 +23,66 @@ export default class Home extends React.Component {
         </View>
 
         <View style={styles.body}>
-        <Text style={{top:0, textAlign: 'center', color: '#26baee', fontWeight:'600', fontSize: 15}}>Welcome Back!</Text>
-
-          <ScrollView horizontal={true} contentOffset={{x:95, y:0}}>
+          <Text>Welcome Back</Text>
+          <ScrollView horizontal={true} contentOffset={{x: 95 }}>
             <View className="buttonGrid" style={styles.buttonGrid}>
 
-              <View className="column" style={styles.column}>
-                <View className="row" style={styles.row}>
+              <View className="row" style={styles.row}>
 
-                  <TouchableOpacity style={styles.Homebutton1} >
-                    <Text style={styles.text}>New Income</Text>
-                  </TouchableOpacity>
+                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
+                  <Text style={styles.text}>New Income</Text>
+                </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.Homebutton3}>
-                    <Image source={require('./assets/euro.png')} style={{resizeMode: 'contain', width: '50%', left: 30}}></Image>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                    <Text style={styles.text}>New Expense</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.Homebutton3}>
-                  <Image source={require('./assets/yuan.png')} style={{resizeMode: 'contain', width: '50%', left: 38}}></Image>
-                  </TouchableOpacity>
-
-                </View >
-                <View className="row" style={styles.row}>
-
-                  <TouchableOpacity style={styles.Homebutton2}>
-                  <Image source={require('./assets/barchart.png')} style={{resizeMode: 'contain', width: '50%', left: 35}}></Image>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.Homebutton1}>
-                    <Text style={styles.text}>My Overview</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.Homebutton3}>
-                  <Image source={require('./assets/dollar.png')} style={{resizeMode: 'contain', width: '55%', left: 35}}></Image>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.Homebutton1}>
-                    <Text style={styles.text}>Revert Expense</Text>
-                  </TouchableOpacity>
-
+                <View style={styles.Homebutton3}>
+                  <Image source={require('./assets/euro.png')} style={{ resizeMode: 'contain', width: '50%', left: 30 }}></Image>
                 </View>
-                <View className="row" style={styles.row}>
 
-                  <TouchableOpacity style={styles.Homebutton1}>
-                    <Text style={styles.text}>New Target</Text>
-                  </TouchableOpacity>
+                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
+                  <Text style={styles.text}>New Expense</Text>
+                </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.Homebutton4}>
-                  <Image source={require('./assets/pound.png')} style={{resizeMode: 'contain', width: '55%', left: 35}}></Image>
-                  </TouchableOpacity>
+                <View style={styles.Homebutton3}>
+                  <Image source={require('./assets/yuan.png')} style={{ resizeMode: 'contain', width: '50%', left: 38 }}></Image>
+                </View>
 
-                  <TouchableOpacity style={styles.Homebutton1}>
-                    <Text style={styles.text}>Analytics</Text>
-                  </TouchableOpacity>
+              </View >
+              <View className="row" style={styles.row}>
 
-                  <TouchableOpacity style={styles.Homebutton2}>
-                  <Image source={require('./assets/piechart.png')} style={{resizeMode: 'contain', width: '50%', left: 38}}></Image>
-                  </TouchableOpacity>
+                <View style={styles.Homebutton2}>
+                  <Image source={require('./assets/barchart.png')} style={{ resizeMode: 'contain', width: '50%', left: 35 }}></Image>
+                </View>
 
+                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
+                  <Text style={styles.text}>My Overview</Text>
+                </TouchableOpacity>
+
+                <View style={styles.Homebutton3}>
+                  <Image source={require('./assets/dollar.png')} style={{ resizeMode: 'contain', width: '55%', left: 35 }}></Image>
+                </View>
+
+                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
+                  <Text style={styles.text}>Revert Expense</Text>
+                </TouchableOpacity>
+
+              </View>
+              <View className="row" style={styles.row}>
+
+                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
+                  <Text style={styles.text}>New Target</Text>
+                </TouchableOpacity>
+
+                <View style={styles.Homebutton4}>
+                  <Image source={require('./assets/pound.png')} style={{ resizeMode: 'contain', width: '55%', left: 35 }}></Image>
+                </View>
+
+                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
+                  <Text style={styles.text}>Analytics</Text>
+                </TouchableOpacity>
+
+                <View style={styles.Homebutton2}>
+                  <Image source={require('./assets/piechart.png')} style={{ resizeMode: 'contain', width: '50%', left: 38 }}></Image>
                 </View>
               </View>
-
-              
             </View>
           </ScrollView>
         </View>

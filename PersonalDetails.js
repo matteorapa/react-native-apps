@@ -11,19 +11,27 @@ export default class PersonalDetails extends React.Component {
 
     constructor({ navigation }) {
         super();
-        this.state = { 
-            nav: navigation, 
+        this.state = {
+            nav: navigation,
             isLoading: true,
-            dataSource: null 
+            dataSource: null
         };
     }
 
-
     componentDidMount() {
-        APILink = APILink + 'Test@test.com';
-        return fetch(APILink)
+        APILink = APILink + 'Msc@gmail.com';
+        
+        fetch(APILink, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + global.clientToken,
+            },
+        })
             .then((response) => response.json())
             .then((responseJson) => {
+                console.log(global.clientToken)
                 this.setState({
                     isLoading: false,
                     dataSource: responseJson.users,
@@ -33,6 +41,19 @@ export default class PersonalDetails extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
+
+        // fetch(APILink)
+        //     .then((response) => response.json())
+        //     .then((responseJson) => {
+        //         this.setState({
+        //             isLoading: false,
+        //             dataSource: responseJson.users,
+        //         })
+        //     })
+
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
     }
 
 

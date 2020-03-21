@@ -27,7 +27,7 @@ export default class CreateAnAccountScreen extends React.Component {
 
   async apiCall() {
     try {
-      fetch('https://myvault.technology/api/users', {
+      fetch('http://myvault.technology/api/users', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -50,6 +50,8 @@ export default class CreateAnAccountScreen extends React.Component {
   async signup() {
     this.componentDidMount();
     console.log('Sending credentials post to express server using name: ' + this.state.name + ' surname: ' + this.state.surname + ' email: ' + this.state.email + ' password: ' + this.state.password + ' dob: ' + this.state.dob);
+    alert('Account Created, please login')
+    this.state.nav.navigate('Login')
   }
 
   render() {

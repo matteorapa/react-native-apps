@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
 //import {createAppContainer} from 'react-navigation';
@@ -12,21 +12,21 @@ export default class Login extends React.Component {
     super();
     this.state = {
       nav: navigation,
-      email: 'Msc@gmail.com',
-      password: 'Password',
+      email: '',
+      password: '',
       clientToken: '',
+      isLoggedIn: true,
     };
   }
-
+  // component did mount is a lifecycle method so is called when program is run 
+  //to prevent alert showing when program is run ive changed the api call to a reg method
   componentDidMount() {
-
-    this.apiCall();
-
+    //this.apiCall();
   }
 
   async apiCall() {
 
-    fetch('http://myvault.technology/api/login', {
+    await fetch('http://myvault.technology/api/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -44,10 +44,12 @@ export default class Login extends React.Component {
 
         if (response.token) {
           global.clientToken = response.token
+          this.state.nav.navigate('Home')
         }
         else {
           console.log('Unsuccessful')
           console.log(response)
+          Alert.alert('Oops!','Incorrect email or password')
         }
       })
       .catch(error => console.warn(error))
@@ -55,9 +57,10 @@ export default class Login extends React.Component {
   }
 
   async login() {
-    this.componentDidMount();
-    console.log('Sending credentials post to express server using username: ' + this.state.username + ' and password: ' + this.state.password);
-    this.state.nav.navigate('Home')
+    this.apiCall();
+    console.log('Sending credentials post to express server using username: ' + this.state.email + ' and password: ' + this.state.password);
+    this.setState({ email: '' })
+    this.setState({ password: '' })
   }
 
   render() {

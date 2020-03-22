@@ -30,7 +30,7 @@ export default class Home extends React.Component {
               <View className="row" style={styles.row}>
 
                 <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.text}>New Income</Text>
+                  <Text style={styles.homeScreenButtonText}>View Expenses </Text>
                 </TouchableOpacity>
 
                 <View style={styles.Homebutton3}>
@@ -38,7 +38,7 @@ export default class Home extends React.Component {
                 </View>
 
                 <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.text}>New Expense</Text>
+                  <Text style={styles.homeScreenButtonText}>New Expense</Text>
                 </TouchableOpacity>
 
                 <View style={styles.Homebutton3}>
@@ -52,8 +52,8 @@ export default class Home extends React.Component {
                   <Image source={require('./assets/barchart.png')} style={{ resizeMode: 'contain', width: '50%', left: 35 }}></Image>
                 </View>
 
-                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.text}>My Overview</Text>
+                <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('ViewExpenses')}>
+                  <Text style={styles.homeScreenButtonText}>View All Expenses</Text>
                 </TouchableOpacity>
 
                 <View style={styles.Homebutton3}>
@@ -61,14 +61,14 @@ export default class Home extends React.Component {
                 </View>
 
                 <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.text}>Revert Expense</Text>
+                  <Text style={styles.homeScreenButtonText}>Revert Expense</Text>
                 </TouchableOpacity>
 
               </View>
               <View className="row" style={styles.row}>
 
                 <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.text}>New Target</Text>
+                  <Text style={styles.homeScreenButtonText}>New Target</Text>
                 </TouchableOpacity>
 
                 <View style={styles.Homebutton4}>
@@ -76,7 +76,7 @@ export default class Home extends React.Component {
                 </View>
 
                 <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.text}>Analytics</Text>
+                  <Text style={styles.homeScreenButtonText}>Analytics</Text>
                 </TouchableOpacity>
 
                 <View style={styles.Homebutton2}>
@@ -94,7 +94,7 @@ export default class Home extends React.Component {
               <Image source={require('./assets/wallet.png')} style={{ width: '50%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('UpcomingEvents')}>
+            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
               <Image source={require('./assets/calendar.png')} style={{ width: '70%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
             </TouchableOpacity>
 

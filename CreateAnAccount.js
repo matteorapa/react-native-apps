@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
 //import {createAppContainer} from 'react-navigation';
@@ -21,9 +21,9 @@ export default class CreateAnAccountScreen extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.apiCall();
-  }
+  // componentDidMount() {
+  //   this.apiCall();
+  // }
 
   async apiCall() {
     try {
@@ -40,7 +40,26 @@ export default class CreateAnAccountScreen extends React.Component {
           password: this.state.password,
           dob: this.state.dob,
         }),
-      });
+      })
+        .then(response => (response.json()))
+        .then((response) => {
+
+          if (response.success) {
+            alert('Account Created! Please Log-in')
+            this.state.nav.navigate('Login')
+          }
+          else {
+            console.log('Account already exists!')
+            console.log(response)
+            Alert.alert('Oops!','Account already exists')
+            this.setState({ name: '' })
+            this.setState({ surname: '' })
+            this.setState({ email: '' })
+            this.setState({ password: '' })
+            this.setState({ dob: '' })
+          }
+        })
+        .catch(error => console.warn(error))
     }
     catch (e) {
       console.log(e);
@@ -48,10 +67,9 @@ export default class CreateAnAccountScreen extends React.Component {
   }
 
   async signup() {
-    this.componentDidMount();
+    //this.componentDidMount();
+    this.apiCall();
     console.log('Sending credentials post to express server using name: ' + this.state.name + ' surname: ' + this.state.surname + ' email: ' + this.state.email + ' password: ' + this.state.password + ' dob: ' + this.state.dob);
-    alert('Account Created, please login')
-    this.state.nav.navigate('Login')
   }
 
   render() {

@@ -20,7 +20,7 @@ export default class PersonalDetails extends React.Component {
 
     componentDidMount() {
         APILink = APILink + 'Msc@gmail.com';
-        
+
         fetch(APILink, {
             method: 'GET',
             headers: {
@@ -30,30 +30,21 @@ export default class PersonalDetails extends React.Component {
             },
         })
             .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(global.clientToken)
-                this.setState({
-                    isLoading: false,
-                    dataSource: responseJson.users,
-                })
-            })
+            .then((response) => {
+                if (response.success) {
+                    this.setState({
+                        isLoading: false,
+                        dataSource: response.output,
+                    })
+                }
+                else{ 
+                    alert('there was an error loading details')
+                }
 
+            })
             .catch((error) => {
                 console.log(error);
             });
-
-        // fetch(APILink)
-        //     .then((response) => response.json())
-        //     .then((responseJson) => {
-        //         this.setState({
-        //             isLoading: false,
-        //             dataSource: responseJson.users,
-        //         })
-        //     })
-
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
     }
 
 

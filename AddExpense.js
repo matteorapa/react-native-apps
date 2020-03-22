@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Picker, Platform } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert } from 'react-native';
 import styles from './MyStyleSheet';
 import Footer from './Footer';
 import { TextInput, Switch } from 'react-native-gesture-handler';
@@ -10,16 +10,67 @@ export default class AddExpense extends React.Component {
         super();
         this.state = {
             nav: navigation,
+            title: '',
             amount: '',
-            currency: '',
+            currency: 'euro',
             category: '',
-            selectedButton: null,
+            cashCard: null,
+            onlineSwitch: false,
         };
         this.selectionOnPress = this.selectionOnPress.bind(this);
     }
 
     selectionOnPress(PurchaseLocation) {
-        this.setState({ selectedButton: PurchaseLocation });
+        this.setState({ cashCard: PurchaseLocation });
+    }
+
+    async apiCall() {
+
+        await fetch('http://myvault.technology/api/expenses', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + global.clientToken,
+            },
+            body: JSON.stringify({
+                title: this.state.title,
+                category: this.state.category,
+                amount: this.state.amount,
+                cashCard: this.state.cashCard,
+                currency: this.state.currency,
+                onlineSwitch: this.state.onlineSwitch,
+            })
+        })
+
+
+            .then(response => (response.json()))
+            .then((response) => {
+
+                if (response.success) {
+                    alert('Expense successfully posted!')
+                    this.state.nav.navigate('Home')
+                }
+                else {
+                    console.log('something went wrong!')
+                    console.log(response)
+                    Alert.alert('Oops!', 'Something went wrong')
+                    this.setState({ title: '' })
+                    this.setState({ currency: '' })
+                    this.setState({ category: '' })
+                    this.setState({ cashCard: '' })
+                    this.setState({ onlineSwitch: '' })
+                    this.setState({ amount: '' })
+                }
+            })
+            .catch(error => console.warn(error))
+
+    }
+
+    async postExpense() {
+        //this.componentDidMount();
+        this.apiCall();
+        console.log('Sending credentials post to express server using title: ' + this.state.title + ' amount: ' + this.state.amount + ' currency: ' + this.state.currency + ' category: ' + this.state.category + ' cash/card: ' + this.state.cashCard + " online? " + this.state.onlineSwitch);
     }
 
     render() {
@@ -35,7 +86,16 @@ export default class AddExpense extends React.Component {
                 <View style={styles.body}>
                     <View style={{ flex: 4 }}>
                         <View style={styles.AddExpenseContainer}>
+
+
+
                             <View style={{ flexDirection: 'row' }}>
+
+                                <TextInput style={styles.expenseTitleInput}
+                                    placeholder={'Title'}
+                                    onChangeText={(title) => this.setState({ title })}
+                                    value={this.state.title}
+                                />
 
                                 <Text style={styles.Label2}>Amount Spent </Text>
 
@@ -78,40 +138,40 @@ export default class AddExpense extends React.Component {
                                     <Picker.Item label="Vehicle" value="Vehicle" />
                                 </Picker>
 
-                                <View style={{flexDirection: Platform.OS ==='ios' ? 'column': 'row', position: 'absolute',right: Platform.OS ==='ios' ? 30: 70}}>
-                                    <TouchableOpacity onPress={() => this.selectionOnPress("Home")}
-                                    style={{ borderTopRightRadius: Platform.OS ==='ios' ? 50: 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS ==='ios' ? 0: 50,width: 90, height: 60, justifyContent: 'space-around', backgroundColor: this.state.selectedButton === "Home" ? "grey" : "darkgrey" }}>
-                                    <Text style={{ justifyContent: 'center', textAlign: "center" }} > Home</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.selectionOnPress("Online")}
-                                    style={{ width: 90, height: 60, justifyContent: 'space-around', backgroundColor: this.state.selectedButton === "Online" ? "grey" : "darkgrey" }}>
-                                    <Text style={{ justifyContent: 'center', textAlign: "center" }}> Online</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.selectionOnPress("Abroad")}
-                                    style={{ width: 90, height: 60, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS ==='ios' ? 50:0, borderTopRightRadius: Platform.OS ==='ios' ? 0: 50,justifyContent: 'space-around', backgroundColor: this.state.selectedButton === "Abroad" ? "grey" : "darkgrey" }}>
-                                    <Text style={{ textAlign: "center" }}> Abroad</Text>
-                                </TouchableOpacity>
+                                <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? 30 : 70, bottom: Platform.OS === 'ios' ? 120 : -50 }}>
+                                    <TouchableOpacity onPress={() => this.setState({ cashCard: 'Cash' })}
+                                        style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 60, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Cash" ? "grey" : "darkgrey" }}>
+                                        <Text style={{ justifyContent: 'center', textAlign: "center" }} > Cash</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.setState({ cashCard: 'Card' })}
+                                        style={{ width: 90, height: 60, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Card" ? "grey" : "darkgrey" }}>
+                                        <Text style={{ textAlign: "center" }}> Card</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <Text style={{ position: 'absolute', right: 25, bottom: 80 }}>{this.state.onlineSwitch ? 'Online Purchase' : 'Online Purchase?'}</Text>
+                                <Switch onValueChange={(onlineSwitch) => this.setState({ onlineSwitch })} value={this.state.onlineSwitch}
+                                    style={{ position: 'absolute', right: 50, bottom: 40 }}
+                                />
                             </View>
                         </View>
+
                     </View>
 
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+
+                        <TouchableOpacity
+                            style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 210 : 160, right: 20 }}
+                            onPress={() => this.state.nav.navigate('Home')}
+                        >
+                            <Text style={{ justifyContent: 'center', textAlign: "center", color: '#26baee', fontWeight: 'bold' }}>Cancel</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 210 : 160, left: 20 }} onPress={() => this.postExpense()}>
+                            <Text style={{ justifyContent: 'center', textAlign: "center", color: '#26baee', fontWeight: 'bold' }}>Go!</Text>
+                        </TouchableOpacity>
+
+                    </View>
                 </View>
-
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-
-                    <TouchableOpacity
-                        style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 210 : 180, right: 20 }}
-                        onPress={() => this.state.nav.navigate('Home')}
-                    >
-                        <Text style={{ justifyContent: 'center', textAlign: "center", color: '#26baee', fontWeight: 'bold' }}>Cancel</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 210 : 180, left: 20 }}>
-                        <Text style={{ justifyContent: 'center', textAlign: "center", color: '#26baee', fontWeight: 'bold' }}>Go!</Text>
-                    </TouchableOpacity>
-
-                </View>
-            </View>
             </View >
         )
     }

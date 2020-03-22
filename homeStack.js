@@ -7,11 +7,12 @@ import Home from './Home';
 import Profile from './Profile';
 import CreateAnAccount from './CreateAnAccount';
 import Login from './Login';
-import UpcomingEvents from './UpcomingEvents';
+import ViewExpenses from './ViewExpenses';
 import Analytics from './Analytics';
 import Financials from './Financials';
 import PersonalDetails from './PersonalDetails';
 import AddExpense from './AddExpense';
+import Footer from './Footer';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +24,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
         <Stack.Screen name="CreateAnAccount" component={CreateAnAccount} options={{ headerShown: false }} />
-        <Stack.Screen name="UpcomingEvents" component={UpcomingEvents} options={{ headerShown: false }} />
+        <Stack.Screen name="ViewExpenses" component={ViewExpenses} options={{ headerShown: false }} />
         <Stack.Screen name="Analytics" component={Analytics} options={{ headerShown: false }} />
         <Stack.Screen name="Financials" component={Financials} options={{ headerShown: false }} />
         <Stack.Screen name="PersonalDetails" component={PersonalDetails} options={{ headerShown: false }} />

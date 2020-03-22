@@ -109,6 +109,12 @@ export default StyleSheet.create({
         fontSize: 15,
     },
 
+    homeScreenButtonText: {
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: '700',  
+    },
+
     SignInFormContainer: {
         flex: 4,
         alignSelf: 'center',
@@ -226,14 +232,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
 
-    Label2: {
-        flex: 1,
-        padding: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-        top: Platform.OS === 'ios' ? 75 : -60
-    },
-
     Input2: {
         flex: 1,
         padding: 20,
@@ -253,7 +251,7 @@ export default StyleSheet.create({
     },
 
     AddExpenseContainer: {
-        height: Platform.OS === 'ios' ? 420 : 250, 
+        height: Platform.OS === 'ios' ? 420 : 300, 
         backgroundColor: 'lightgrey', 
         justifyContent: 'center', 
         borderRadius: 50
@@ -262,7 +260,7 @@ export default StyleSheet.create({
     currencyPicker:{
         width: Platform.OS ==='ios' ? 50: 80, 
         right: Platform.OS ==='ios' ? 60: 30, 
-        top: Platform.OS === 'ios'? 0: -50
+        top: Platform.OS === 'ios'? 20: -10
     },
 
     amountInput:{
@@ -270,24 +268,35 @@ export default StyleSheet.create({
         backgroundColor: 'darkgrey', 
         height: 40, 
         right: 20, 
-        top: Platform.OS ==='ios' ? 85: -45, 
+        top: Platform.OS ==='ios' ? 105: -5, 
         borderRadius: 50, 
         padding: 10
     },
 
+    expenseTitleInput:{
+        width: '80%', 
+        backgroundColor: 'darkgrey', 
+        position:'absolute',
+        top: Platform.OS ==='ios' ? 30: -65, 
+        left: 42,
+        borderRadius: 50, 
+        padding: 10,
+        textAlign:'center',
+        zIndex: 1,
+    },
+
     categoryPicker:{
         width: Platform.OS ==='ios' ? 180: 200, 
-        bottom: Platform.OS === 'ios' ? 30 : 60, 
+        bottom: Platform.OS === 'ios' ? 30 : 20, 
         left: Platform.OS ==='ios' ? 20: 120
     },
 
-    addExpenseCancel:{
-        backgroundColor: 'lightgrey', 
-        width: 90, 
-        height: 90, 
-        borderRadius: 50, 
-        justifyContent: 'space-evenly', 
-        bottom: Platform.OS === 'ios' ? 210 : 210, 
-        right: 20 
-    }
+    Label2: {
+        flex: 1,
+        padding: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        top: Platform.OS === 'ios' ? 95 : -20
+    },
+
 }); 

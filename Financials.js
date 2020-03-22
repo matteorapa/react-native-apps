@@ -28,7 +28,7 @@ export default function Financials({ navigation }) {
               <Image source={require('./assets/wallet.png')} style={{ width: '50%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => navigation.navigate('UpcomingEvents')}>
+            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => navigation.navigate('ViewExpenses')}>
               <Image source={require('./assets/calendar.png')} style={{ width: '70%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
             </TouchableOpacity>
 

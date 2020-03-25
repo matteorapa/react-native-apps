@@ -45,11 +45,15 @@ export default class Login extends React.Component {
         if (response.token) {
           global.clientToken = response.token
           this.state.nav.navigate('Home')
+          this.setState({ email: '' })
+          this.setState({ password: '' })
         }
         else {
           console.log('Unsuccessful')
           console.log(response)
-          Alert.alert('Oops!','Incorrect email or password')
+          Alert.alert('Oops!', 'Incorrect email or password')
+          this.setState({ email: '' })
+          this.setState({ password: '' })
         }
       })
       .catch(error => console.warn(error))
@@ -57,10 +61,14 @@ export default class Login extends React.Component {
   }
 
   async login() {
-    this.apiCall();
-    console.log('Sending credentials post to express server using username: ' + this.state.email + ' and password: ' + this.state.password);
-    this.setState({ email: '' })
-    this.setState({ password: '' })
+    if (this.state.email === '' || this.state.password === '') {
+      Alert.alert('Oops!', 'Please ensure all fields are filled')
+    }
+    else {
+      this.apiCall();
+      console.log('Sending credentials post to express server using username: ' + this.state.email + ' and password: ' + this.state.password);
+    }
+
   }
 
   render() {
@@ -79,8 +87,8 @@ export default class Login extends React.Component {
           <View style={styles.SignInFormContainer}>
             <View style={styles.SignInForm}>
               <Text style={styles.UsernamePasswordText}>Username</Text>
-              <TextInput name='username'
-                style={styles.UsernamePasswordInput} placeholder={"Username"}
+              <TextInput name='email'
+                style={styles.UsernamePasswordInput} placeholder={"Email"}
                 onChangeText={(email) => this.setState({ email })}
                 value={this.state.email}
               />

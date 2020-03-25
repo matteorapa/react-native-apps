@@ -299,4 +299,10 @@ export default StyleSheet.create({
         top: Platform.OS === 'ios' ? 95 : -20
     },
 
+    viewExpenseDetails:{
+        fontWeight:'300',
+        fontSize: 20,
+        
+    },
+
 }); 

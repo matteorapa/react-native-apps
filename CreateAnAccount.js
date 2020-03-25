@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert} from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
 //import {createAppContainer} from 'react-navigation';
@@ -51,7 +51,7 @@ export default class CreateAnAccountScreen extends React.Component {
           else {
             console.log('Account already exists!')
             console.log(response)
-            Alert.alert('Oops!','Account already exists')
+            Alert.alert('Oops!', 'Account already exists')
             this.setState({ name: '' })
             this.setState({ surname: '' })
             this.setState({ email: '' })
@@ -68,8 +68,13 @@ export default class CreateAnAccountScreen extends React.Component {
 
   async signup() {
     //this.componentDidMount();
-    this.apiCall();
-    console.log('Sending credentials post to express server using name: ' + this.state.name + ' surname: ' + this.state.surname + ' email: ' + this.state.email + ' password: ' + this.state.password + ' dob: ' + this.state.dob);
+    if (this.state.name === '' || this.state.surname === '' || this.state.email === '' || this.state.password === '' || this.state.dob === '') {
+      Alert.alert('Oops', 'Please ensure all fields are filled')
+    }
+    else {
+      this.apiCall();
+      console.log('Sending credentials post to express server using name: ' + this.state.name + ' surname: ' + this.state.surname + ' email: ' + this.state.email + ' password: ' + this.state.password + ' dob: ' + this.state.dob);
+    }
   }
 
   render() {

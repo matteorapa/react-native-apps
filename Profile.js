@@ -13,12 +13,13 @@ export default class Profile extends React.Component {
     this.state = { nav: navigation };
   }
 
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerContainer}>
-            <Text style={styles.HeaderText}>Settings</Text>
+            <Text style={styles.HeaderText}>Profile</Text>
           </View>
         </View>
 
@@ -48,7 +49,7 @@ export default class Profile extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => this.state.nav.navigate('Profile')} >
+            <TouchableOpacity onPress={() => this.state.nav.navigate('Profile')} onPress={()=> this.state.nav.navigate('Login')}>
               <Text style={{ fontSize: 20, left: 80, color: 'red' }}>Log out</Text>
             </TouchableOpacity>
           </View>

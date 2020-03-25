@@ -4,14 +4,17 @@ import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput, Switch, ScrollView, AutoScrolling } from 'react-native-gesture-handler';
 import styles from './MyStyleSheet';
-
+import walletIcon from './assets/wallet.png';
+import Footer from './Footer';
 export default class Home extends React.Component {
 
   constructor({ navigation }) {
     super();
-    this.state = { nav: navigation };
+    this.state = { 
+      nav: navigation ,
+      
+    };
   }
-
   render() {
 
     return (
@@ -23,8 +26,7 @@ export default class Home extends React.Component {
         </View>
 
         <View style={styles.body}>
-          <Text>Welcome Back</Text>
-          <ScrollView horizontal={true} contentOffset={{x: 95 }}>
+          <ScrollView horizontal={true} contentOffset={{ x: 95 }} >
             <View className="buttonGrid" style={styles.buttonGrid}>
 
               <View className="row" style={styles.row}>
@@ -38,7 +40,7 @@ export default class Home extends React.Component {
                 </View>
 
                 <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.homeScreenButtonText}>New Expense</Text>
+                  <Text style={styles.homeScreenButtonText}>Analytics</Text>
                 </TouchableOpacity>
 
                 <View style={styles.Homebutton3}>
@@ -76,7 +78,7 @@ export default class Home extends React.Component {
                 </View>
 
                 <TouchableOpacity style={styles.Homebutton1} onPress={() => this.state.nav.navigate('AddExpense')}>
-                  <Text style={styles.homeScreenButtonText}>Analytics</Text>
+                  <Text style={styles.homeScreenButtonText}>New Expense</Text>
                 </TouchableOpacity>
 
                 <View style={styles.Homebutton2}>
@@ -94,15 +96,15 @@ export default class Home extends React.Component {
               <Image source={require('./assets/wallet.png')} style={{ width: '50%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
-              <Image source={require('./assets/calendar.png')} style={{ width: '70%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-            </TouchableOpacity>
-
             <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Analytics')}>
               <Image source={require('./assets/chart.png')} style={{ width: '60%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Financials')}>
+            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('AddExpense')}> 
+              <Image source={require('./assets/plus.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
               <Image source={require('./assets/coins.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
             </TouchableOpacity>
 
@@ -113,6 +115,7 @@ export default class Home extends React.Component {
         </View >
 
       </View>
+      
     )
   }
 }

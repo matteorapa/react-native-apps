@@ -10,9 +10,15 @@ export default class Profile extends React.Component {
 
   constructor({ navigation }) {
     super();
-    this.state = { nav: navigation };
+    this.state = { 
+      nav: navigation,
+      isDark: false,
+    };
   }
 
+  if(isDark = true){
+    alert(true);
+  }
 
   render() {
     return (
@@ -24,28 +30,32 @@ export default class Profile extends React.Component {
         </View>
 
         <View style={styles.body}>
+          <Text></Text>
           <View style={{ flex: 1 }}>
             <TouchableOpacity onPress={() => this.state.nav.navigate('PersonalDetails')}>
-              <Text style={{ fontSize: 20, left: 80, color: 'white' }}>Personal Details</Text>
+              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Personal Details</Text>
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
             <TouchableOpacity>
-              <Text style={{ fontSize: 20, left: 80, color: 'white' }}>Account Details</Text>
+              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Account Details</Text>
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 20, left: 80, color: 'white' }}>Use face id</Text>
-            <Switch style={{ position: 'absolute', right: 80 }}></Switch>
+            <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Dark Mode</Text>
+            <Switch style={{ position: 'absolute', right: 80 }}
+            onValueChange={(isDark) => this.setState({ isDark })} value={this.state.isDark}
+            
+            />
           </View>
           <View style={{ flex: 1 }}>
             <TouchableOpacity>
-              <Text style={{ fontSize: 20, left: 80, color: 'white' }}>Privacy Policy</Text>
+              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Privacy Policy</Text>
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
             <TouchableOpacity>
-              <Text style={{ fontSize: 20, left: 80, color: 'white' }}> Close Account</Text>
+              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}> Close Account</Text>
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
@@ -56,33 +66,33 @@ export default class Profile extends React.Component {
 
         </View>
 
-        <View style={styles.footer}>
+        < View style={styles.footer} >
           <View style={{ flexDirection: 'row' }}>
 
             <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Home')}>
               <Image source={require('./assets/wallet.png')} style={{ width: '50%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
-              <Image source={require('./assets/calendar.png')} style={{ width: '70%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-            </TouchableOpacity>
-
             <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Analytics')}>
               <Image source={require('./assets/chart.png')} style={{ width: '60%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Financials')}>
+            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('AddExpense')}> 
+              <Image source={require('./assets/plus.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
               <Image source={require('./assets/coins.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
             </TouchableOpacity>
 
             <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Profile')}>
               <Image source={require('./assets/profile.png')} style={{ width: '60%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
             </TouchableOpacity>
-
           </View>
-        </View>
+        </View >
       </View>
     );
   }
 }
+
 

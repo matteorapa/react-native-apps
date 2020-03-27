@@ -28,7 +28,7 @@ export default function App() {
         <Stack.Screen name="Analytics" component={Analytics} options={{ headerShown: false }} />
         <Stack.Screen name="Financials" component={Financials} options={{ headerShown: false }} />
         <Stack.Screen name="PersonalDetails" component={PersonalDetails} options={{ headerShown: false }} />
-        <Stack.Screen name="AddExpense" component={AddExpense} options={{ headerShown: false}} />
+        <Stack.Screen name="AddExpense" component={AddExpense} options={{ headerShown: false, cardStyle:{backgroundColor:'transparent'}, animationEnabled: false,}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

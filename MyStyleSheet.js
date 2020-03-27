@@ -1,5 +1,7 @@
 import { StyleSheet, Platform } from 'react-native';
 
+global.dark = false;
+
 export default StyleSheet.create({
 
     header: {
@@ -12,22 +14,24 @@ export default StyleSheet.create({
 
     footer: {
         flex: 1,
+        backgroundColor: 'lightgrey',
     },
 
-    loginHeader:{
+    loginHeader: {
         flex: 3.5,
     },
 
     headerContainer: {
         flex: 2,
         justifyContent: 'center',
+        backgroundColor: '#26baee'
     },
 
     HeaderText: {
         fontSize: 30,
-        color: '#26baee',
+        color: '#323232',
         textAlign: 'center',
-        top: 0,
+        top: 5,
         fontWeight: 'bold',
     },
 
@@ -97,7 +101,7 @@ export default StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: '#323232',
+        backgroundColor: global.dark ? '#323232' : '#fffafa',
         width: '100%',
         height: '100%',
         alignContent: 'center',
@@ -112,7 +116,7 @@ export default StyleSheet.create({
     homeScreenButtonText: {
         textAlign: 'center',
         fontSize: 15,
-        fontWeight: '700',  
+        fontWeight: '700',
     },
 
     SignInFormContainer: {
@@ -251,44 +255,46 @@ export default StyleSheet.create({
     },
 
     AddExpenseContainer: {
-        height: Platform.OS === 'ios' ? 420 : 300, 
-        backgroundColor: 'lightgrey', 
-        justifyContent: 'center', 
-        borderRadius: 50
+        height: Platform.OS === 'ios' ? 420 : 300,
+        backgroundColor: 'lightgrey',
+        justifyContent: 'center',
+        borderRadius: 50,
+        width: '96%',
+        alignSelf: 'center'
     },
 
-    currencyPicker:{
-        width: Platform.OS ==='ios' ? 50: 80, 
-        right: Platform.OS ==='ios' ? 60: 30, 
-        top: Platform.OS === 'ios'? 20: -10
+    currencyPicker: {
+        width: Platform.OS === 'ios' ? 50 : 80,
+        right: Platform.OS === 'ios' ? 45 : 30,
+        top: Platform.OS === 'ios' ? 20 : -10
     },
 
-    amountInput:{
-        width: 120, 
-        backgroundColor: 'darkgrey', 
-        height: 40, 
-        right: 20, 
-        top: Platform.OS ==='ios' ? 105: -5, 
-        borderRadius: 50, 
+    amountInput: {
+        width: 120,
+        backgroundColor: 'darkgrey',
+        height: 40,
+        right: 20,
+        top: Platform.OS === 'ios' ? 105 : -5,
+        borderRadius: 50,
         padding: 10
     },
 
-    expenseTitleInput:{
-        width: '80%', 
-        backgroundColor: 'darkgrey', 
-        position:'absolute',
-        top: Platform.OS ==='ios' ? 30: -65, 
+    expenseTitleInput: {
+        width: '80%',
+        backgroundColor: 'darkgrey',
+        position: 'absolute',
+        top: Platform.OS === 'ios' ? 30 : -65,
         left: 42,
-        borderRadius: 50, 
+        borderRadius: 50,
         padding: 10,
-        textAlign:'center',
+        textAlign: 'center',
         zIndex: 1,
     },
 
-    categoryPicker:{
-        width: Platform.OS ==='ios' ? 180: 200, 
-        bottom: Platform.OS === 'ios' ? 30 : 20, 
-        left: Platform.OS ==='ios' ? 20: 120
+    categoryPicker: {
+        width: Platform.OS === 'ios' ? 180 : 200,
+        bottom: Platform.OS === 'ios' ? 30 : 10,
+        left: 20
     },
 
     Label2: {
@@ -299,10 +305,18 @@ export default StyleSheet.create({
         top: Platform.OS === 'ios' ? 95 : -20
     },
 
-    viewExpenseDetails:{
-        fontWeight:'300',
+    viewExpenseDetails: {
+        fontWeight: '300',
         fontSize: 20,
-        
+
     },
+
+    expenseViewSortText: {
+        fontSize: 12,
+        fontWeight: '700',
+        textAlign: 'center',
+        justifyContent:'space-around'
+
+    }
 
 }); 

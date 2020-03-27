@@ -10,6 +10,7 @@ export default class Login extends React.Component {
 
   constructor({ navigation }) {
     super();
+    
     this.state = {
       nav: navigation,
       email: '',
@@ -68,7 +69,6 @@ export default class Login extends React.Component {
       this.apiCall();
       console.log('Sending credentials post to express server using username: ' + this.state.email + ' and password: ' + this.state.password);
     }
-
   }
 
   render() {

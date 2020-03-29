@@ -268,7 +268,7 @@ export default class AddExpense extends React.Component {
         return (
             <Modal animationType={'slide'} transparent={true}>
                 <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center' }}>
-                    <View style={{backgroundColor:'#26baee', height:'73%', top:'15%', borderRadius:40}}>
+                    <View style={{backgroundColor: global.color, height:'73%', top:'15%', borderRadius:40}}>
                         <View style={styles.header}>
                             <Text style={styles.HeaderText}>New Expense</Text>
                         </View>

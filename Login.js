@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform} from 'react-native';
+import {NetInfo} from 'react-native-netinfo'
 import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
 //import {createAppContainer} from 'react-navigation';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
@@ -21,9 +21,6 @@ export default class Login extends React.Component {
   }
   // component did mount is a lifecycle method so is called when program is run 
   //to prevent alert showing when program is run ive changed the api call to a reg method
-  componentDidMount() {
-    //this.apiCall();
-  }
 
   async apiCall() {
 
@@ -44,8 +41,9 @@ export default class Login extends React.Component {
       .then((response) => {
 
         if (response.token) {
-          global.clientToken = response.token
-          this.state.nav.navigate('Home')
+          global.clientToken = response.token 
+          
+          this.state.nav.navigate('splashScreen')
           this.setState({ email: '' })
           this.setState({ password: '' })
         }

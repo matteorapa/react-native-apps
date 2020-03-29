@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
-global.dark = false;
+dark = false;
 
 export default StyleSheet.create({
 
@@ -101,7 +101,7 @@ export default StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: global.dark ? '#323232' : '#fffafa',
+        backgroundColor: global.color,
         width: '100%',
         height: '100%',
         alignContent: 'center',

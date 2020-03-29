@@ -10,21 +10,17 @@ export default class Profile extends React.Component {
 
   constructor({ navigation }) {
     super();
-    this.state = { 
+    this.state = {
       nav: navigation,
       isDark: false,
     };
-  }
-
-  if(isDark = true){
-    alert(true);
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <View style={styles.headerContainer}>
+          <View style={[styles.headerContainer, { backgroundColor: global.color }]}>
             <Text style={styles.HeaderText}>Profile</Text>
           </View>
         </View>
@@ -37,15 +33,15 @@ export default class Profile extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity>
-              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Account Details</Text>
+            <TouchableOpacity onPress={() => this.state.nav.navigate('themeColorPicker')}>
+              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Set theme color</Text>
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Dark Mode</Text>
             <Switch style={{ position: 'absolute', right: 80 }}
-            onValueChange={(isDark) => this.setState({ isDark })} value={this.state.isDark}
-            
+              onValueChange={(isDark) => this.setState({ isDark })} value={this.state.isDark}
+
             />
           </View>
           <View style={{ flex: 1 }}>
@@ -59,7 +55,7 @@ export default class Profile extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => this.state.nav.navigate('Profile')} onPress={()=> this.state.nav.navigate('Login')}>
+            <TouchableOpacity onPress={() => this.state.nav.navigate('Profile')} onPress={() => this.state.nav.navigate('Login')}>
               <Text style={{ fontSize: 20, left: 80, color: 'red' }}>Log out</Text>
             </TouchableOpacity>
           </View>
@@ -67,6 +63,13 @@ export default class Profile extends React.Component {
         </View>
 
         < View style={styles.footer} >
+          <View style={{ position: "absolute", backgroundColor: 'lightgrey', height: 80, width: 80, borderRadius: 50, top: -17, alignSelf: 'center' }}></View>
+          <View style={{ zIndex: 1, position: "absolute", backgroundColor: global.color, height: 55, width: 55, borderRadius: 50, top: -5, alignSelf: 'center' }}>
+            <TouchableOpacity style={{ position: "absolute", width: '63%', backgroundColor: global.color, height: '85%', borderRadius: 80, alignSelf: 'center', top: 2 }} onPress={() => this.state.nav.navigate('AddExpense')} >
+              <Image source={require('./assets/plus.png')} style={{ position: 'absolute', top: 0, width: '90%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
+            </TouchableOpacity>
+          </View>
+
           <View style={{ flexDirection: 'row' }}>
 
             <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Home')}>
@@ -77,9 +80,9 @@ export default class Profile extends React.Component {
               <Image source={require('./assets/chart.png')} style={{ width: '60%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('AddExpense')}> 
-              <Image source={require('./assets/plus.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-            </TouchableOpacity>
+            <View style={{ backgroundColor: 'lightgray', width: '20%' }} >
+
+            </View>
 
             <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
               <Image source={require('./assets/coins.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
@@ -90,6 +93,7 @@ export default class Profile extends React.Component {
             </TouchableOpacity>
           </View>
         </View >
+
       </View>
     );
   }

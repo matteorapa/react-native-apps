@@ -3,9 +3,9 @@ import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Animated } fro
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput, Switch, ScrollView, AutoScrolling } from 'react-native-gesture-handler';
-import styles from './MyStyleSheet';
-import walletIcon from './assets/wallet.png';
-import Footer from './Footer';
+import styles from '../MyStyleSheet';
+import walletIcon from '../assets/wallet.png';
+import Footer from '../components/Footer';
 export default class splashScreen extends React.Component {
     constructor({ navigation }) {
         super();
@@ -48,7 +48,7 @@ export default class splashScreen extends React.Component {
                 </View>
 
                 <Animated.View style={{ flex: 1, transform: [{ rotate: interpolatedRotateAnimation }] }}>
-                    <Image source={require('./assets/gear.png')} style={{ resizeMode: 'contain', alignSelf: 'center', width: '80%', bottom: 365 }} />
+                    <Image source={require('../assets/gear.png')} style={{ resizeMode: 'contain', alignSelf: 'center', width: '80%', bottom: 365 }} />
                 </Animated.View>
 
 

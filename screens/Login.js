@@ -4,7 +4,7 @@ import {NetInfo} from 'react-native-netinfo'
 import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
 //import {createAppContainer} from 'react-navigation';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
-import styles from './MyStyleSheet';
+import styles from '../MyStyleSheet';
 
 export default class Login extends React.Component {
 
@@ -76,7 +76,7 @@ export default class Login extends React.Component {
         <View style={styles.loginHeader}>
           <View style={{ flex: 1 }}>
             <View style={{ flex: 1, width: '50%', alignSelf: 'center' }}>
-              <Image source={require('./assets/lock.png')} style={{ flex: 1, width: '40%', alignSelf: 'center', resizeMode: 'contain', bottom: 0 }}></Image>
+              <Image source={require('../assets/lock.png')} style={{ flex: 1, width: '40%', alignSelf: 'center', resizeMode: 'contain', bottom: 0 }}></Image>
             </View>
           </View>
         </View>

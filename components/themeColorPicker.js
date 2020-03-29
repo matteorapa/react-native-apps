@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, Modal, RefreshControl } from 'react-native';
-import styles from './MyStyleSheet';
+import styles from '../MyStyleSheet';
 import Footer from './Footer';
 import { TextInput, Switch } from 'react-native-gesture-handler';
 

@@ -5,7 +5,7 @@ import { createStackNavigator, createAppContainer } from '@react-navigation/stac
 //import {createAppContainer} from 'react-navigation';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import Home from './Home';
-import styles from './MyStyleSheet';
+import styles from '../MyStyleSheet';
 
 export default class CreateAnAccountScreen extends React.Component {
 

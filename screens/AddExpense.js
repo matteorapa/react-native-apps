@@ -1,6 +1,6 @@
 // import * as React from 'react';
 // import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, Modal} from 'react-native';
-// import styles from './MyStyleSheet';
+// import styles from '../MyStyleSheet';
 // import Footer from './Footer';
 // import { TextInput, Switch } from 'react-native-gesture-handler';
 
@@ -183,8 +183,8 @@
 
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, Modal } from 'react-native';
-import styles from './MyStyleSheet';
-import Footer from './Footer';
+import styles from '../MyStyleSheet';
+
 import { TextInput, Switch } from 'react-native-gesture-handler';
 
 export default class AddExpense extends React.Component {

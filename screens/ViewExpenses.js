@@ -1,13 +1,17 @@
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, Modal, Platform } from 'react-native';
 import { TextInput, ScrollView } from 'react-native-gesture-handler';
-import styles from './MyStyleSheet';
+import Footer from '../components/Footer';
+import styles from '../MyStyleSheet';
+
 var APIDelLink = 'http://myvault.technology/api/expenses/del/';
 var APIGetByTimeLink = 'http://myvault.technology/api/expenses/';
 
 export default class ViewExpenses extends React.Component {
+
   constructor({ navigation }) {
     super();
+
     this.state = {
       nav: navigation,
       isLoading: true,
@@ -22,6 +26,12 @@ export default class ViewExpenses extends React.Component {
       cashcard: '',
       isClicked: 'all',
     };
+
+    this.navigateUser = this.navigateUser.bind(this);
+  }
+
+  navigateUser(screen){
+     this.props.navigation.navigate(screen);
   }
 
   componentDidMount() {
@@ -79,7 +89,6 @@ export default class ViewExpenses extends React.Component {
       .catch(error => console.warn(error))
 
   }
-
   deleteExpense() {
     this.apiCall();
     console.log('removing record no. ' + this.state.id);
@@ -92,6 +101,7 @@ export default class ViewExpenses extends React.Component {
     
     APIGetByTimeLink = 'http://myvault.technology/api/expenses/';
   }
+
   getWeekExpenses(){
     this.setState({ isClicked: 'this week' })
       APIGetByTimeLink = APIGetByTimeLink + 'w';
@@ -120,37 +130,14 @@ export default class ViewExpenses extends React.Component {
       return (
         <View style={styles.container}>
           <View style={styles.header}>
-            <View style={[styles.headerContainer, { backgroundColor: global.color }]}>
-              <Text style={styles.HeaderText}>Expenses</Text>
+            <View style={styles.headerContainer}>
+              <Text style={styles.HeaderText}>My Expenses</Text>
             </View>
           </View>
 
           <View style={styles.body}></View>
 
-          < View style={styles.footer} >
-            <View style={{ flexDirection: 'row' }}>
-
-              <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Home')}>
-                <Image source={require('./assets/wallet.png')} style={{ width: '50%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Analytics')}>
-                <Image source={require('./assets/chart.png')} style={{ width: '60%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('AddExpense')}>
-                <Image source={require('./assets/plus.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
-                <Image source={require('./assets/coins.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Profile')}>
-                <Image source={require('./assets/profile.png')} style={{ width: '60%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
-              </TouchableOpacity>
-            </View>
-          </View >
+          <Footer navigateUser={ this.navigateUser }/>
         </View>
       );
     }
@@ -191,7 +178,7 @@ export default class ViewExpenses extends React.Component {
         <View style={styles.container} >
           <View style={styles.container}>
             <View style={styles.header}>
-              <View style={[styles.headerContainer, { backgroundColor: global.color }]}>
+              <View style={styles.headerContainer}>
                 <Text style={styles.HeaderText}>Expenses</Text>
               </View>
             </View>
@@ -235,38 +222,8 @@ export default class ViewExpenses extends React.Component {
               </View>
             </View>
 
-            < View style={styles.footer} >
-          <View style={{ position: "absolute", backgroundColor: 'lightgrey', height: 80, width: 80, borderRadius: 50, top: -17, alignSelf: 'center' }}></View>
-          <View style={{ zIndex: 1, position: "absolute", backgroundColor: global.color, height: 55, width: 55, borderRadius: 50, top: -5, alignSelf: 'center' }}>
-            <TouchableOpacity style={{ position: "absolute", width: '63%', backgroundColor: global.color, height: '85%', borderRadius: 80, alignSelf: 'center', top: 2 }} onPress={() => this.state.nav.navigate('AddExpense')} >
-              <Image source={require('./assets/plus.png')} style={{ position: 'absolute', top: 0, width: '90%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-            </TouchableOpacity>
-          </View>
-
-          <View style={{ flexDirection: 'row' }}>
-
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Home')}>
-              <Image source={require('./assets/wallet.png')} style={{ width: '50%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Analytics')}>
-              <Image source={require('./assets/chart.png')} style={{ width: '60%', height: '70%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-            </TouchableOpacity>
-
-            <View style={{ backgroundColor: 'lightgray', width: '20%' }} >
-
-            </View>
-
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('ViewExpenses')}>
-              <Image source={require('./assets/coins.png')} style={{ width: '80%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 7 }}></Image>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{ backgroundColor: 'lightgray', width: '20%' }} onPress={() => this.state.nav.navigate('Profile')}>
-              <Image source={require('./assets/profile.png')} style={{ width: '60%', height: '80%', alignSelf: 'center', resizeMode: 'contain', top: 4 }}></Image>
-            </TouchableOpacity>
-          </View>
-        </View >
-
+            <Footer navigateUser={ this.navigateUser }/>
+            
           </View>
         </View>
       );

@@ -15,6 +15,18 @@ export default StyleSheet.create({
     footer: {
         flex: 1,
         backgroundColor: 'lightgrey',
+        flexDirection: 'row'
+    },
+    footerItem: {
+        backgroundColor: 'lightgray',
+         width: '20%'
+    },
+    footerIcon: {
+        width: '50%',
+         height: '75%',
+          alignSelf: 'center',
+           resizeMode: 'contain',
+            top: 4 
     },
 
     loginHeader: {

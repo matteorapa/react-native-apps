@@ -3,8 +3,8 @@ import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-n
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
-import Stack from './homeStack';
-import styles from './MyStyleSheet';
+import Stack from '../homeStack';
+import styles from '../MyStyleSheet';
 var APILink = 'http://myvault.technology/api/users/';
 
 export default class PersonalDetails extends React.Component {

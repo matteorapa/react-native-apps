@@ -9,7 +9,6 @@ export default class Profile extends React.Component {
   constructor({ navigation }) {
     super();
     this.state = {
-      nav: navigation,
       isDark: false,
     };
     this.navigateUser = this.navigateUser.bind(this);
@@ -22,46 +21,35 @@ export default class Profile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={[styles.headerContainer, { backgroundColor: global.color }]}>
-            <Text style={styles.HeaderText}>Profile</Text>
-          </View>
-        </View>
-
+        <Text style={styles.heading}>Profile</Text>
         <View style={styles.body}>
-          <Text></Text>
-          <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => this.state.nav.navigate('PersonalDetails')}>
-              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Personal Details</Text>
+          
+            <TouchableOpacity style={styles.link} onPress={() => this.navigateUser('PersonalDetails')}>
+              <Text style={styles.linkText}>Personal Details</Text>
             </TouchableOpacity>
-          </View>
-          <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => this.state.nav.navigate('themeColorPicker')}>
-              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Set theme color</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Dark Mode</Text>
-            <Switch style={{ position: 'absolute', right: 80 }}
-              onValueChange={(isDark) => this.setState({ isDark })} value={this.state.isDark}
 
-            />
-          </View>
-          <View style={{ flex: 1 }}>
-            <TouchableOpacity>
-              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}>Privacy Policy</Text>
+            <TouchableOpacity style={styles.link} onPress={() => this.navigateUser('themeColorPicker')}>
+              <Text style={styles.linkText}>Select Theme Color</Text>
             </TouchableOpacity>
-          </View>
-          <View style={{ flex: 1 }}>
-            <TouchableOpacity>
-              <Text style={{ fontSize: 20, left: 80, color: 'grey' }}> Close Account</Text>
+
+            <TouchableOpacity style={[styles.link, styles.row]}>
+              <Text style={styles.linkText} >Dark Mode</Text>
+              <Switch  onValueChange={(isDark) => this.setState({ isDark })} value={this.state.isDark}/>
             </TouchableOpacity>
-          </View>
-          <View style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => this.state.nav.navigate('Profile')} onPress={() => this.state.nav.navigate('Login')}>
-              <Text style={{ fontSize: 20, left: 80, color: 'red' }}>Log out</Text>
+          
+            <TouchableOpacity style={styles.link} onPress={() => this.navigateUser('privacypolicy')}>
+              <Text style={styles.linkText}>Privacy Policy</Text>
             </TouchableOpacity>
-          </View>
+
+            <TouchableOpacity style={styles.link} onPress={() => {}}>
+              <Text style={styles.linkText}>Close Account</Text>
+              <Text style={styles.smallText}>This action is not reversible. All your data will be deleted.</Text>
+
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.link} onPress={() => this.navigateUser('Login')}>
+              <Text style={styles.linkText}>Sign out</Text>
+            </TouchableOpacity>
 
         </View>
         <Footer navigateUser={ this.navigateUser }/>

@@ -19,12 +19,8 @@ export default class Home extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={[styles.headerContainer, { backgroundColor: global.color }]}>
-            <Text style={styles.HeaderText}>MyVault</Text>
-          </View>
-        </View>
-
+      <Text style={styles.heading}>MyVault</Text>
+      
         <View style={styles.body}>
           <ScrollView horizontal={true} contentOffset={{ x: 95 }} >
             <View className="buttonGrid" style={styles.buttonGrid}>

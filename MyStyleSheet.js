@@ -1,11 +1,122 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, ViewPagerAndroid } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 dark = false;
 
 export default StyleSheet.create({
 
-    header: {
-        flex: 1.5,
+    // typography
+    heading: {
+        fontSize: 36,
+        padding: 6,
+        marginVertical: 36,
+        marginHorizontal: 24
+    },
+    linkText: {
+        fontSize: 18, 
+    },
+    smallText:{
+        fontSize: 12,
+        color: 'grey'
+    },
+    centerText:{
+        textAlign: 'center',
+    },
+    actionText: {
+        color: 'darkslategrey'
+    },
+    mutedText: {
+        color: 'grey',
+    },
+    text: {
+        textAlign: 'center',
+        fontSize: 15,
+    },
+
+    homeScreenButtonText: {
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: '700',
+    },
+
+
+    //containers
+
+    container: {
+        backgroundColor: 'white',
+        width: '100%',
+        height: '100%'
+
+    },
+
+    central: {
+            flex: 1, 
+            alignItems: 'center',
+            justifyContent: 'center',
+    },
+
+    link: {
+        padding: 16,
+        marginVertical: 12,
+        marginHorizontal: 24,
+        backgroundColor: 'white',
+        shadowColor: "lightgray",
+        borderRadius: 6,
+
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+        elevation: 11,
+         
+    },
+
+    roundButton : {
+        width: '80%',
+        borderRadius: 25,
+        padding: 16,
+        marginVertical: 12,
+        marginHorizontal: 24,
+        backgroundColor: 'white',
+        shadowColor: "lightgray",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+
+        elevation: 11,
+    },
+
+    formBox : {
+        width: '80%',
+        borderRadius: 25,
+        paddingVertical: 32,
+        paddingHorizontal: 16,
+        marginVertical: 12,
+        marginHorizontal: 24,
+        backgroundColor: 'white',
+        shadowColor: "lightgray",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+
+        elevation: 11,
+    },
+
+    input : {
+        borderBottomColor: 'lightgrey',
+        borderBottomWidth: 1,
+        marginBottom: 10,
+        fontSize: 16,
+        padding: 3,
+        marginVertical: 6
     },
 
     body: {
@@ -14,7 +125,6 @@ export default StyleSheet.create({
 
     footer: {
         flex: 1,
-        backgroundColor: 'lightgrey',
         flexDirection: 'row'
     },
     footerItem: {
@@ -23,28 +133,10 @@ export default StyleSheet.create({
     },
     footerIcon: {
         width: '50%',
-         height: '75%',
+         height: '60%',
           alignSelf: 'center',
            resizeMode: 'contain',
-            top: 4 
-    },
-
-    loginHeader: {
-        flex: 3.5,
-    },
-
-    headerContainer: {
-        flex: 2,
-        justifyContent: 'center',
-        backgroundColor: '#26baee'
-    },
-
-    HeaderText: {
-        fontSize: 30,
-        color: '#323232',
-        textAlign: 'center',
-        top: 5,
-        fontWeight: 'bold',
+            
     },
 
     Homebutton1: {
@@ -100,7 +192,24 @@ export default StyleSheet.create({
     row: {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-between'
     },
+
+    centerRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    centerColumn: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    
 
     buttonGrid: {
         flex: 1,
@@ -109,152 +218,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         display: 'flex',
         flexDirection: 'column',
-    },
-
-    container: {
-        flex: 1,
-        backgroundColor: global.color,
-        width: '100%',
-        height: '100%',
-        alignContent: 'center',
-        justifyContent: 'center',
-    },
-
-    text: {
-        textAlign: 'center',
-        fontSize: 15,
-    },
-
-    homeScreenButtonText: {
-        textAlign: 'center',
-        fontSize: 15,
-        fontWeight: '700',
-    },
-
-    SignInFormContainer: {
-        flex: 4,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        width: '70%',
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
-        backgroundColor: 'lightgray',
-    },
-
-    SignInForm: {
-        flex: 1,
-        alignContent: 'center',
-        justifyContent: 'center',
-        //paddingBottom: 150,
-    },
-
-    UsernamePasswordText: {
-        flex: 1,
-        alignSelf: 'center',
-        top: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-
-    UsernamePasswordInput: {
-        flex: 1,
-        alignSelf: 'center',
-        textAlign: 'center',
-        width: 200,
-    },
-
-    SignInButton: {
-        flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        width: '50%',
-        top: 30,
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
-        backgroundColor: 'lightgrey',
-    },
-
-    SignUpButton: {
-        flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        width: '50%',
-        padding: 10,
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
-        backgroundColor: 'lightgrey',
-    },
-
-    CreateAnAccountTouchableOpacity: {
-        textAlign: 'center',
-        padding: 5,
-        top: 40,
-    },
-
-    CreateAnAccountTouchableOpacityText: {
-        textAlign: 'center',
-        color: "#26baee",
-    },
-
-    FormContainer1: {
-        flex: 4,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        width: '90%',
-        borderRadius: 50,
-        backgroundColor: 'lightgray',
-    },
-
-    Form1: {
-        alignContent: 'center',
-        justifyContent: 'center',
-    },
-
-    Label1: {
-        flex: 1,
-        left: 40,
-        padding: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-
-    Input1: {
-        flex: 1,
-        padding: 20,
-        right: 30,
-        width: '40%',
-    },
-
-    FormContainer2: {
-        flex: 4,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        width: '90%',
-        height: 200,
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
-    },
-
-    Form2: {
-        alignContent: 'center',
-        justifyContent: 'center',
-    },
-
-    Input2: {
-        flex: 1,
-        padding: 20,
-        right: 20,
-        width: '10%',
-        backgroundColor: 'darkgrey',
-        borderRadius: 50,
     },
 
     Label3: {

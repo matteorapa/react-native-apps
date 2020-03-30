@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform} from 'react-native';
-import {NetInfo} from 'react-native-netinfo'
-import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
-//import {createAppContainer} from 'react-navigation';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 
@@ -19,7 +16,7 @@ export default class Login extends React.Component {
       isLoggedIn: true,
     };
   }
-  // component did mount is a lifecycle method so is called when program is run 
+  // component did mount is a lifecycle method so is called when program is run
   //to prevent alert showing when program is run ive changed the api call to a reg method
 
   async apiCall() {
@@ -58,7 +55,6 @@ export default class Login extends React.Component {
       .catch(error => console.warn(error))
 
   }
-
   async login() {
     if (this.state.email === '' || this.state.password === '') {
       Alert.alert('Oops!', 'Please ensure all fields are filled')
@@ -71,53 +67,44 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-
-        <View style={styles.loginHeader}>
-          <View style={{ flex: 1 }}>
-            <View style={{ flex: 1, width: '50%', alignSelf: 'center' }}>
-              <Image source={require('../assets/lock.png')} style={{ flex: 1, width: '40%', alignSelf: 'center', resizeMode: 'contain', bottom: 0 }}></Image>
-            </View>
-          </View>
+      <View style={[styles.container, styles.central]} >
+        <View>
+              <Text style={styles.mutedText}>myvault.technology</Text>
         </View>
+        <View style={styles.formBox}>
+            <Text>Username</Text>
+            <TextInput style={styles.input} name='email'
+                  placeholder={"Email"}
+                  onChangeText={(email) => this.setState({ email })}
+                  value={this.state.email}
+            />
 
-        <View style={styles.body}>
-          <View style={styles.SignInFormContainer}>
-            <View style={styles.SignInForm}>
-              <Text style={styles.UsernamePasswordText}>Username</Text>
-              <TextInput name='email'
-                style={styles.UsernamePasswordInput} placeholder={"Email"}
-                onChangeText={(email) => this.setState({ email })}
-                value={this.state.email}
-              />
-
-              <Text style={styles.UsernamePasswordText}>Password</Text>
-              <TextInput style={styles.UsernamePasswordInput} placeholder={"Password"}
-                onChangeText={(password) => this.setState({ password })}
-                value={this.state.password}
-              />
-            </View>
+            <Text >Password</Text>
+            <TextInput style={styles.input} placeholder={"Password"}
+                  onChangeText={(password) => this.setState({ password })}
+                  value={this.state.password}
+                  secureTextEntry={true}
+            />
+            
+            
           </View>
-          <View style={{ flex: 3 }}>
-
-            <View style={{ flex: 1 }}>
-              <TouchableOpacity title="Sign-in" style={styles.SignInButton} onPress={() => this.login()}>
-                <Text style={styles.text}>Sign In</Text>
-              </TouchableOpacity>
+          <View style={styles.roundButton}>
+                <TouchableOpacity  title="Sign-in" onPress={() => this.login()}>
+                  <Text style={styles.text}>Sign In</Text>
+                </TouchableOpacity>
+                
             </View>
-            <View style={{ flex: 2 }}>
-              <TouchableOpacity style={styles.CreateAnAccountTouchableOpacity} onPress={() => this.state.nav.navigate('CreateAnAccount')}>
-                <Text style={styles.CreateAnAccountTouchableOpacityText}>Create an Account</Text>
+
+            <View>
+              <Text style={styles.mutedText}>Don't have an account?</Text>
+              <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
+                <Text style={[styles.centerText, styles.actionText]}>Create an Account</Text>
               </TouchableOpacity>
             </View>
 
-          </View>
-        </View>
-
-        <View style={styles.footer}>
-
-        </View>
-      </View >
+          
+  
+      </View>
     )
   }
 }

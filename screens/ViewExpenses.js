@@ -129,16 +129,12 @@ export default class ViewExpenses extends React.Component {
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.headerContainer}>
-              <Text style={styles.HeaderText}>My Expenses</Text>
-            </View>
+          <Text style={styles.heading}>My Expenses</Text>
+          <View style={styles.body}>
           </View>
-
-          <View style={styles.body}></View>
-
           <Footer navigateUser={ this.navigateUser }/>
         </View>
+
       );
     }
     else {

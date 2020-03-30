@@ -25,10 +25,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false}} />
         <Stack.Screen name="PersonalDetails" component={PersonalDetails} options={{ headerShown: false }} />
-
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="splashScreen" component={splashScreen} options={{ headerShown: false}} />
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
         <Stack.Screen name="CreateAnAccount" component={CreateAnAccount} options={{ headerShown: false }} />

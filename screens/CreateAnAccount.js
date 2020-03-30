@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { NavigationContainer, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator, createAppContainer } from '@react-navigation/stack';
-//import {createAppContainer} from 'react-navigation';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
-import Home from './Home';
 import styles from '../MyStyleSheet';
 
 export default class CreateAnAccountScreen extends React.Component {
@@ -81,75 +77,83 @@ export default class CreateAnAccountScreen extends React.Component {
 
     return (
 
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.HeaderText}>Create an Account</Text>
-        </View >
-        <View style={styles.body}>
-          <View style={styles.FormContainer1}>
-            <ScrollView>
-              <View style={styles.Form1}>
+      <View style={[styles.container, styles.central]}>
+        
+        <View>
+              <Text style={styles.mutedText}>Create Account</Text>
+        </View>
+        <View style={styles.formBox}>
 
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.Label1}>Name</Text>
-                  <TextInput style={styles.Input1}
-                    placeholder={"John"}
+          <View >
+            <Text>Name</Text>
+            <TextInput style={styles.input}
+                    placeholder={"Name"}
                     onChangeText={(name) => this.setState({ name })}
                     value={this.state.name}
                     Name={this.state.name}
                   />
-                </View>
+          </View>
 
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.Label1}>Surname</Text>
-                  <TextInput style={styles.Input1}
-                    placeholder={"Doe"}
+          <View>
+            <Text>Surname</Text>
+            <TextInput style={styles.input}
+                    placeholder={"Surname"}
                     onChangeText={(surname) => this.setState({ surname })}
                     value={this.state.surname}
                     Surname={this.state.surname}
                   />
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.Label1}>Email</Text>
-                  <TextInput style={styles.Input1}
+          </View>
+
+          <View>
+                  <Text style={styles.Label1}>Date of Birth</Text>
+                  <TextInput style={styles.input}
+                    placeholder={"yyyy/mm/dd"}
+                    onChangeText={(dob) => this.setState({ dob })}
+                    value={this.state.dob}
+                    DOB={this.state.dob}
+                  />
+          </View>
+
+          <View>
+                  <Text>Email</Text>
+                  <TextInput style={styles.input}
                     placeholder={"johndoe@mailbox.com"}
                     onChangeText={(email) => this.setState({ email })}
                     value={this.state.email}
                     Email={this.state.email}
                   />
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.Label1}>Pasword</Text>
-                  <TextInput style={styles.Input1}
-                    placeholder={"*********"}
+          </View>
+
+                <View>
+                  <Text>Pasword</Text>
+                  <TextInput style={styles.input}
+                    placeholder={"Password"}
                     onChangeText={(password) => this.setState({ password })}
                     value={this.state.password}
                     Password={this.state.password}
+                    secureTextEntry={true}
                   />
                 </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.Label1}>DOB</Text>
-                  <TextInput style={styles.Input1}
-                    placeholder={"yyyy-mm-dd"}
-                    onChangeText={(dob) => this.setState({ dob })}
-                    value={this.state.dob}
-                    DOB={this.state.dob}
-                  />
-                </View>
-
-              </View>
-            </ScrollView>
-          </View >
-          <View style={{ flex: 1 }}></View>
-          <View style={{ flex: 3 }}>
-            <TouchableOpacity style={styles.SignUpButton} onPress={() => this.signup()}>
-              <Text style={{ fontSize: 20, textAlign: 'center', color: '#26baee' }}  >Go!</Text>
-            </TouchableOpacity>
-            <View style={{ flex: 3 }}></View>
-
+                
           </View>
-        </View>
-      </View >
+
+          <View style={styles.roundButton}>
+            <TouchableOpacity  onPress={() => this.signup()}>
+                <Text style={{ fontSize: 20, textAlign: 'center', color: '#26baee' }}  >Sign up</Text>
+              </TouchableOpacity>  
+            </View>
+
+            <View>
+              
+              <TouchableOpacity onPress={() => this.state.nav.navigate('Login')}>
+                <Text style={[styles.centerText, styles.actionText]}>Sign in instead.</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+       
+      
+      
 
     );
   }

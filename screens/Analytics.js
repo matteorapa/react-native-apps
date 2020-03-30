@@ -19,18 +19,12 @@ export default class Analytics extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.headerContainer}>
-            <Text style={styles.HeaderText}>Analytics</Text>
-          </View>
-        </View>
+      <Text style={styles.heading}>Analytics</Text>
 
-        <View style={styles.body}>
-        </View>
-
-        <Footer navigateUser={ this.navigateUser }/>
-
+      <View style={styles.body}>
       </View>
+      <Footer navigateUser={ this.navigateUser }/>
+    </View>
     )
   }
 }

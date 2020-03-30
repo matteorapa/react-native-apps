@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform} from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 
@@ -7,7 +7,7 @@ export default class Login extends React.Component {
 
   constructor({ navigation }) {
     super();
-    
+
     this.state = {
       nav: navigation,
       email: '',
@@ -38,8 +38,8 @@ export default class Login extends React.Component {
       .then((response) => {
 
         if (response.token) {
-          global.clientToken = response.token 
-          
+          global.clientToken = response.token
+
           this.state.nav.navigate('splashScreen')
           this.setState({ email: '' })
           this.setState({ password: '' })
@@ -69,41 +69,42 @@ export default class Login extends React.Component {
     return (
       <View style={[styles.container, styles.central]} >
         <View>
-              <Text style={styles.mutedText}>myvault.technology</Text>
+          <Text style={styles.heading}>MyVault</Text>
         </View>
         <View style={styles.formBox}>
-            <Text>Username</Text>
-            <TextInput style={styles.input} name='email'
-                  placeholder={"Email"}
-                  onChangeText={(email) => this.setState({ email })}
-                  value={this.state.email}
-            />
+          <Text>Email</Text>
+          <TextInput style={styles.input} name='email'
+            placeholder={"Email"}
+            onChangeText={(email) => this.setState({ email })}
+            value={this.state.email}
+          />
 
-            <Text >Password</Text>
-            <TextInput style={styles.input} placeholder={"Password"}
-                  onChangeText={(password) => this.setState({ password })}
-                  value={this.state.password}
-                  secureTextEntry={true}
-            />
-            
-            
-          </View>
-          <View style={styles.roundButton}>
-                <TouchableOpacity  title="Sign-in" onPress={() => this.login()}>
-                  <Text style={styles.text}>Sign In</Text>
-                </TouchableOpacity>
-                
-            </View>
+          <Text >Password</Text>
+          <TextInput style={styles.input} placeholder={"Password"}
+            onChangeText={(password) => this.setState({ password })}
+            value={this.state.password}
+            secureTextEntry={true}
+          />
 
-            <View>
-              <Text style={styles.mutedText}>Don't have an account?</Text>
-              <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
-                <Text style={[styles.centerText, styles.actionText]}>Create an Account</Text>
-              </TouchableOpacity>
-            </View>
 
-          
-  
+        </View>
+        <View style={styles.roundButton}>
+          <TouchableOpacity title="Sign-in" onPress={() => this.login()}>
+            <Text style={styles.text}>Sign In</Text>
+          </TouchableOpacity>
+
+        </View>
+
+        <View>
+          <Text style={[styles.mutedText, { top: 30 }]}>Don't have an account?</Text>
+          <Text></Text>
+          <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
+            <Text style={[styles.centerText, styles.actionText, { top: 30 }]}>Create an Account</Text>
+          </TouchableOpacity>
+        </View>
+
+
+
       </View>
     )
   }

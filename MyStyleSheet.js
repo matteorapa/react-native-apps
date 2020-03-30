@@ -10,7 +10,8 @@ export default StyleSheet.create({
         fontSize: 36,
         padding: 6,
         marginVertical: 36,
-        marginHorizontal: 24
+        marginHorizontal: 24,
+        top: 15
     },
     linkText: {
         fontSize: 18, 
@@ -43,9 +44,8 @@ export default StyleSheet.create({
     //containers
 
     container: {
+        flex:1,
         backgroundColor: 'white',
-        width: '100%',
-        height: '100%'
 
     },
 
@@ -75,17 +75,18 @@ export default StyleSheet.create({
 
     roundButton : {
         width: '80%',
+        top:15,
         borderRadius: 25,
         padding: 16,
         marginVertical: 12,
         marginHorizontal: 24,
-        backgroundColor: 'white',
+        backgroundColor: 'lightgrey',
         shadowColor: "lightgray",
         shadowOffset: {
             width: 0,
-            height: 5,
+            height: 10,
         },
-        shadowOpacity: 0.36,
+        shadowOpacity: 0.5,
         shadowRadius: 6.68,
 
         elevation: 11,
@@ -94,17 +95,17 @@ export default StyleSheet.create({
     formBox : {
         width: '80%',
         borderRadius: 25,
-        paddingVertical: 32,
-        paddingHorizontal: 16,
+        paddingVertical: 40,
+        paddingHorizontal: 20,
         marginVertical: 12,
         marginHorizontal: 24,
-        backgroundColor: 'white',
-        shadowColor: "lightgray",
+        backgroundColor: 'lightgrey',
+        shadowColor: "lightgrey",
         shadowOffset: {
             width: 0,
-            height: 5,
+            height: 10,
         },
-        shadowOpacity: 0.36,
+        shadowOpacity: 0.5,
         shadowRadius: 6.68,
 
         elevation: 11,
@@ -230,7 +231,7 @@ export default StyleSheet.create({
     },
 
     AddExpenseContainer: {
-        height: Platform.OS === 'ios' ? 420 : 300,
+        height: Platform.OS === 'ios' ? 390 : 300,
         backgroundColor: 'lightgrey',
         justifyContent: 'center',
         borderRadius: 50,

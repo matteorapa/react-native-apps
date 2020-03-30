@@ -48,7 +48,7 @@ export default class Profile extends React.Component {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.link} onPress={() => this.navigateUser('Login')}>
-              <Text style={styles.linkText}>Sign out</Text>
+              <Text style={[styles.linkText, {color:'red'}]}>Sign out</Text>
             </TouchableOpacity>
 
         </View>

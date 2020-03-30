@@ -270,7 +270,7 @@ export default class AddExpense extends React.Component {
                 <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center' }}>
                     <View style={{backgroundColor: global.color, height:'73%', top:'15%', borderRadius:40}}>
                         <View style={styles.header}>
-                            <Text style={styles.HeaderText}>New Expense</Text>
+                            <Text style={styles.heading}>New Expense</Text>
                         </View>
 
                         <View style={styles.body}>
@@ -353,11 +353,11 @@ export default class AddExpense extends React.Component {
                                     style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 20, right: 20 }}
                                     onPress={() => this.state.nav.navigate('Home')}
                                 >
-                                    <Text style={{ justifyContent: 'center', textAlign: "center", color: '#26baee', fontWeight: 'bold' }}>Cancel</Text>
+                                    <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>Cancel</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: 20, left: 20 }} onPress={() => this.postExpense()}>
-                                    <Text style={{ justifyContent: 'center', textAlign: "center", color: '#26baee', fontWeight: 'bold' }}>Go!</Text>
+                                    <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>Go!</Text>
                                 </TouchableOpacity>
 
                             </View>

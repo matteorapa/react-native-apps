@@ -6,7 +6,7 @@ export default class splashScreen extends React.Component {
         super();
         this.state = {
             nav: navigation,
-            color: 'lightgreen',
+            color: 'orange',
         };
     }
 

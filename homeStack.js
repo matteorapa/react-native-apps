@@ -34,7 +34,6 @@ export default function App() {
         <Stack.Screen name="ViewExpenses" component={ViewExpenses} options={{ headerShown: false }} />
         <Stack.Screen name="Analytics" component={Analytics} options={{ headerShown: false }} />
         <Stack.Screen name="Financials" component={Financials} options={{ headerShown: false }} />
-        
         <Stack.Screen name="AddExpense" component={AddExpense} options={{ headerShown: false, cardStyle: { backgroundColor: 'transparent' }, animationEnabled: false, }} />
         <Stack.Screen name="themeColorPicker" component={themeColorPicker} options={{ headerShown: false, cardStyle: { backgroundColor: 'transparent' }, animationEnabled: false, }} />
         <Stack.Screen name="reEnter" component={reEnter} options={{ headerShown: false}} />

@@ -1,7 +1,6 @@
 import { StyleSheet, Platform, ViewPagerAndroid } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-dark = false;
 
 export default StyleSheet.create({
 
@@ -9,9 +8,9 @@ export default StyleSheet.create({
     heading: {
         fontSize: 36,
         padding: 6,
-        marginVertical: 36,
+        marginVertical: Platform.OS === 'ios'? 35: 15,
         marginHorizontal: 24,
-        top: 15
+        top: Platform.OS === 'ios'? 15:0
     },
     linkText: {
         fontSize: 18, 
@@ -126,7 +125,8 @@ export default StyleSheet.create({
 
     footer: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        zIndex:1
     },
     footerItem: {
         backgroundColor: 'lightgray',
@@ -154,7 +154,7 @@ export default StyleSheet.create({
         height: 150,
         margin: 0,
         borderRadius: 80,
-        backgroundColor: 'grey',
+        backgroundColor: 'lightgrey',
         alignContent: 'center',
         justifyContent: 'center',
     },

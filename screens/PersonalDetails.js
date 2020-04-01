@@ -19,9 +19,7 @@ export default class PersonalDetails extends React.Component {
     }
 
     componentDidMount() {
-        APILink = APILink + 'Msc@gmail.com';
-
-        fetch(APILink, {
+        fetch('http://myvault.technology/api/users/details', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',

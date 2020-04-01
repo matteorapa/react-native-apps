@@ -195,9 +195,9 @@ export default class AddExpense extends React.Component {
             nav: navigation,
             title: '',
             amount: '',
-            currency: '€',
+            currency: 'euro',
             category: '',
-            cashCard: null,
+            cashCard: '',
             onlineSwitch: false,
             show: true,
         };
@@ -254,7 +254,7 @@ export default class AddExpense extends React.Component {
 
     async postExpense() {
         //this.componentDidMount();
-        if (this.state.title === '' || this.state.category === '' || this.state.currency === '' || this.state.cashCard === '' || this.state.amount === '') {
+        if (this.state.title === '' || this.state.category === '' || this.state.cashCard === '' || this.state.amount === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
         }
         else {

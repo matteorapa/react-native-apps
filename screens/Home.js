@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import {  Switch, ScrollView} from 'react-native-gesture-handler';
+import { Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
 
@@ -11,23 +11,24 @@ export default class Home extends React.Component {
     this.navigateUser = this.navigateUser.bind(this);
   }
 
-  navigateUser(screen){
-     this.props.navigation.navigate(screen);
+  navigateUser(screen) {
+    this.props.navigation.navigate(screen);
   }
 
   render() {
 
     return (
-      <View style={styles.container}>
-      <Text style={styles.heading}>MyVault</Text>
-      
+      <View style={[styles.container, {backgroundColor: 'dimgrey'}]}>
+
+          <Text style={styles.heading}>MyVault</Text>
+
         <View style={styles.body}>
           <ScrollView horizontal={true} contentOffset={{ x: 95 }} >
             <View className="buttonGrid" style={styles.buttonGrid}>
 
               <View className="row" style={styles.row}>
 
-                <TouchableOpacity style={[styles.Homebutton1, {backgroundColor:global.color}]} onPress={() => this.props.navigation.navigate('ViewExpenses')}>
+                <TouchableOpacity style={[styles.Homebutton1, { backgroundColor: global.color }]} onPress={() => this.props.navigation.navigate('ViewExpenses')}>
                   <Text style={styles.homeScreenButtonText}>View Expenses </Text>
                 </TouchableOpacity>
 
@@ -35,7 +36,7 @@ export default class Home extends React.Component {
                   <Image source={require('../assets/euro.png')} style={{ resizeMode: 'contain', width: '50%', left: 30 }}></Image>
                 </View>
 
-                <TouchableOpacity style={[styles.Homebutton1, {backgroundColor:global.color}]} onPress={() => this.state.nav.navigate('AddExpense')}>
+                <TouchableOpacity style={[styles.Homebutton1, { backgroundColor: global.color }]} onPress={() => this.state.nav.navigate('AddExpense')}>
                   <Text style={styles.homeScreenButtonText}>Analytics</Text>
                 </TouchableOpacity>
 
@@ -50,7 +51,7 @@ export default class Home extends React.Component {
                   <Image source={require('../assets/barchart.png')} style={{ resizeMode: 'contain', width: '50%', left: 35 }}></Image>
                 </View>
 
-                <TouchableOpacity style={[styles.Homebutton1, {backgroundColor:global.color}]} onPress={() => this.props.navigation.navigate('ViewExpenses')}>
+                <TouchableOpacity style={[styles.Homebutton1, { backgroundColor: global.color }]} onPress={() => this.props.navigation.navigate('ViewExpenses')}>
                   <Text style={styles.homeScreenButtonText}>View All Expenses</Text>
                 </TouchableOpacity>
 
@@ -58,14 +59,14 @@ export default class Home extends React.Component {
                   <Image source={require('../assets/dollar.png')} style={{ resizeMode: 'contain', width: '55%', left: 35 }}></Image>
                 </View>
 
-                <TouchableOpacity style={[styles.Homebutton1, {backgroundColor:global.color}]} onPress={() => this.state.nav.navigate('AddExpense')}>
+                <TouchableOpacity style={[styles.Homebutton1, { backgroundColor: global.color }]} onPress={() => this.state.nav.navigate('AddExpense')}>
                   <Text style={styles.homeScreenButtonText}>Revert Expense</Text>
                 </TouchableOpacity>
 
               </View>
               <View className="row" style={styles.row}>
 
-                <TouchableOpacity style={[styles.Homebutton1, {backgroundColor:global.color}]} onPress={() => this.state.nav.navigate('AddExpense')}>
+                <TouchableOpacity style={[styles.Homebutton1, { backgroundColor: global.color }]} onPress={() => this.state.nav.navigate('AddExpense')}>
                   <Text style={styles.homeScreenButtonText}>New Target</Text>
                 </TouchableOpacity>
 
@@ -73,7 +74,7 @@ export default class Home extends React.Component {
                   <Image source={require('../assets/pound.png')} style={{ resizeMode: 'contain', width: '55%', left: 35 }}></Image>
                 </View>
 
-                <TouchableOpacity style={[styles.Homebutton1, {backgroundColor:global.color}]} onPress={() => this.props.navigation.navigate('AddExpense')}>
+                <TouchableOpacity style={[styles.Homebutton1, { backgroundColor: global.color }]} onPress={() => this.props.navigation.navigate('AddExpense')}>
                   <Text style={styles.homeScreenButtonText}>New Expense</Text>
                 </TouchableOpacity>
 
@@ -83,11 +84,11 @@ export default class Home extends React.Component {
               </View>
             </View>
           </ScrollView>
-          
+
         </View>
 
-        
-        <Footer navigateUser={ this.navigateUser }/>
+
+        <Footer navigateUser={this.navigateUser} />
 
       </View>
 

@@ -3,6 +3,7 @@ import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, M
 import styles from '../MyStyleSheet';
 import Footer from './Footer';
 import { TextInput, Switch } from 'react-native-gesture-handler';
+import splashScreen from '../screens/splashScreen';
 
 export default class themeColorPicker extends React.Component {
 
@@ -48,8 +49,8 @@ export default class themeColorPicker extends React.Component {
     }
 
     async postNewTheme() {
-        this.apiCall();
-        console.log('Sending credentials put to express server using color: ' + this.state.color + ' dark: ' + this.state.dark);        
+            this.apiCall();
+            console.log('Sending credentials put to express server using color: ' + this.state.color + ' dark: ' + this.state.dark);
     }
 
     render() {
@@ -62,6 +63,12 @@ export default class themeColorPicker extends React.Component {
                             onPress={() => this.postNewTheme()}
                         >
                             <Text style={{ color: 'white', textAlign: 'center' }}>save</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, left: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: 'grey', justifyContent: 'center', padding: 10 }}
+                            onPress={() => this.state.nav.navigate('Profile')}
+                        >
+                            <Text style={{ color: 'white', textAlign: 'center' }}>back</Text>
                         </TouchableOpacity>
 
                         <View style={styles.body}>

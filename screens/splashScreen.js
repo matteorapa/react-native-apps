@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Animated } from 'react-native';
-
+global.x = 'loading';
 export default class splashScreen extends React.Component {
 
     constructor({ navigation }) {
@@ -55,8 +55,9 @@ export default class splashScreen extends React.Component {
     reload() {
         this.componentWillMount();
         this.componentDidMount();
+        global.x = 'reloading'
     }
-
+    
     componentWillMount() {
         this._animatedValue = new Animated.Value(0);
     }
@@ -83,12 +84,13 @@ export default class splashScreen extends React.Component {
                     <Text style={{ color: 'white', textAlign: 'center' }}>Reload with new theme</Text>
                 </TouchableOpacity>
 
-                <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: "center", top: 100 }}>Opening</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: "center", top: 100 }}>{global.x}</Text>
 
                 <View style={{ flex: 1 }}>
 
                 </View>
             </View>
         )
+
     }
 }

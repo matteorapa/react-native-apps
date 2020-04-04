@@ -18,7 +18,7 @@ export default class Home extends React.Component {
   render() {
 
     return (
-      <View style={[styles.container, {backgroundColor: 'dimgrey'}]}>
+      <View style={[styles.container, {backgroundColor: global.dark}]}>
 
           <Text style={styles.heading}>MyVault</Text>
 

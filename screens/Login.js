@@ -88,12 +88,9 @@ export default class Login extends React.Component {
 
 
         </View>
-        <View style={styles.roundButton}>
-          <TouchableOpacity title="Sign-in" onPress={() => this.login()}>
+          <TouchableOpacity style={styles.roundButton} title="Sign-in" onPress={() => this.login()}>
             <Text style={styles.text}>Sign In</Text>
           </TouchableOpacity>
-
-        </View>
 
         <View>
           <Text style={[styles.mutedText, { top: 30 }]}>Don't have an account?</Text>

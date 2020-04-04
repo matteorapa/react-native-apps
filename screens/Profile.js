@@ -20,7 +20,7 @@ export default class Profile extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor: global.dark}]}>
         <Text style={styles.heading}>Profile</Text>
         <View style={styles.body}>
 

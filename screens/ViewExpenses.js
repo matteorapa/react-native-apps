@@ -140,28 +140,53 @@ export default class ViewExpenses extends React.Component {
     }
     else {
       let expenses = this.state.dataSource.map((val, key) => {
-        return <View style={styles.container} >
+        return <View key={key} style={styles.container} >
           <View style={{ height: 20 }}></View>
 
           <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20 }} onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, cashcard: val.transactionPlace, amount: val.expenseCost, online: val.transactionOnline })} >
             <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{val.expenseCost}</Text>
-            <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate}</Text>
+            <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
             <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40 }}>{val.transactionTitle}</Text>
           </TouchableOpacity>
 
           < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
             <View style={{ flex: 1, backgroundColor: 'transparent' }}>
-              <View style={{ backgroundColor: global.color, padding: 70, borderRadius: 40, width: '90%', alignSelf: 'center', top: '12.5%', height: '75%', justifyContent: 'space-around' }}>
+              <View style={{ backgroundColor: global.color, padding: 50, paddingTop: 70, borderRadius: 40, width: '90%', alignSelf: 'center', top: '12.5%', height: '75%', justifyContent: 'space-around' }}>
+
+                <View style={{ position: 'absolute', width: 5, height: '85%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 65 }}></View>
+
                 <TouchableOpacity style={{ justifyContent: 'space-around', width: 50, height: 50, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 30, top: 30 }} onPress={() => { this.setState({ show: false }) }}>
-                  <Text style={{ fontSize: 40, textAlign: 'center',  color: 'white' }}>-</Text>
+                  <Text style={{ fontSize: 40, textAlign: 'center', color: 'white' }}>-</Text>
                 </TouchableOpacity>
-                <Text style={styles.viewExpenseDetails}>Title: {this.state.title}</Text>
-                <Text style={styles.viewExpenseDetails}>Price: {this.state.amount}</Text>
-                <Text style={styles.viewExpenseDetails}>Currency: {this.state.currency}</Text>
-                <Text style={styles.viewExpenseDetails}>Date: {this.state.date}</Text>
-                <Text style={styles.viewExpenseDetails}>Purchase : {this.state.online ? 'Online' : 'Local'}</Text>
-                <Text style={styles.viewExpenseDetails}>Category: {this.state.category}</Text>
-                <Text style={styles.viewExpenseDetails}>Purchased by: {this.state.cashcard}</Text>
+
+                <View style={{flexDirection:'row'}}>
+                  <View style={{ alignItems: 'center'}}>
+                    <Text style={[styles.viewExpenseDetails]}>Title</Text>
+
+                    <Text style={styles.viewExpenseDetails}>Category</Text>
+
+                    <Text style={styles.viewExpenseDetails}>Currency</Text>
+
+                    <Text style={styles.viewExpenseDetails}>Price</Text>
+
+                    <Text style={styles.viewExpenseDetails}>Date</Text>
+
+                    <Text style={styles.viewExpenseDetails}>Purchase</Text>
+
+                    <Text style={styles.viewExpenseDetails}>Purchased by</Text>
+                  </View>
+
+                  <View style={{ alignItems: 'center', marginLeft: 50, width: '45%'}}>
+                    <Text style={styles.viewExpenseDetails}>{this.state.title}</Text>
+                    <Text style={styles.viewExpenseDetails}>{this.state.category}</Text>
+                    <Text style={styles.viewExpenseDetails}>{this.state.currency}</Text>
+                    <Text style={styles.viewExpenseDetails}>{this.state.amount}</Text>
+                    <Text style={styles.viewExpenseDetails}>{this.state.date.split('T00:00:00.000Z')}</Text>
+                    <Text style={styles.viewExpenseDetails}>{this.state.online ? 'Online' : 'Local'}</Text>
+                    <Text style={styles.viewExpenseDetails}>{this.state.cashcard}</Text>
+
+                  </View>
+                </View>
                 <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 30, justifyContent: 'space-around', top: 30 }} onPress={() => this.deleteExpense()}>
                   <Text style={{ color: 'white', fontSize: 15, fontWeight: '500', textAlign: 'center' }}>Remove</Text>
                 </TouchableOpacity>
@@ -172,58 +197,58 @@ export default class ViewExpenses extends React.Component {
 
       });
 
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.headerContainer}>
-            <Text style={styles.heading}>Expenses</Text>
+      return (
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.headerContainer}>
+              <Text style={styles.heading}>Expenses</Text>
+            </View>
           </View>
+
+          <View style={styles.body}>
+            <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getAllExpenses()}
+              >
+                <Text style={styles.expenseViewSortText}>ALL</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getWeekExpenses()}
+              >
+                <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getMonthExpenses()}
+              >
+                <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getYearExpenses()}
+              >
+                <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
+              </TouchableOpacity>
+
+            </View>
+            <View style={{ flex: 7 }}>
+              <ScrollView>
+                {expenses}
+              </ScrollView>
+            </View>
+          </View>
+
+          <Footer navigateUser={this.navigateUser} />
+
         </View>
+      );
+    }
 
-        <View style={styles.body}>
-          <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
-
-            <TouchableOpacity
-              style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
-              onPress={() => this.getAllExpenses()}
-            >
-              <Text style={styles.expenseViewSortText}>ALL</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
-              onPress={() => this.getWeekExpenses()}
-            >
-              <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
-              onPress={() => this.getMonthExpenses()}
-            >
-              <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
-              onPress={() => this.getYearExpenses()}
-            >
-              <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
-            </TouchableOpacity>
-
-          </View>
-          <View style={{ flex: 7 }}>
-            <ScrollView>
-              {expenses}
-            </ScrollView>
-          </View>
-        </View>
-
-        <Footer navigateUser={this.navigateUser} />
-
-      </View>
-    );
   }
-
-}
 }

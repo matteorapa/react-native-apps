@@ -315,17 +315,16 @@ export default class AddExpense extends React.Component {
                                         >
                                             <Picker.Item label="-Select Category-" value="" />
                                             <Picker.Item label="Groceries" value="Groceries" />
-                                            <Picker.Item label="Restaurants" value="Restaurants" />
+                                            <Picker.Item label="Food" value="Food" />
                                             <Picker.Item label="Shopping" value="Shopping" />
-                                            <Picker.Item label="Transport" value="Transport" />
                                             <Picker.Item label="Travel" value="Travel" />
-                                            <Picker.Item label="Entertainment" value="Entertainment" />
-                                            <Picker.Item label="Utilities" value="Utilities" />
+                                            <Picker.Item label="Leisure" value="Leisure" />
                                             <Picker.Item label="Health" value="Health" />
-                                            <Picker.Item label="Services" value="Services" />
-                                            <Picker.Item label="General" value="General" />
-                                            <Picker.Item label="Insurance" value="Insurance" />
-                                            <Picker.Item label="Vehicle" value="Vehicle" />
+                                            <Picker.Item label="Home" value="Home" />
+                                            <Picker.Item label="Tech" value="Tech" />
+                                            <Picker.Item label="Utilities" value="Utilities" />
+                                            <Picker.Item label="Bills" value="Bills" />
+                                            <Picker.Item label="Other" value="Other" />
                                         </Picker>
 
                                         <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? 30 : 180, bottom: Platform.OS === 'ios' ? 120 : -60 }}>

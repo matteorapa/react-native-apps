@@ -33,6 +33,14 @@ export default StyleSheet.create({
         fontSize: 15,
     },
 
+    personalDetailsText:{
+        fontSize: 20, 
+        fontWeight: '500', 
+        color: 'black',
+        paddingBottom:15,
+        paddingTop:15
+    },
+
     homeScreenButtonText: {
         textAlign: 'center',
         fontSize: 15,
@@ -58,9 +66,9 @@ export default StyleSheet.create({
         padding: 16,
         marginVertical: 12,
         marginHorizontal: 24,
-        backgroundColor: 'white',
-        shadowColor: "lightgray",
-        borderRadius: 6,
+        backgroundColor: 'lightgrey',
+        shadowColor: "darkgrey",
+        borderRadius: 25,
 
         shadowOffset: {
             width: 0,
@@ -284,7 +292,8 @@ export default StyleSheet.create({
     viewExpenseDetails: {
         fontWeight: '300',
         fontSize: 20,
-
+        paddingBottom: Platform.OS === 'ios'? 20:5,
+        paddingTop: Platform.OS === 'ios'? 20:5
     },
 
     expenseViewSortText: {

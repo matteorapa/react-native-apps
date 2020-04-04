@@ -5,6 +5,7 @@ import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 
 
 //import screens & components
+
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 import CreateAnAccount from './screens/CreateAnAccount';

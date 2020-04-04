@@ -3,21 +3,23 @@ import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Dimensions } f
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
 import { PieChart, BarChart, LineChart } from "react-native-chart-kit";
-var p = []
+import { ScrollView } from 'react-native-gesture-handler';
+var pieChartLink = 'http://myvault.technology/api/analytics/category';
 
 export default class Analytics extends React.Component {
 
   constructor({ navigation }) {
     super();
     this.navigateUser = this.navigateUser.bind(this);
-    this.state ={
-      isLoading:true,
-      pieData: []
+    this.state = {
+      isLoading: true,
+      pieData: [],
+      isClicked: 'all'
     }
   }
 
   componentDidMount() {
-    fetch('http://myvault.technology/api/analytics/category', {
+    fetch(pieChartLink, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -47,51 +49,44 @@ export default class Analytics extends React.Component {
   navigateUser(screen) {
     this.props.navigation.navigate(screen);
   }
+
+
+  getAllPie() {
+    this.setState({ isClicked: 'all' })
+    pieChartLink = pieChartLink;
+    this.componentDidMount();
+
+    pieChartLink = 'http://myvault.technology/api/analytics/category';
+  }
+
+  getWeekPie() {
+    this.setState({ isClicked: 'this week' })
+    pieChartLink = pieChartLink + '/w';
+    this.componentDidMount();
+
+    pieChartLink = 'http://myvault.technology/api/analytics/category';
+  }
+  getMonthPie() {
+    this.setState({ isClicked: 'this month' })
+    pieChartLink = pieChartLink + '/m';
+    this.componentDidMount();
+
+    pieChartLink = 'http://myvault.technology/api/analytics/category';
+  }
+  getYearPie() {
+    this.setState({ isClicked: 'this year' })
+    pieChartLink = pieChartLink + '/y';
+    this.componentDidMount();
+
+    pieChartLink = 'http://myvault.technology/api/analytics/category';
+  }
+
+
   render() {
-    // var pieData = [
-    //   {
-    //     'name': 'Seoul',
-    //     'x': 21500000,
-    //     'color': '#1167b1',
-    //     'legendFontColor': 'black',
-    //     'legendFontSize': 15,
-    //   },
-    //   {
-    //     name: 'Toronto',
-    //     x: 2800000,
-    //     color: 'yellow',
-    //     legendFontColor: 'black',
-    //     legendFontSize: 15,
-    //   },
-    //   {
-    //     name: 'Beijing',
-    //     x: 527612,
-    //     color: 'red',
-    //     legendFontColor: 'black',
-    //     legendFontSize: 15,
-    //   },
-    //   {
-    //     name: 'New York',
-    //     x: 8538000,
-    //     color: 'grey',
-    //     legendFontColor: 'black',
-    //     legendFontSize: 15,
-    //   },
-    //   {
-    //     name: 'Moscow',
-    //     x: 11920000,
-    //     color: 'green',
-    //     legendFontColor: 'black',
-    //     legendFontSize: 15,
-    //   },
-    // ];
     const line = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June'],
       datasets: [
-        {
-          data: [20, 45, 28, 80, 99, 43],
-          strokeWidth: 4, // optional
-        },
+        { data: [20, 45, 28, 80, 99, 43] },
       ],
     };
 
@@ -100,53 +95,91 @@ export default class Analytics extends React.Component {
         <Text style={styles.heading}>Analytics</Text>
 
         <View style={styles.body}>
-          <View style={{ alignContent:'flex-end', backgroundColor:'grey', width: '100%', marginLeft:0}}>
-            <PieChart
-              data={this.state.pieData}
-              width={420}
-              height={350}
-              
-              style={{backgroundColor:'white', width:'100%'}}
-              hasLegend={true}
-              absolute={false}
-              chartConfig={{
-              backgroundColor:'black',
-              color: (opacity = 0) => 'rgb(0, 0, 0)',
-              strokeWidth: 1, // optional, default 3
-              barPercentage: 0.5,
-              }}
-              accessor="population"
-              paddingLeft = '38'
-              
-            />
-          </View>
-          <View>
-            <Text>
-              Bezier Line Chart
-            </Text>
-            <LineChart
-              data={line}
-              width={Dimensions.get('window').width} // from react-native
-              height={240}
-              yAxisLabel={'$'}
-              chartConfig={{
-                backgroundColor: '#e26a00',
-                backgroundGradientFrom: 'black',
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
+          <ScrollView>
+
+            <View style={{ width: '90%', alignSelf: 'center', height: 1, backgroundColor: 'grey', marginBottom: 50 }} />
+
+            <View style={{ width: '100%' }}>
+              <PieChart
+                data={this.state.pieData}
+                width={420}
+                height={350}
+
+                style={{ backgroundColor: 'white' }}
+                hasLegend={true}
+                absolute={false}
+                chartConfig={{
+                  backgroundColor: 'black',
+                  color: (opacity = 0) => 'rgb(0, 0, 0)',
+                  strokeWidth: 1, // optional, default 3
+                  barPercentage: 0.5,
+                }}
+                accessor="population"
+                paddingLeft='38'
+
+              />
+            </View>
+            <View style={{ flex: 1, width: '90%', height: 60, alignSelf: 'center', flexDirection: 'row' }}>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getAllPie()}
+              >
+                <Text style={styles.expenseViewSortText}>ALL</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getWeekPie()}
+              >
+                <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getMonthPie()}
+              >
+                <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around' }}
+                onPress={() => this.getYearPie()}
+              >
+                <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
+              </TouchableOpacity>
+
+            </View>
+            <View>
+
+              <View style={{ width: '90%', alignSelf: 'center', height: 1, backgroundColor: 'grey', marginTop: 50, marginBottom: 50 }} />
+
+              <LineChart
+                data={line}
+                width={Dimensions.get('window').width} // from react-native
+                height={240}
+                yAxisLabel={'$'}
+                chartConfig={{
+                  backgroundColor: '#e26a00',
+                  backgroundGradientFrom: 'black',
+                  decimalPlaces: 2, // optional, defaults to 2dp
+                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                  style: {
+                    borderRadius: 16
+                  }
+                }}
+                bezier
+                style={{
+                  marginVertical: 8,
                   borderRadius: 16
-                }
-              }}
-              bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16
-              }}
-            />
-          </View>
+                }}
+              />
+            </View>
+          </ScrollView>
         </View>
+
         <Footer navigateUser={this.navigateUser} />
+
       </View>
     )
   }

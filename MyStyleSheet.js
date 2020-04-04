@@ -289,7 +289,7 @@ export default StyleSheet.create({
         top: Platform.OS === 'ios' ? 95 : -20
     },
 
-    viewExpenseDetails: {
+    viewDetails: {
         fontWeight: '300',
         fontSize: 20,
         paddingBottom: Platform.OS === 'ios'? 20:5,

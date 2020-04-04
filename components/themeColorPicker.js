@@ -49,8 +49,8 @@ export default class themeColorPicker extends React.Component {
     }
 
     async postNewTheme() {
-            this.apiCall();
-            console.log('Sending credentials put to express server using color: ' + this.state.color + ' dark: ' + this.state.dark);
+        this.apiCall();
+        console.log('Sending credentials put to express server using color: ' + this.state.color + ' dark: ' + this.state.dark);
     }
 
     render() {
@@ -73,8 +73,8 @@ export default class themeColorPicker extends React.Component {
 
                         <View style={styles.body}>
                             <View style={{ flexDirection: 'row', top: 80 }}>
-                                <TouchableOpacity onPress={() => this.state.color = 'lightblue'} style={{ backgroundColor: 'lightblue', width: 80, height: 80, borderRadius: 40, justifyContent: 'space-around', alignSelf: 'center', marginLeft: '10%' }} />
-                                <TouchableOpacity onPress={() => this.state.color = '#26baee'} style={{ backgroundColor: '#26baee', width: 80, height: 80, borderRadius: 40, justifyContent: 'space-around', alignSelf: 'center', marginLeft: '10%' }} />
+                                <TouchableOpacity onPress={() => [this.state.color = 'lightblue', alert('lightblue')]} style={{ backgroundColor: 'lightblue', width: 80, height: 80, borderRadius: 40, justifyContent: 'space-around', alignSelf: 'center', marginLeft: '10%' }} />
+                                <TouchableOpacity onPress={() => [this.state.color = '#26baee', alert('26baee')]} style={{ backgroundColor: '#26baee', width: 80, height: 80, borderRadius: 40, justifyContent: 'space-around', alignSelf: 'center', marginLeft: '10%' }} />
                                 <TouchableOpacity onPress={() => this.state.color = 'blue'} style={{ backgroundColor: 'blue', width: 80, height: 80, borderRadius: 40, justifyContent: 'space-around', alignSelf: 'center', marginLeft: '10%' }} />
                             </View>
                             <View style={{ flexDirection: 'row', top: 80 }}>

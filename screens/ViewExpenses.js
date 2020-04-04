@@ -161,29 +161,29 @@ export default class ViewExpenses extends React.Component {
 
                 <View style={{flexDirection:'row'}}>
                   <View style={{ alignItems: 'center'}}>
-                    <Text style={[styles.viewExpenseDetails]}>Title</Text>
+                    <Text style={[styles.viewDetails]}>Title</Text>
 
-                    <Text style={styles.viewExpenseDetails}>Category</Text>
+                    <Text style={styles.viewDetails}>Category</Text>
 
-                    <Text style={styles.viewExpenseDetails}>Currency</Text>
+                    <Text style={styles.viewDetails}>Currency</Text>
 
-                    <Text style={styles.viewExpenseDetails}>Price</Text>
+                    <Text style={styles.viewDetails}>Price</Text>
 
-                    <Text style={styles.viewExpenseDetails}>Date</Text>
+                    <Text style={styles.viewDetails}>Date</Text>
 
-                    <Text style={styles.viewExpenseDetails}>Purchase</Text>
+                    <Text style={styles.viewDetails}>Purchase</Text>
 
-                    <Text style={styles.viewExpenseDetails}>Purchased by</Text>
+                    <Text style={styles.viewDetails}>Purchased by</Text>
                   </View>
 
                   <View style={{ alignItems: 'center', marginLeft: 50, width: '45%'}}>
-                    <Text style={styles.viewExpenseDetails}>{this.state.title}</Text>
-                    <Text style={styles.viewExpenseDetails}>{this.state.category}</Text>
-                    <Text style={styles.viewExpenseDetails}>{this.state.currency}</Text>
-                    <Text style={styles.viewExpenseDetails}>{this.state.amount}</Text>
-                    <Text style={styles.viewExpenseDetails}>{this.state.date.split('T00:00:00.000Z')}</Text>
-                    <Text style={styles.viewExpenseDetails}>{this.state.online ? 'Online' : 'Local'}</Text>
-                    <Text style={styles.viewExpenseDetails}>{this.state.cashcard}</Text>
+                    <Text style={styles.viewDetails}>{this.state.title}</Text>
+                    <Text style={styles.viewDetails}>{this.state.category}</Text>
+                    <Text style={styles.viewDetails}>{this.state.currency}</Text>
+                    <Text style={styles.viewDetails}>{this.state.amount}</Text>
+                    <Text style={styles.viewDetails}>{this.state.date.split('T00:00:00.000Z')}</Text>
+                    <Text style={styles.viewDetails}>{this.state.online ? 'Online' : 'Local'}</Text>
+                    <Text style={styles.viewDetails}>{this.state.cashcard}</Text>
 
                   </View>
                 </View>

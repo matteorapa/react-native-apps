@@ -151,7 +151,7 @@ export default class ViewExpenses extends React.Component {
 
           < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
             <View style={{ flex: 1, backgroundColor: 'transparent' }}>
-              <View style={{ backgroundColor: global.color, padding: 50, paddingTop: 70, borderRadius: 40, width: '90%', alignSelf: 'center', top: '12.5%', height: '75%', justifyContent: 'space-around' }}>
+              <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight:20, paddingBottom:50,paddingTop: 70, borderRadius: 40, width: '90%', alignSelf: 'center', top: '12.5%', height: '75%', justifyContent: 'space-around' }}>
 
 
                 <TouchableOpacity style={{ justifyContent: 'space-around', width: 50, height: 50, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 30, top: 30 }} onPress={() => { this.setState({ show: false }) }}>
@@ -159,7 +159,7 @@ export default class ViewExpenses extends React.Component {
                 </TouchableOpacity>
 
                 <View style={{flexDirection:'row'}}>
-                  <View style={{ alignItems: 'center', flex:4, marginRight:20}}>
+                  <View style={{ alignItems: 'flex-start', flex:4, marginRight:20}}>
                     <Text style={[styles.viewDetails]}>Title</Text>
 
                     <Text style={styles.viewDetails}>Category</Text>
@@ -177,7 +177,7 @@ export default class ViewExpenses extends React.Component {
 
                   <View style={{flex:0.1, height: '100%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center'}}></View>
 
-                  <View style={{ alignItems: 'center', marginLeft: 20,  flex:4}}>
+                  <View style={{ alignItems: 'flex-end', marginLeft: 20,  flex:4}}>
                     <Text style={styles.viewDetails}>{this.state.title}</Text>
                     <Text style={styles.viewDetails}>{this.state.category}</Text>
                     <Text style={styles.viewDetails}>{this.state.currency}</Text>

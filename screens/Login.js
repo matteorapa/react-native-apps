@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform, KeyboardAvoidingView } from 'react-native';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 
@@ -67,42 +67,42 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View style={[styles.container, styles.central]} >
-        <View>
-          <Text style={styles.heading}>MyVault</Text>
-        </View>
-        <View style={styles.formBox}>
-          <Text>Email</Text>
-          <TextInput style={styles.input} name='email'
-            placeholder={"Email"}
-            onChangeText={(email) => this.setState({ email })}
-            value={this.state.email}
-          />
+        <View style={[styles.container, styles.central]} >
+          <View>
+            <Text style={styles.heading}>MyVault</Text>
+          </View>
+          <View style={styles.formBox}>
+            <Text>Email</Text>
+            <TextInput style={styles.input} name='email'
+              placeholder={"Email"}
+              onChangeText={(email) => this.setState({ email })}
+              value={this.state.email}
+            />
 
-          <Text >Password</Text>
-          <TextInput style={styles.input} placeholder={"Password"}
-            onChangeText={(password) => this.setState({ password })}
-            value={this.state.password}
-            secureTextEntry={true}
-          />
+            <Text >Password</Text>
+            <TextInput style={styles.input} placeholder={"Password"}
+              onChangeText={(password) => this.setState({ password })}
+              value={this.state.password}
+              secureTextEntry={true}
+            />
 
 
-        </View>
+          </View>
           <TouchableOpacity style={styles.roundButton} title="Sign-in" onPress={() => this.login()}>
             <Text style={styles.text}>Sign In</Text>
           </TouchableOpacity>
 
-        <View>
-          <Text style={[styles.mutedText, { top: 30 }]}>Don't have an account?</Text>
-          <Text></Text>
-          <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
-            <Text style={[styles.centerText, styles.actionText, { top: 30 }]}>Create an Account</Text>
-          </TouchableOpacity>
+          <View>
+            <Text style={[styles.mutedText, { top: 30 }]}>Don't have an account?</Text>
+            <Text></Text>
+            <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
+              <Text style={[styles.centerText, styles.actionText, { top: 30 }]}>Create an Account</Text>
+            </TouchableOpacity>
+          </View>
+
+
+
         </View>
-
-
-
-      </View>
     )
   }
 }

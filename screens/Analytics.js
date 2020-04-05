@@ -89,7 +89,8 @@ export default class Analytics extends React.Component {
         { data: [20, 45, 28, 80, 99, 43] },
       ],
     };
-
+    const screenWidth = Math.round(Dimensions.get('window').width);
+    const screenHeight = 0.35 * Math.round(Dimensions.get('window').height);
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>Analytics</Text>
@@ -99,11 +100,11 @@ export default class Analytics extends React.Component {
 
             <View style={{ width: '90%', alignSelf: 'center', height: 1, backgroundColor: 'grey', marginBottom: 50 }} />
 
-            <View style={{ width: '100%' }}>
+            <View >
               <PieChart
                 data={this.state.pieData}
-                width={420}
-                height={350}
+                width={screenWidth}
+                height={screenHeight}
 
                 style={{ backgroundColor: 'white' }}
                 hasLegend={true}

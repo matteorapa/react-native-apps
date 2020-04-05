@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, Modal, Platform, Alert} from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, Modal, Platform, Alert } from 'react-native';
 import { TextInput, ScrollView } from 'react-native-gesture-handler';
 import Footer from '../components/Footer';
 import styles from '../MyStyleSheet';
@@ -17,7 +17,7 @@ export default class PersonalDetails extends React.Component {
             surname: '',
             email: '',
             dob: '',
-            newDOB:''
+            newDOB: ''
         };
 
         this.navigateUser = this.navigateUser.bind(this);
@@ -98,7 +98,7 @@ export default class PersonalDetails extends React.Component {
             this.setState({ show: false })
             this.apiCall();
             console.log('Sending user details PUT to express server using name: ' + this.state.name + ' surname: ' + this.state.surname + ' email: ' + this.state.email + ' dob: ' + this.state.dob);
-            
+
         }
     }
 
@@ -118,9 +118,9 @@ export default class PersonalDetails extends React.Component {
         else {
 
             let details = this.state.dataSource.map((val, key) => {
-                
+
                 return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
-                    <View style={{ position: 'absolute', width: 5, height: '100%', backgroundColor: global.dark, zIndex: 1, left: '40%' }}></View>
+
 
                     <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 80, height: 30, borderRadius: 20, position: 'absolute', right: '6%', top: 48, justifyContent: 'space-around' }}
                         onPress={() => this.setState({ show: true, name: val.name, surname: val.surname, email: val.email, dob: val.dob })}
@@ -129,7 +129,7 @@ export default class PersonalDetails extends React.Component {
                     </TouchableOpacity>
 
                     <View style={{ width: '95%', paddingTop: 30, paddingBottom: 30, alignSelf: 'center', backgroundColor: 'lightgrey', borderRadius: 20, flexDirection: 'row', top: '20%' }} >
-                        <View style={{ alignItems: 'center', marginLeft: 22 }}>
+                        <View style={{ alignItems: 'center', flex: 4, marginRight: 10 }}>
                             <Text style={styles.viewDetails}>Name</Text>
 
                             <Text style={styles.viewDetails}>Surname</Text>
@@ -138,7 +138,11 @@ export default class PersonalDetails extends React.Component {
 
                             <Text style={styles.viewDetails}>Date of Birth</Text>
                         </View>
-                        <View style={{ alignItems: 'center', marginLeft: 50, width: '45%' }}>
+
+                        <View style={{ flex: 0.1, position: 'relative', width: 1, height: '100%', backgroundColor: global.dark, zIndex: 1 }}></View>
+
+
+                        <View style={{ flex: 4, alignItems: 'center', marginLeft: 10, width: '45%' }}>
                             <Text style={styles.viewDetails}>{val.name}</Text>
                             <Text style={styles.viewDetails}>{val.surname}</Text>
                             <Text style={styles.viewDetails}>{val.email}</Text>
@@ -164,46 +168,49 @@ export default class PersonalDetails extends React.Component {
                             {details}
 
                             < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-                                <View style={{ flex: 1, backgroundColor: 'transparent', marginTop: Platform.OS === 'ios' ? '30%' : '22%' }}>
+                                <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+                                    <View style={{ height: '60%', backgroundColor: global.dark, top: '13%', justifyContent: 'space-around' }}>
 
-                                    <View style={{ position: 'absolute', width: 5, height: 400, backgroundColor: global.dark, zIndex: 1, left: '40%' }}></View>
 
-                                    <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 80, height: 30, borderRadius: 20, position: 'absolute', right: '6%', top: 48, justifyContent: 'space-around' }}
-                                        onPress={() => this.postUpdatedDetails()}
-                                    >
-                                        <Text style={styles.text}>SAVE</Text>
-                                    </TouchableOpacity>
 
-                                    <View style={{ width: '95%', paddingTop: 30, paddingBottom: 30, alignSelf: 'center', backgroundColor: global.color, borderRadius: 20, flexDirection: 'row', top: '20%' }} >
-                                        <View style={{ alignItems: 'center', marginLeft: 22 }}>
-                                            <Text style={styles.viewDetails}>Name</Text>
+                                        <View style={{ width: '95%', paddingTop: 70, paddingBottom: 30, alignSelf: 'center', backgroundColor: global.color, borderRadius: 20, flexDirection: 'row' }} >
+                                            <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 80, height: 30, borderRadius: 20, position: 'absolute', right: '6%', top: 10, justifyContent: 'space-around' }}
+                                                onPress={() => this.postUpdatedDetails()}
+                                            >
+                                                <Text style={styles.text}>SAVE</Text>
+                                            </TouchableOpacity>
+                                            <View style={{ alignItems: 'center', flex: 4, marginRight: 10 }}>
+                                                <Text style={styles.viewDetails}>Name</Text>
 
-                                            <Text style={styles.viewDetails}>Surname</Text>
+                                                <Text style={styles.viewDetails}>Surname</Text>
 
-                                            <Text style={styles.viewDetails}>Email</Text>
+                                                <Text style={styles.viewDetails}>Email</Text>
 
-                                            <Text style={styles.viewDetails}>Date of Birth</Text>
-                                        </View>
-                                        <View style={{ alignItems: 'center', marginLeft: 50, width: '45%' }}>
-                                            <TextInput style={styles.viewDetails}
-                                                placeholder={this.state.name}
-                                                onChangeText={(name) => this.setState({ name })}
-                                                value={this.state.name}
-                                            />
-                                            <TextInput style={styles.viewDetails}
-                                                placeholder={this.state.surname}
-                                                onChangeText={(surname) => this.setState({ surname })}
-                                                value={this.state.surname}
-                                            />
-                                            <TextInput style={styles.viewDetails}
-                                                placeholder={this.state.email}
-                                                onChangeText={(email) => this.setState({ email })}
-                                                value={this.state.email}
-                                            />
-                                            <Text style={styles.viewDetails}>{this.state.dob.split('T00:00:00.000Z')}</Text>
+                                                <Text style={styles.viewDetails}>Date of Birth</Text>
+                                            </View>
+
+                                            <View style={{ flex: 0.1, position: 'relative', width: 1, height: '100%', backgroundColor: global.dark, zIndex: 1 }}></View>
+
+                                            <View style={{ alignItems: 'center', marginLeft: 10, width: '45%', flex: 4 }}>
+                                                <TextInput style={styles.viewDetails}
+                                                    placeholder={this.state.name}
+                                                    onChangeText={(name) => this.setState({ name })}
+                                                    value={this.state.name}
+                                                />
+                                                <TextInput style={styles.viewDetails}
+                                                    placeholder={this.state.surname}
+                                                    onChangeText={(surname) => this.setState({ surname })}
+                                                    value={this.state.surname}
+                                                />
+                                                <TextInput style={styles.viewDetails}
+                                                    placeholder={this.state.email}
+                                                    onChangeText={(email) => this.setState({ email })}
+                                                    value={this.state.email}
+                                                />
+                                                <Text style={styles.viewDetails}>{this.state.dob.split('T00:00:00.000Z')}</Text>
+                                            </View>
                                         </View>
                                     </View>
-
                                 </View>
                             </Modal >
                         </View>

@@ -302,6 +302,17 @@ export default StyleSheet.create({
         textAlign: 'center',
         justifyContent:'space-around'
 
+    },
+
+    themecolorpickerbuttons:{
+        flex:1, 
+        marginLeft:25, 
+        marginRight:25, 
+        marginBottom:10, 
+        width: 80, 
+        height: 80, 
+        borderRadius: 40, 
+        justifyContent: 'space-around'
     }
 
 }); 

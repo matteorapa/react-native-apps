@@ -153,14 +153,13 @@ export default class ViewExpenses extends React.Component {
             <View style={{ flex: 1, backgroundColor: 'transparent' }}>
               <View style={{ backgroundColor: global.color, padding: 50, paddingTop: 70, borderRadius: 40, width: '90%', alignSelf: 'center', top: '12.5%', height: '75%', justifyContent: 'space-around' }}>
 
-                <View style={{ position: 'absolute', width: 5, height: '85%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 65 }}></View>
 
                 <TouchableOpacity style={{ justifyContent: 'space-around', width: 50, height: 50, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 30, top: 30 }} onPress={() => { this.setState({ show: false }) }}>
                   <Text style={{ fontSize: 40, textAlign: 'center', color: 'white' }}>-</Text>
                 </TouchableOpacity>
 
                 <View style={{flexDirection:'row'}}>
-                  <View style={{ alignItems: 'center'}}>
+                  <View style={{ alignItems: 'center', flex:4, marginRight:20}}>
                     <Text style={[styles.viewDetails]}>Title</Text>
 
                     <Text style={styles.viewDetails}>Category</Text>
@@ -176,7 +175,9 @@ export default class ViewExpenses extends React.Component {
                     <Text style={styles.viewDetails}>Purchased by</Text>
                   </View>
 
-                  <View style={{ alignItems: 'center', marginLeft: 50, width: '45%'}}>
+                  <View style={{flex:0.1, height: '100%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center'}}></View>
+
+                  <View style={{ alignItems: 'center', marginLeft: 20,  flex:4}}>
                     <Text style={styles.viewDetails}>{this.state.title}</Text>
                     <Text style={styles.viewDetails}>{this.state.category}</Text>
                     <Text style={styles.viewDetails}>{this.state.currency}</Text>

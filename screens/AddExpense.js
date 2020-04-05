@@ -268,7 +268,7 @@ export default class AddExpense extends React.Component {
         return (
             <Modal animationType={'slide'} transparent={true}>
                 <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center' }}>
-                    <View style={{backgroundColor: global.color, height:'73%', top:'15%', borderRadius:40}}>
+                    <View style={{backgroundColor: global.color, height:'73%', top:'12%', borderRadius:40}}>
                         <View style={styles.header}>
                             <Text style={styles.heading}>New Expense</Text>
                         </View>
@@ -327,7 +327,7 @@ export default class AddExpense extends React.Component {
                                             <Picker.Item label="Other" value="Other" />
                                         </Picker>
 
-                                        <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? 30 : 180, bottom: Platform.OS === 'ios' ? 120 : -60 }}>
+                                        <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '10%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
                                             <TouchableOpacity onPress={() => this.setState({ cashCard: 'Cash' })}
                                                 style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Cash" ? "grey" : "darkgrey" }}>
                                                 <Text style={{ justifyContent: 'center', textAlign: "center" }} > Cash</Text>

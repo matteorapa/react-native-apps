@@ -8,7 +8,7 @@ export default StyleSheet.create({
     heading: {
         fontSize: 36,
         padding: 6,
-        marginVertical: Platform.OS === 'ios'? 35: 15,
+        marginVertical: Platform.OS === 'ios'? 17: 10,
         marginHorizontal: 24,
         top: Platform.OS === 'ios'? 15:0
     },

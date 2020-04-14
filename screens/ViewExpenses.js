@@ -151,10 +151,10 @@ export default class ViewExpenses extends React.Component {
 
           < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
             <View style={{ flex: 1, backgroundColor: 'transparent' }}>
-              <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight:20, paddingBottom:50,paddingTop: 70, borderRadius: 40, width: '90%', alignSelf: 'center', top: '12.5%', height: '75%', justifyContent: 'space-around' }}>
+              <View style={{ flex:1, backgroundColor: global.color, paddingLeft: 20, paddingRight:20, paddingBottom:50, paddingTop: 70, borderRadius: 40, width: '90%', alignSelf: 'center',   justifyContent:'center'}}>
 
 
-                <TouchableOpacity style={{ justifyContent: 'space-around', width: 50, height: 50, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 30, top: 30 }} onPress={() => { this.setState({ show: false }) }}>
+                <TouchableOpacity style={{ justifyContent: 'space-around', width: 50, height: 50, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 30, top: 50 }} onPress={() => { this.setState({ show: false }) }}>
                   <Text style={{ fontSize: 40, textAlign: 'center', color: 'white' }}>-</Text>
                 </TouchableOpacity>
 

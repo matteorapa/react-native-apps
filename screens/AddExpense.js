@@ -267,11 +267,10 @@ export default class AddExpense extends React.Component {
 
         return (
             <Modal animationType={'slide'} transparent={true}>
-                <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center' }}>
-                    <View style={{backgroundColor: global.color, height:'73%', top:'12%', borderRadius:40}}>
-                        <View style={styles.header}>
-                            <Text style={styles.heading}>New Expense</Text>
-                        </View>
+                <View style={{ backgroundColor: 'transparent', flex: 1, width: 400, alignSelf: 'center' }}>
+                    <View style={{backgroundColor: global.color, height:600, top:'8%', borderRadius:40}}>
+                        
+                        <Text style={styles.heading}>New Expense</Text>
 
                         <View style={styles.body}>
                             <View style={{ flex: 4 }}>
@@ -346,16 +345,16 @@ export default class AddExpense extends React.Component {
 
                             </View>
 
-                            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
 
                                 <TouchableOpacity
-                                    style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 20, right: 20 }}
+                                    style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
                                     onPress={() => this.state.nav.navigate('Home')}
                                 >
                                     <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>Cancel</Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: 20, left: 20 }} onPress={() => this.postExpense()}>
+                                <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }} onPress={() => this.postExpense()}>
                                     <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>Go!</Text>
                                 </TouchableOpacity>
 

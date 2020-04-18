@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform, KeyboardAvoidingView, BackHandler } from 'react-native';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 
@@ -18,6 +18,14 @@ export default class Login extends React.Component {
   }
   // component did mount is a lifecycle method so is called when program is run
   //to prevent alert showing when program is run ive changed the api call to a reg method
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.backbutton);
+  }
+
+  backbutton = () => {
+    return true; 
+  }
 
   async apiCall() {
 
@@ -76,6 +84,7 @@ export default class Login extends React.Component {
             <TextInput style={styles.input} name='email'
               placeholder={"Email"}
               onChangeText={(email) => this.setState({ email })}
+              autoCapitalize ={false}
               value={this.state.email}
             />
 
@@ -83,6 +92,7 @@ export default class Login extends React.Component {
             <TextInput style={styles.input} placeholder={"Password"}
               onChangeText={(password) => this.setState({ password })}
               value={this.state.password}
+              autoCapitalize={false}
               secureTextEntry={true}
             />
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, BackHandler } from 'react-native';
 import { Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
@@ -15,6 +15,14 @@ export default class Home extends React.Component {
     this.props.navigation.navigate(screen);
   }
 
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.backbutton);
+  }
+
+  backbutton = () => {
+    return true; 
+  }
+  
   render() {
 
     return (

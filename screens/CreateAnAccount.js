@@ -64,8 +64,8 @@ export default class CreateAnAccountScreen extends React.Component {
 
   async signup() {
     //this.componentDidMount();
-    if (this.state.name === '' || this.state.surname === '' || this.state.email === '' || this.state.password === '' || this.state.dob === '') {
-      Alert.alert('Oops', 'Please ensure all fields are filled')
+    if (this.state.name === '' || this.state.surname === '' || this.state.email === '' || this.state.password === '' || this.state.dob === '' || !this.state.email.includes("@") || !this.state.email.includes(".com")){
+      Alert.alert('Oops', 'Please ensure valid data is entered in all fields')
     }
     else {
       this.apiCall();
@@ -119,6 +119,7 @@ export default class CreateAnAccountScreen extends React.Component {
                   <TextInput style={styles.input}
                     placeholder={"johndoe@mailbox.com"}
                     onChangeText={(email) => this.setState({ email })}
+                    autoCapitalize = {false}
                     value={this.state.email}
                     Email={this.state.email}
                   />
@@ -131,6 +132,7 @@ export default class CreateAnAccountScreen extends React.Component {
                     onChangeText={(password) => this.setState({ password })}
                     value={this.state.password}
                     Password={this.state.password}
+                    autoCapitalize = {false}
                     secureTextEntry={true}
                   />
                 </View>

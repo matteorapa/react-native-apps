@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Animated, BackHandler } from 'react-native';
 global.x = 'loading';
 export default class splashScreen extends React.Component {
 
@@ -9,7 +9,13 @@ export default class splashScreen extends React.Component {
             nav: navigation,
         };
     }
+
+    backbutton = () => {
+        return true;
+    }
+
     componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.backbutton);
         setTimeout(() => {
             this.state.nav.navigate('Home')
         }, 2000);
@@ -57,7 +63,7 @@ export default class splashScreen extends React.Component {
         this.componentDidMount();
         global.x = 'reloading'
     }
-    
+
     componentWillMount() {
         this._animatedValue = new Animated.Value(0);
     }

@@ -33,12 +33,7 @@ export default class Profile extends React.Component {
             <TouchableOpacity style={styles.link} onPress={() => this.navigateUser('themeColorPicker')}>
               <Text style={styles.linkText}>Select Theme Color</Text>
             </TouchableOpacity>
-
-            <View style={[styles.link, styles.row]}>
-              <Text style={styles.linkText} >Dark Mode</Text>
-              <Switch onValueChange={(isDark) => this.setState({ isDark })} value={this.state.isDark} />
-            </View>
-
+            
             <TouchableOpacity style={styles.link} onPress={() => this.navigateUser('privacypolicy')}>
               <Text style={styles.linkText}>Privacy Policy</Text>
             </TouchableOpacity>

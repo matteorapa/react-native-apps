@@ -2,12 +2,15 @@ import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
-import { PieChart, BarChart, LineChart } from "react-native-chart-kit";
+import { PieChart, BarChart, LineChart, StackedBarChart } from "react-native-chart-kit";
 import { ScrollView } from 'react-native-gesture-handler';
 import { Value } from 'react-native-reanimated';
-var pieChartLink = 'http://myvault.technology/api/analytics/category';
+var pieChartLink = 'http://myvault.technology/api/analytics/categoryTotals';
 const dataLabels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+const BarDataLabels = ['EUR', 'GBP', 'USD'];
+
 var temp = [0];
+var BarTemp = [0];
 export default class Analytics extends React.Component {
 
   constructor({ navigation }) {
@@ -17,12 +20,21 @@ export default class Analytics extends React.Component {
       isLoading: true,
       pieData: [],
       lineData: [],
+      barData: [],
       array: [],
+      BarArray: [],
       isClicked: 'all'
     }
   }
 
   componentDidMount() {
+
+    this.PieChartAPICall();
+    this.LineChartAPICall();
+    this.BarChartAPICall();
+  }
+
+  PieChartAPICall() {
     fetch(pieChartLink, {
       method: 'GET',
       headers: {
@@ -48,10 +60,10 @@ export default class Analytics extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  }
 
-    //line chart data
-
-    fetch('http://myvault.technology/api/analytics/monthly', {
+  LineChartAPICall() {
+    fetch('http://myvault.technology/api/analytics/MonthlyTotals', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -62,12 +74,14 @@ export default class Analytics extends React.Component {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          for (i = 0; i < 12; i++) {
-            temp.push(parseInt(response.datasets[i].data));
+          if (temp = []) {
+            for (i = 0; i < 12; i++) {
+              temp.push(parseInt(response.datasets[i].data));
+            }
           }
           this.setState({
             isLoading: false,
-            lineData: response.datasets,
+            lineData: [],
             array: temp
           })
 
@@ -82,7 +96,43 @@ export default class Analytics extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  }
 
+  BarChartAPICall() {
+    fetch('http://myvault.technology/api/analytics/CurrencyTotals', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + global.clientToken,
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.success) {
+          if (BarTemp = []) {
+            for (i = 0; i < 3; i++) {
+              BarTemp.push(parseInt(response.datasets[i].data));
+            }
+          }
+          this.setState({
+            isLoading: false,
+            barData: [],
+            BarArray: BarTemp
+          })
+          console.log(BarTemp)
+        }
+        
+        
+
+        else {
+          alert('there was an error loading charts')
+        }
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   navigateUser(screen) {
@@ -94,58 +144,55 @@ export default class Analytics extends React.Component {
     this.setState({ isClicked: 'all' })
     pieChartLink = pieChartLink;
     this.componentDidMount();
-
-    pieChartLink = 'http://myvault.technology/api/analytics/category';
+    this.setState({ pieData: [] })
+    pieChartLink = 'http://myvault.technology/api/analytics/categoryTotals';
   }
 
   getWeekPie() {
     this.setState({ isClicked: 'this week' })
-    pieChartLink = pieChartLink + '/w';
+    pieChartLink = pieChartLink + '/w/';
     this.componentDidMount();
-
-    pieChartLink = 'http://myvault.technology/api/analytics/category';
+    this.setState({ pieData: [] })
+    pieChartLink = 'http://myvault.technology/api/analytics/categoryTotals';
   }
   getMonthPie() {
     this.setState({ isClicked: 'this month' })
-    pieChartLink = pieChartLink + '/m';
+    pieChartLink = pieChartLink + '/m/';
     this.componentDidMount();
-
-    pieChartLink = 'http://myvault.technology/api/analytics/category';
+    this.setState({ pieData: [] })
+    pieChartLink = 'http://myvault.technology/api/analytics/categoryTotals';
   }
   getYearPie() {
     this.setState({ isClicked: 'this year' })
-    pieChartLink = pieChartLink + '/y';
+    pieChartLink = pieChartLink + '/y/';
     this.componentDidMount();
-
-    pieChartLink = 'http://myvault.technology/api/analytics/category';
+    this.setState({ pieData: [] })
+    pieChartLink = 'http://myvault.technology/api/analytics/categoryTotals';
   }
 
 
   render() {
-    // let values = this.state.lineData.map((val, key) => {
-    //   this.state.array.push(5)
-    //   return null
-    // })
 
 
-    
-    console.log("this " + this.state.array)
-  
     const line = {
       labels: dataLabels,
       datasets: [
         { data: temp }
-
       ],
-
     };
-    temp = [0]
 
-    const screenWidth = Math.round(Dimensions.get('window').width);
-    const screenHeight = 0.35 * Math.round(Dimensions.get('window').height);
+    const bar = {
+      labels: BarDataLabels,
+      datasets: [
+        { data: BarTemp }
+      ],
+    };
+
+    screenWidth = Math.round(Dimensions.get('window').width);
+    screenHeight = 0.35 * Math.round(Dimensions.get('window').height);
 
     return (
-      <View style={[styles.container, { backgroundColor: global.dark }]}>
+      <View style={[styles.container, { backgroundColor: global.dark }]} >
         <Text style={styles.heading}>Analytics</Text>
 
         <View style={styles.body}>
@@ -153,12 +200,12 @@ export default class Analytics extends React.Component {
 
             <View style={{ width: '90%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginBottom: 50 }} />
 
-            <View >
+            <View>
               <PieChart
                 data={this.state.pieData}
                 width={screenWidth}
                 height={screenHeight}
-                style={{ backgroundColor: global.dark }}
+                style={{ backgroundColor: 'transparent', position: 'relative' }}
                 hasLegend={true}
                 absolute={false}
                 chartConfig={{
@@ -169,6 +216,9 @@ export default class Analytics extends React.Component {
                 paddingLeft='38'
 
               />
+
+              <Text style={{ alignSelf: 'center', justifyContent: 'space-around', position: 'absolute', top: '50%', zIndex: -1 }}>No data to show</Text>
+
             </View>
             <View style={{ flex: 1, width: '95%', height: 60, alignSelf: 'center', flexDirection: 'row' }}>
 
@@ -204,19 +254,19 @@ export default class Analytics extends React.Component {
             <View>
 
               <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginTop: 50, marginBottom: 50 }} />
-              
+
               <LineChart
                 data={line}
-                width={Dimensions.get('window').width} // from react-native
+                width={screenWidth} // from react-native
                 height={240}
-                yAxisLabel={'$'}
+                yAxisLabel={'€'}
                 withInnerLines={false}
                 withDots={false}
                 chartConfig={{
                   backgroundGradientFrom: global.dark,
                   backgroundGradientTo: global.dark,
                   fillShadowGradientOpacity: 0,
-                  color: (opacity = 0) => global.color === 'grey' ? 'white' : 'black',
+                  color: (opacity = 0) => global.dark === 'grey' ? 'black' : 'black',
                   strokeWidth: 2,
 
                 }}
@@ -230,6 +280,20 @@ export default class Analytics extends React.Component {
 
             <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginTop: 50, marginBottom: 50 }} />
 
+            <BarChart
+              // style={graphStyle}
+              data={bar}
+              width={screenWidth}
+              height={400}
+              fromZero={true}
+              chartConfig={{
+                backgroundGradientFrom: global.dark,
+                backgroundGradientTo: global.dark,
+                color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              }}
+            />
+
+            <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginTop: 50, marginBottom: 50 }} />
 
           </ScrollView>
         </View>

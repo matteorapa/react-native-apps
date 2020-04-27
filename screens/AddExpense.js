@@ -195,7 +195,7 @@ export default class AddExpense extends React.Component {
             nav: navigation,
             title: '',
             amount: '',
-            currency: 'euro',
+            currency: 'eur',
             category: '',
             cashCard: '',
             onlineSwitch: false,
@@ -293,9 +293,9 @@ export default class AddExpense extends React.Component {
                                             selectedValue={this.state.currency}
                                             onValueChange={(itemValue, itemIndex) => this.setState({ currency: itemValue })}
                                         >
-                                            <Picker.Item label="€" value="euro" />
-                                            <Picker.Item label="£" value="pound" />
-                                            <Picker.Item label="$" value="dollar" />
+                                            <Picker.Item label="€" value="eur" />
+                                            <Picker.Item label="£" value="gbp" />
+                                            <Picker.Item label="$" value="usd" />
                                         </Picker>
 
                                         <TextInput style={styles.amountInput}

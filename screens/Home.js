@@ -5,10 +5,11 @@ import { LineChart } from "react-native-chart-kit";
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
 import { exp } from 'react-native-reanimated';
-
-const dataLabels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+var lineChartLink = 'http://myvault.technology/api/analytics/MonthlyTotals';
+const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 var temp = [0];
 var count = 0;
+var dataLabels = [''];
 export default class Home extends React.Component {
 
   constructor({ navigation }) {
@@ -19,7 +20,8 @@ export default class Home extends React.Component {
       lineData: [],
       array: [],
       isLoading: true,
-      dataSource: []
+      lineCurrency: 'EUR',
+      expensesData:[]
     }
   }
 
@@ -31,14 +33,16 @@ export default class Home extends React.Component {
     BackHandler.addEventListener('hardwareBackPress', this.backbutton);
     this.LineChartAPICall();
     this.ExpensesAPICall();
+
   }
+
 
   backbutton = () => {
     return true;
   }
 
   LineChartAPICall() {
-    fetch('http://myvault.technology/api/analytics/MonthlyTotals', {
+    fetch(lineChartLink + this.state.lineCurrency, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -50,17 +54,19 @@ export default class Home extends React.Component {
       .then((response) => {
         if (response.success) {
           if (temp = []) {
-            for (i = 0; i < 12; i++) {
+            for (i = 0; i < response.size; i++) {
               temp.push(parseInt(response.datasets[i].data));
             }
           }
+          for (i = 0; i < response.size; i++) {
+            dataLabels.push(months[i])
+          }
           this.setState({
             isLoading: false,
-            lineData: [],
             array: temp
           })
 
-          console.log(this.state.array)
+          console.log(response.datasets)
         }
 
         else {
@@ -74,7 +80,7 @@ export default class Home extends React.Component {
   }
 
   ExpensesAPICall() {
-    fetch('http://myvault.technology/api/expenses/', {
+    fetch('http://myvault.technology/api/expenses/m', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -87,7 +93,7 @@ export default class Home extends React.Component {
         if (response.success) {
           this.setState({
             isLoading: false,
-            dataSource: response.output,
+            expensesData: response.output,
 
           })
         }
@@ -101,8 +107,35 @@ export default class Home extends React.Component {
       });
   }
 
+  LineChartLinkEdit() {
+    temp = [0];
+    dataLabels = [''];
+    lineChartLink = 'http://myvault.technology/api/analytics/MonthlyTotals';
+    this.LineChartAPICall();
+  }
+
+  convertCurrency(c) {
+
+    switch (c) {
+      case 'eur':
+        return '€';
+
+      case 'gbp':
+        return '£';
+
+      case 'usd':
+        return '$';
+
+      default:
+        break;
+    }
+  }
+
 
   render() {
+    global.currentScreen = 'Home';
+
+    lenght = [600, 33, 69, 220]
 
     const line = {
       labels: dataLabels,
@@ -111,38 +144,32 @@ export default class Home extends React.Component {
       ],
     };
 
-
-
-    if (this.state.isLoading | this.state.dataSource === []) {
+    if (this.state.isLoading) {
       return (
         <View style={styles.container}>
-          <Text>An error occured loading your recent expenses</Text>
-          <Text>View all your expenses?</Text>
+          <Text>Loading</Text>
         </View>
       )
     }
     else {
-      let expenses = this.state.dataSource.map((val, key) => {
+      let expenses = this.state.expensesData.map((val, key) => {
         if (count < 10) {
-
           count++;
           return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
             <View style={{ height: 10 }}></View>
-            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
-              onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, cashcard: val.transactionPlace, amount: val.expenseCost, online: val.transactionOnline })} >
-              <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{val.expenseCost}</Text>
+            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}>
+              <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 20, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
               <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
               <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40 }}>{val.transactionTitle}</Text>
             </TouchableOpacity>
           </View >
         }
-
+        count = 0
       });
-
       return (
         <View style={[styles.container, { backgroundColor: global.dark }]} >
 
-          <Text style={styles.heading}>MyVault</Text>
+          <Text style={[styles.heading, { color: global.color }]}>MyVault</Text>
 
           <View style={styles.body}>
 
@@ -151,14 +178,16 @@ export default class Home extends React.Component {
             <LineChart
               data={line}
               width={Math.round(Dimensions.get('window').width)} // from react-native
-              height={Platform === 'ios'? 250:230}
+              height={Platform === 'ios' ? 250 : 230}
               yAxisLabel={'€'}
+              fromZero={true}
               withInnerLines={false}
               withDots={false}
               chartConfig={{
                 backgroundGradientFrom: global.dark,
                 backgroundGradientTo: global.dark,
-                fillShadowGradientOpacity: 0,
+                fillShadowGradientOpacity: 0.1,
+                fillShadowGradient: global.color,
                 color: (opacity = 0) => global.dark === 'grey' ? 'black' : 'black',
                 strokeWidth: 2,
 
@@ -170,15 +199,50 @@ export default class Home extends React.Component {
               }}
             />
 
-            <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginTop: 30, marginBottom: 30 }} />
+            <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', marginLeft: '5%', marginBottom: 30 }}>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.lineCurrency === 'EUR' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
+                onPress={() => { this.setState({ lineCurrency: 'EUR' }, this.LineChartLinkEdit )}}
+
+              >
+                <Text style={styles.expenseViewSortText}>EUR</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.lineCurrency === 'GBP' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
+                onPress={() => { this.setState({ lineCurrency: 'GBP' }, this.LineChartLinkEdit )}}
+
+              >
+                <Text style={styles.expenseViewSortText}>GBP</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.lineCurrency === 'USD' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
+                onPress={() => { this.setState({ lineCurrency: 'USD' }, this.LineChartLinkEdit )}}
+
+              >
+                <Text style={styles.expenseViewSortText}>USD</Text>
+              </TouchableOpacity>
+
+            </View>
+
+            <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginTop: 10, marginBottom: 0 }} />
             <ScrollView>
+
+              <TouchableOpacity
+                style={{ width: 80, height: 20, backgroundColor: 'transparent', justifyContent: 'space-around', marginTop: 20, borderWidth: 0.5, alignSelf: 'flex-end', marginRight: 20 }}
+                onPress={() => {this.LineChartLinkEdit(), this.ExpensesAPICall()}}>
+                <Text style={[styles.text, { fontSize: 12 }]}>REFRESH</Text>
+              </TouchableOpacity>
+
               {expenses}
 
-              <TouchableOpacity 
-              style={{ width: '55%', height: 40, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10, justifyContent:'space-around', marginBottom:50}}
-              onPress={() => this.state.nav.navigate('ViewExpenses')}
+              <TouchableOpacity
+                style={{ width: '55%', height: 40, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10, justifyContent: 'space-around', marginBottom: 50 }}
+                onPress={() => this.state.nav.navigate('ViewExpenses')}
               >
-                <Text style={{textAlign:'center'}}>VIEW ALL EXPENSES</Text>
+                <Text style={{ textAlign: 'center' }}>VIEW ALL EXPENSES</Text>
               </TouchableOpacity>
 
             </ScrollView>

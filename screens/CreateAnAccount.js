@@ -80,7 +80,7 @@ export default class CreateAnAccountScreen extends React.Component {
       <View style={[styles.container, styles.central]}>
         
         <View>
-              <Text style={styles.mutedText}>Create Account</Text>
+        <Text style={styles.heading}>Sign Up</Text>
         </View>
         <View style={styles.formBox}>
 
@@ -148,7 +148,7 @@ export default class CreateAnAccountScreen extends React.Component {
             <View>
               
               <TouchableOpacity onPress={() => this.state.nav.navigate('Login')}>
-                <Text style={[styles.centerText, styles.actionText]}>Sign in instead.</Text>
+                <Text style={[styles.centerText, styles.actionText, {marginTop:20, fontSize:15}]}>Sign in instead?</Text>
               </TouchableOpacity>
             </View>
           </View>

@@ -66,17 +66,17 @@ export default StyleSheet.create({
         padding: 16,
         marginVertical: 12,
         marginHorizontal: 24,
-        backgroundColor: 'lightgrey',
-        shadowColor: "darkgrey",
+        shadowColor: "black",
         borderRadius: 25,
+        borderWidth:1,
 
         shadowOffset: {
             width: 0,
-            height: 5,
+            height: 2,
         },
         shadowOpacity: 0.36,
         shadowRadius: 6.68,
-        elevation: 11,
+        elevation: 7,
          
     },
 

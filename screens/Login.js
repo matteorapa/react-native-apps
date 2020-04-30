@@ -24,7 +24,7 @@ export default class Login extends React.Component {
   }
 
   backbutton = () => {
-    return true; 
+    return true;
   }
 
   async apiCall() {
@@ -55,7 +55,15 @@ export default class Login extends React.Component {
         else {
           console.log('Unsuccessful')
           console.log(response)
-          Alert.alert('Oops!', 'Incorrect email or password')
+          Alert.alert(
+            'Oops!',
+            'No account is linked to those credentials!',
+            [
+              { text: 'Sign Up', onPress: () => this.state.nav.navigate('CreateAnAccount') },
+              { text: 'Retry', onPress: () => console.log('retry') },
+            ],
+            { cancelable: false },
+          );
           this.setState({ email: '' })
           this.setState({ password: '' })
         }
@@ -75,44 +83,44 @@ export default class Login extends React.Component {
 
   render() {
     return (
-        <View style={[styles.container, styles.central]} >
-          <View>
-            <Text style={styles.heading}>MyVault</Text>
-          </View>
-          <View style={styles.formBox}>
-            <Text>Email</Text>
-            <TextInput style={styles.input} name='email'
-              placeholder={"Email"}
-              onChangeText={(email) => this.setState({ email })}
-              autoCapitalize ={false}
-              value={this.state.email}
-            />
+      <View style={[styles.container, styles.central]} >
+        <View>
+          <Text style={styles.heading}>MyVault</Text>
+        </View>
+        <View style={styles.formBox}>
+          <Text>Email</Text>
+          <TextInput style={styles.input} name='email'
+            placeholder={"Email"}
+            onChangeText={(email) => this.setState({ email })}
+            autoCapitalize={false}
+            value={this.state.email}
+          />
 
-            <Text >Password</Text>
-            <TextInput style={styles.input} placeholder={"Password"}
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.password}
-              autoCapitalize={false}
-              secureTextEntry={true}
-            />
-
-
-          </View>
-          <TouchableOpacity style={styles.roundButton} title="Sign-in" onPress={() => this.login()}>
-            <Text style={styles.text}>Sign In</Text>
-          </TouchableOpacity>
-
-          <View>
-            <Text style={[styles.mutedText, { top: 30 }]}>Don't have an account?</Text>
-            <Text></Text>
-            <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
-              <Text style={[styles.centerText, styles.actionText, { top: 30 }]}>Create an Account</Text>
-            </TouchableOpacity>
-          </View>
-
+          <Text >Password</Text>
+          <TextInput style={styles.input} placeholder={"Password"}
+            onChangeText={(password) => this.setState({ password })}
+            value={this.state.password}
+            autoCapitalize={false}
+            secureTextEntry={true}
+          />
 
 
         </View>
+        <TouchableOpacity style={styles.roundButton} title="Sign-in" onPress={() => this.login()}>
+          <Text style={styles.text}>Sign In</Text>
+        </TouchableOpacity>
+
+        <View>
+          <Text style={[styles.mutedText, { top: 30 }]}>Don't have an account?</Text>
+          <Text></Text>
+          <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
+            <Text style={[styles.centerText, styles.actionText, { top: 30, fontSize:15}]}>Create an Account</Text>
+          </TouchableOpacity>
+        </View>
+
+
+
+      </View>
     )
   }
 }

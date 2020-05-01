@@ -3,7 +3,7 @@ import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, M
 import styles from '../MyStyleSheet';
 import Footer from './Footer';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
-import splashScreen from '../screens/splashScreen';
+import { alertMethod } from '../screens/splashScreen';
 
 export default class themeColorPicker extends React.Component {
 
@@ -15,6 +15,16 @@ export default class themeColorPicker extends React.Component {
             dark: global.dark,
         };
     }
+
+    meth() {
+        this.state.nav.pop();
+        this.state.nav.navigate('reloadPreferencesScreen')
+        alertMethod();
+        console.log("oooo")
+    }
+
+
+
 
     async apiCall() {
 
@@ -36,7 +46,8 @@ export default class themeColorPicker extends React.Component {
             .then((response) => {
 
                 if (response.success) {
-                    this.state.nav.navigate('splashScreen')
+                    this.state.nav.pop();
+                    this.state.nav.navigate('reloadPreferencesScreen')
                 }
                 else {
                     console.log('something went wrong!')
@@ -56,7 +67,7 @@ export default class themeColorPicker extends React.Component {
     render() {
         return (
             <Modal animationType={'slide'} transparent={true} visible={true}>
-                <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center', top:50}}>
+                <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center', top: 50 }}>
                     <View style={{ backgroundColor: global.dark, height: "70%", top: '4%', borderRadius: 40, borderWidth: 3, alignContent: 'flex-end' }}>
                         <ScrollView>
                             <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, right: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: global.dark === 'grey' ? 'grey' : 'lightgrey', justifyContent: 'center', borderWidth: 2 }}
@@ -66,7 +77,7 @@ export default class themeColorPicker extends React.Component {
                             </TouchableOpacity>
 
                             <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, left: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: global.dark === 'grey' ? 'grey' : 'lightgrey', justifyContent: 'center', borderWidth: 2 }}
-                                onPress={() => this.state.nav.navigate('Profile')}
+                                onPress={() => this.state.nav.pop()}
                             >
                                 <Text style={[styles.text, { color: 'white' }]}>back</Text>
                             </TouchableOpacity>
@@ -97,7 +108,7 @@ export default class themeColorPicker extends React.Component {
                                     <TouchableOpacity onPress={() => this.setState({ color: 'lavender' })} style={[styles.themecolorpickerbuttons, { backgroundColor: 'lavender', borderWidth: this.state.color === 'lavender' ? 2 : 0 }]} />
                                     <TouchableOpacity onPress={() => this.setState({ color: 'coral' })} style={[styles.themecolorpickerbuttons, { backgroundColor: 'coral', borderWidth: this.state.color === 'coral' ? 2 : 0 }]} />
                                 </View>
-                                <View style={{ flexDirection: 'row', alignSelf: 'center', top: 100, marginBottom:120}}>
+                                <View style={{ flexDirection: 'row', alignSelf: 'center', top: 100, marginBottom: 120 }}>
                                     <TouchableOpacity style={{ backgroundColor: this.state.dark === 'white' ? "lightgrey" : "darkgrey", width: 120, height: 60, justifyContent: 'space-around', alignSelf: 'center', borderWidth: this.state.dark === 'white' ? 2 : 0 }}
                                         onPress={() => this.setState({ dark: 'white' })}
                                     >

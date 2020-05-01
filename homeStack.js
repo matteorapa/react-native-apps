@@ -10,6 +10,7 @@ import Home from './screens/Home';
 import Profile from './screens/Profile';
 import CreateAnAccount from './screens/CreateAnAccount';
 import Login from './screens/Login';
+import reloadPreferencesScreen from './screens/reloadPreferencesScreen'
 import ViewExpenses from './screens/ViewExpenses';
 import Analytics from './screens/Analytics';
 import Financials from './screens/Financials';
@@ -27,6 +28,7 @@ export default function App() {
       <Stack.Navigator>
 
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false, gestureEnabled: false }} />
+        <Stack.Screen name="reloadPreferencesScreen" component={reloadPreferencesScreen} options={{ headerShown: false, gestureEnabled: false }} />
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false, gestureEnabled: false }} />
         <Stack.Screen name="PersonalDetails" component={PersonalDetails} options={{ headerShown: false }} />
         <Stack.Screen name="splashScreen" component={splashScreen} options={{ headerShown: false, gestureEnabled: false }} />

@@ -10,6 +10,7 @@ const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', '
 var temp = [0];
 var count = 0;
 var dataLabels = [''];
+
 export default class Home extends React.Component {
 
   constructor({ navigation }) {
@@ -21,8 +22,9 @@ export default class Home extends React.Component {
       array: [],
       isLoading: true,
       lineCurrency: 'EUR',
-      expensesData:[]
+      expensesData: []
     }
+
   }
 
   navigateUser(screen) {
@@ -36,12 +38,13 @@ export default class Home extends React.Component {
 
   }
 
-
   backbutton = () => {
     return true;
   }
 
   LineChartAPICall() {
+    temp = [0];
+    dataLabels = [''];
     fetch(lineChartLink + this.state.lineCurrency, {
       method: 'GET',
       headers: {
@@ -135,8 +138,6 @@ export default class Home extends React.Component {
   render() {
     global.currentScreen = 'Home';
 
-    lenght = [600, 33, 69, 220]
-
     const line = {
       labels: dataLabels,
       datasets: [
@@ -203,7 +204,7 @@ export default class Home extends React.Component {
 
               <TouchableOpacity
                 style={{ backgroundColor: this.state.lineCurrency === 'EUR' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
-                onPress={() => { this.setState({ lineCurrency: 'EUR' }, this.LineChartLinkEdit )}}
+                onPress={() => { this.setState({ lineCurrency: 'EUR' }, this.LineChartLinkEdit) }}
 
               >
                 <Text style={styles.expenseViewSortText}>EUR</Text>
@@ -211,7 +212,7 @@ export default class Home extends React.Component {
 
               <TouchableOpacity
                 style={{ backgroundColor: this.state.lineCurrency === 'GBP' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
-                onPress={() => { this.setState({ lineCurrency: 'GBP' }, this.LineChartLinkEdit )}}
+                onPress={() => { this.setState({ lineCurrency: 'GBP' }, this.LineChartLinkEdit) }}
 
               >
                 <Text style={styles.expenseViewSortText}>GBP</Text>
@@ -219,7 +220,7 @@ export default class Home extends React.Component {
 
               <TouchableOpacity
                 style={{ backgroundColor: this.state.lineCurrency === 'USD' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
-                onPress={() => { this.setState({ lineCurrency: 'USD' }, this.LineChartLinkEdit )}}
+                onPress={() => { this.setState({ lineCurrency: 'USD' }, this.LineChartLinkEdit) }}
 
               >
                 <Text style={styles.expenseViewSortText}>USD</Text>
@@ -232,7 +233,7 @@ export default class Home extends React.Component {
 
               <TouchableOpacity
                 style={{ width: 80, height: 20, backgroundColor: 'transparent', justifyContent: 'space-around', marginTop: 20, borderWidth: 0.5, alignSelf: 'flex-end', marginRight: 20 }}
-                onPress={() => {this.LineChartLinkEdit(), this.ExpensesAPICall()}}>
+                onPress={() => { this.LineChartLinkEdit(), this.ExpensesAPICall() }}>
                 <Text style={[styles.text, { fontSize: 12 }]}>REFRESH</Text>
               </TouchableOpacity>
 

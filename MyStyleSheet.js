@@ -239,7 +239,7 @@ export default StyleSheet.create({
     },
 
     AddExpenseContainer: {
-        height: Platform.OS === 'ios' ? 390 : 300,
+        height: Platform.OS === 'ios' ? 390 : 350,
         backgroundColor: 'lightgrey',
         justifyContent: 'center',
         borderRadius: 50,
@@ -257,7 +257,7 @@ export default StyleSheet.create({
         width: 120,
         backgroundColor: 'darkgrey',
         height: 40,
-        right: 20,
+        right: 30,
         top: Platform.OS === 'ios' ? 105 : -5,
         borderRadius: 50,
         padding: 10
@@ -275,10 +275,29 @@ export default StyleSheet.create({
         zIndex: 1,
     },
 
+    periodicDateInput: {
+        width: '25%',
+        backgroundColor: 'darkgrey',
+        position: 'absolute',
+        bottom: Platform.OS === 'ios' ? 30 : -65,
+        left: 42,
+        borderRadius: 50,
+        padding: 10,
+        textAlign: 'center',
+        zIndex: 1,
+    },
+
     categoryPicker: {
         width: Platform.OS === 'ios' ? 180 : 200,
         bottom: Platform.OS === 'ios' ? 30 : 10,
         left: 20
+    },
+
+    periodicCategoryPicker: {
+        width: Platform.OS === 'ios' ? 180 : 200,
+        bottom: Platform.OS === 'ios' ? 80 : 30,
+        alignSelf: Platform.OS === 'ios'?'flex-end': 'center',
+        marginRight:20
     },
 
     Label2: {
@@ -287,6 +306,14 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         top: Platform.OS === 'ios' ? 95 : -20
+    },
+
+    Label3: {
+        flex: 1,
+        padding: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        top: Platform.OS === 'ios' ? 70 : -20
     },
 
     viewDetails: {

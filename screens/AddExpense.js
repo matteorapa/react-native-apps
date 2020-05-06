@@ -171,7 +171,7 @@ export default class AddExpense extends React.Component {
     render() {
         return (
             <Modal animationType={'slide'} transparent={true}>
-                <View style={{ backgroundColor: global.dark === 'grey' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'center' }}>
+                <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'center' }}>
                     <ScrollView horizontal={true}>
                         <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40, marginRight: 5 }}>
 
@@ -179,7 +179,7 @@ export default class AddExpense extends React.Component {
 
                             <View style={styles.body}>
                                 <View style={{ flex: 4 }}>
-                                    <View style={styles.AddExpenseContainer}>
+                                    <View style={[styles.AddExpenseContainer, {backgroundColor: global.dark==='white'? 'darkgrey':'#707070'}]}>
 
 
 
@@ -233,11 +233,11 @@ export default class AddExpense extends React.Component {
 
                                             <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '5%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
                                                 <TouchableOpacity onPress={() => this.setState({ cashCard: 'Cash' })}
-                                                    style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Cash" ? "grey" : "darkgrey" }}>
+                                                    style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Cash" ? "lightgrey" : "grey" }}>
                                                     <Text style={{ justifyContent: 'center', textAlign: "center" }} > Cash</Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity onPress={() => this.setState({ cashCard: 'Card' })}
-                                                    style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Card" ? "grey" : "darkgrey" }}>
+                                                    style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Card" ? "lightgrey" : "grey" }}>
                                                     <Text style={{ textAlign: "center" }}> Card</Text>
                                                 </TouchableOpacity>
                                             </View>
@@ -278,7 +278,7 @@ export default class AddExpense extends React.Component {
 
                             <View style={styles.body}>
                                 <View style={{ flex: 4 }}>
-                                    <View style={styles.AddExpenseContainer}>
+                                    <View style={[styles.AddExpenseContainer, {backgroundColor: global.dark==='white'? 'darkgrey':'#707070'}]}>
 
 
 
@@ -334,15 +334,15 @@ export default class AddExpense extends React.Component {
 
                                         <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', left: Platform.OS === 'ios' ? '5%' : '13%', bottom: Platform.OS === 'ios' ? 100 : 85 }}>
                                             <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'weekly' })}
-                                                style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "weekly" ? "grey" : "darkgrey" }}>
+                                                style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "weekly" ? "lightgrey" : "grey" }}>
                                                 <Text style={{ justifyContent: 'center', textAlign: "center" }} > Weekly</Text>
                                             </TouchableOpacity>
                                             <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'monthly' })}
-                                                style={{ width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "monthly" ? "grey" : "darkgrey" }}>
+                                                style={{ width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "monthly" ? "lightgrey" : "grey" }}>
                                                 <Text style={{ textAlign: "center" }}> Monthly</Text>
                                             </TouchableOpacity>
                                             <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'annually' })}
-                                                style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "annually" ? "grey" : "darkgrey" }}>
+                                                style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "annually" ? "lightgrey" : "grey" }}>
                                                 <Text style={{ textAlign: "center" }}> Annually</Text>
                                             </TouchableOpacity>
                                         </View>
@@ -350,21 +350,21 @@ export default class AddExpense extends React.Component {
                                         <Text style={{ position: 'absolute', left: Platform.OS === 'ios' ? 25 : 30, bottom: Platform.OS === 'ios' ? 60 : 25, fontSize: 15, fontWeight: '400' }}>Start Date: </Text>
                                         <View style={{ flexDirection: 'row', position: 'absolute', left: Platform.OS ==='ios'? '22.5%':'35%', bottom: 10, alignSelf: 'center' }}>
                                             <TextInput
-                                                style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: 'darkgrey', textAlign: 'center' }}
+                                                style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: 'grey', textAlign: 'center' }}
                                                 placeholder={'DD'}
                                                 onChangeText={(periodicDay) => this.setState({ periodicDay })}
                                                 value={this.state.periodicDay}
                                             >
                                             </TextInput>
                                             <TextInput
-                                                style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: "darkgrey", textAlign: 'center' }}
+                                                style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: "grey", textAlign: 'center' }}
                                                 placeholder={'MM'}
                                                 onChangeText={(periodicMonth) => this.setState({ periodicMonth })}
                                                 value={this.state.periodicMonth}
                                             >
                                             </TextInput>
                                             <TextInput
-                                                style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: "darkgrey", textAlign: 'center' }}
+                                                style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: "grey", textAlign: 'center' }}
                                                 placeholder={'YYYY'}
                                                 onChangeText={(periodicYear) => this.setState({ periodicYear })}
                                                 value={this.state.periodicYear}

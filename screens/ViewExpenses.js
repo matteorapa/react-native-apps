@@ -219,7 +219,7 @@ export default class ViewExpenses extends React.Component {
           return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
             <View style={{ height: 10 }}></View>
 
-            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
+            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark==='white'? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
               onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, cashcard: val.transactionPlace, amount: val.expenseCost, online: val.transactionOnline })} >
               <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
               <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
@@ -291,28 +291,28 @@ export default class ViewExpenses extends React.Component {
             <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
                 onPress={() => { this.getAllExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>ALL</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
                 onPress={() => { this.getWeekExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
                 onPress={() => { this.getMonthExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
                 onPress={() => { this.getYearExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
@@ -321,17 +321,17 @@ export default class ViewExpenses extends React.Component {
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
               <TouchableOpacity
-                style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-start', marginLeft: '2.5%', borderWidth: 1, margin: 10 }}
+                style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-start', marginLeft: '2.5%', borderWidth: 1, margin: 10,borderColor:global.dark==='white'? 'black':'#909090' }}
                 onPress={() => this.componentDidMount()}
               >
-                <Text style={[styles.text, { fontSize: 12 }]}>REFRESH</Text>
+                <Text style={[styles.text, { fontSize: 12,color:global.dark==='white'? 'black':'#909090' }]}>REFRESH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-end', marginRight: '2.5%', borderWidth: 1, margin: 10 }}
+                style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-end', marginRight: '2.5%', borderWidth: 1, margin: 10, borderColor:global.dark==='white'? 'black':'#909090' }}
                 onPress={() => this.setState({ showFilter: true })}
               >
-                <Text style={[styles.text, { fontSize: 12 }]}>{this.state.filterCategory === '' ? 'FILTER' : 'FILTER: ' + this.state.filterCategory.toLocaleUpperCase()}</Text>
+                <Text style={[styles.text, { fontSize: 12, color:global.dark==='white'? 'black':'#909090' }]}>{this.state.filterCategory === '' ? 'FILTER' : 'FILTER: ' + this.state.filterCategory.toLocaleUpperCase()}</Text>
               </TouchableOpacity>
             </View>
             <View style={{ flex: 7 }}>

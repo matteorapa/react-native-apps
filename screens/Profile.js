@@ -44,25 +44,30 @@ export default class Profile extends React.Component {
 
           <ScrollView>
 
-            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark }]} onPress={() => this.navigateUser('PersonalDetails')}>
+            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark ==='white'? 'darkgrey':'#505050', borderColor:'#707070' }]} 
+            onPress={() => this.navigateUser('PersonalDetails')}>
               <Text style={styles.linkText}>Personal Details</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark }]} onPress={() => this.navigateUser('themeColorPicker')}>
+            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark ==='white'? 'darkgrey':'#505050',  borderColor:'#707070'}]} 
+            onPress={() => this.navigateUser('themeColorPicker')}>
               <Text style={styles.linkText}>Select Theme Color</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark }]} onPress={() => this.navigateUser('privacypolicy')}>
+            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark ==='white'? 'darkgrey':'#505050',  borderColor:'#707070'}]} 
+            onPress={() => this.navigateUser('privacypolicy')}>
               <Text style={styles.linkText}>Privacy Policy</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark }]} onPress={() => this.confirmCloseAccount()}>
+            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark ==='white'? 'darkgrey':'#505050',  borderColor:'#707070' }]} 
+            onPress={() => this.confirmCloseAccount()}>
               <Text style={styles.linkText}>Close Account</Text>
               <Text style={[styles.smallText, { color: global.color, fontWeight:'400', marginTop: 5}]}>This action is not reversible. All your data will be deleted.</Text>
 
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark }]} onPress={() => this.navigateUser('Login')}>
+            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark ==='white'? 'darkgrey':'#505050',  borderColor:'#707070' }]} 
+            onPress={() => this.navigateUser('Login')}>
               <Text style={[styles.linkText, { color: global.color }]}>Sign out</Text>
             </TouchableOpacity>
           </ScrollView>

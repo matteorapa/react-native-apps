@@ -10,7 +10,7 @@ const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', '
 const BarDataLabels = ['EUR', 'GBP', 'USD'];
 var temp = [0];
 var BarTemp = [0];
-dataLabels = ['']
+dataLabels = [''];
 export default class Analytics extends React.Component {
 
   constructor({ navigation }) {
@@ -67,6 +67,7 @@ export default class Analytics extends React.Component {
   }
 
   LineChartAPICall() {
+    dataLabels = [''];
     fetch(lineChartLink + this.state.lineCurrency, {
       method: 'GET',
       headers: {
@@ -207,10 +208,10 @@ export default class Analytics extends React.Component {
               />
 
               <TouchableOpacity
-                style={{ width: 150, height: 30, justifyContent: 'space-around', borderWidth: 1, alignSelf: 'center', marginTop: 25 }}
+                style={{ width: 150, height: 30, justifyContent: 'space-around', borderWidth: 1, alignSelf: 'center', marginTop: 25, borderColor:global.dark==='white'? '#303030':'#909090' }}
                 onPress={() => this.setState({ pieFilterModalShow: true })}
               >
-                <Text style={styles.expenseViewSortText}>FILTER</Text>
+                <Text style={[styles.expenseViewSortText, {color: global.dark ==='white'? 'black': '#909090'}]}>FILTER</Text>
               </TouchableOpacity>
 
               <Text style={{ alignSelf: 'center', justifyContent: 'space-around', position: 'absolute', top: '50%', zIndex: -1 }}>No data to show</Text>
@@ -232,7 +233,7 @@ export default class Analytics extends React.Component {
                   backgroundGradientFrom: global.dark,
                   backgroundGradientTo: global.dark,
                   fillShadowGradientOpacity: 0,
-                  color: (opacity = 0) => global.dark === 'grey' ? 'black' : 'black',
+                  color: (opacity = 0) => global.dark === 'white' ? '#505050' : global.color,
                   strokeWidth: 2,
 
                 }}
@@ -247,24 +248,24 @@ export default class Analytics extends React.Component {
             <View style={{width: '90%',  flexDirection: 'row', justifyContent:'center',  marginLeft: '5%'}}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.lineCurrency === 'EUR' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1}}
+                style={{ backgroundColor: this.state.lineCurrency === 'EUR' ? global.color : global.dark, width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderColor:global.dark==='white'? '#303030':'#909090'}}
                 onPress={() => { this.setState({ lineCurrency: 'EUR' }, this.FilterLineChart )}}
               >
-                <Text style={styles.expenseViewSortText}>EUR</Text>
+                <Text style={[styles.expenseViewSortText, {color: global.dark ==='white'? 'black': '#909090'}]}>EUR</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.lineCurrency === 'GBP' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1}}
+                style={{ backgroundColor: this.state.lineCurrency === 'GBP' ? global.color : global.dark, width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1,borderColor:global.dark==='white'? '#303030':'#909090'}}
                 onPress={() => { this.setState({ lineCurrency: 'GBP' }, this.FilterLineChart )}}
               >
-                <Text style={styles.expenseViewSortText}>GBP</Text>
+                <Text style={[styles.expenseViewSortText, {color: global.dark ==='white'? 'black': '#909090'}]}>GBP</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.lineCurrency === 'USD' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
+                style={{ backgroundColor: this.state.lineCurrency === 'USD' ? global.color : global.dark, width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1,borderColor:global.dark==='white'? '#303030':'#909090' }}
                 onPress={() => { this.setState({ lineCurrency: 'USD' }, this.FilterLineChart )}}
               >
-                <Text style={styles.expenseViewSortText}>USD</Text>
+                <Text style={[styles.expenseViewSortText, {color: global.dark ==='white'? 'black': '#909090'}]}>USD</Text>
               </TouchableOpacity>
 
             </View>
@@ -275,12 +276,13 @@ export default class Analytics extends React.Component {
               // style={graphStyle}
               data={bar}
               width={screenWidth}
+              withInnerLines={false}
               height={400}
               fromZero={true}
               chartConfig={{
                 backgroundGradientFrom: global.dark,
                 backgroundGradientTo: global.dark,
-                color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                color: (opacity = 0) => global.dark==='white'? '#303030':global.color,
               }}
             />
 

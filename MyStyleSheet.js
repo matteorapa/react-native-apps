@@ -137,7 +137,7 @@ export default StyleSheet.create({
         zIndex:1
     },
     footerItem: {
-        backgroundColor: 'lightgray',
+        
          width: '20%'
     },
     footerIcon: {
@@ -265,7 +265,7 @@ export default StyleSheet.create({
 
     expenseTitleInput: {
         width: '80%',
-        backgroundColor: 'darkgrey',
+        backgroundColor: 'grey',
         position: 'absolute',
         top: Platform.OS === 'ios' ? 30 : -65,
         left: 42,
@@ -277,7 +277,7 @@ export default StyleSheet.create({
 
     periodicDateInput: {
         width: '25%',
-        backgroundColor: 'darkgrey',
+        backgroundColor: 'grey',
         position: 'absolute',
         bottom: Platform.OS === 'ios' ? 30 : -65,
         left: 42,

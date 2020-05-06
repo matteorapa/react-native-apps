@@ -158,7 +158,7 @@ export default class Home extends React.Component {
           count++;
           return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
             <View style={{ height: 10 }}></View>
-            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}>
+            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === '#303030'? '#505050' : 'darkgrey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}>
               <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 20, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
               <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
               <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth:200 }}>{val.transactionTitle}</Text>
@@ -174,12 +174,12 @@ export default class Home extends React.Component {
 
           <View style={styles.body}>
 
-            <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginTop: 10, marginBottom: 50 }} />
+            <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === '#303030'? '#505050' : 'darkgrey', marginTop: 10, marginBottom: 50 }} />
 
             <LineChart
               data={line}
               width={Math.round(Dimensions.get('window').width)} // from react-native
-              height={Platform === 'ios' ? 250 : 230}
+              height={Platform === 'ios' ? 250 : 200}
               yAxisLabel={'€'}
               fromZero={true}
               withInnerLines={false}
@@ -189,7 +189,7 @@ export default class Home extends React.Component {
                 backgroundGradientTo: global.dark,
                 fillShadowGradientOpacity: 0.1,
                 fillShadowGradient: global.color,
-                color: (opacity = 0) => global.dark === 'grey' ? 'black' : 'black',
+                color: (opacity = 0) => global.dark === '#303030'? global.color : '#505050',
                 strokeWidth: 2,
 
               }}
@@ -200,47 +200,47 @@ export default class Home extends React.Component {
               }}
             />
 
-            <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', marginLeft: '5%', marginBottom: 30 }}>
+            <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', marginLeft: '5%', marginBottom: 20, top:-10 }}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.lineCurrency === 'EUR' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
+                style={{ backgroundColor: this.state.lineCurrency === 'EUR' ? global.color : global.dark, width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 ,borderColor:global.dark==='white'? '#303030':'#909090'}}
                 onPress={() => { this.setState({ lineCurrency: 'EUR' }, this.LineChartLinkEdit) }}
 
               >
-                <Text style={styles.expenseViewSortText}>EUR</Text>
+                <Text style={[styles.expenseViewSortText,{color: global.dark==='white'? 'black':'#909090'}]}>EUR</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.lineCurrency === 'GBP' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
+                style={{ backgroundColor: this.state.lineCurrency === 'GBP' ? global.color : global.dark, width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1,borderColor:global.dark==='white'? '#303030':'#909090' }}
                 onPress={() => { this.setState({ lineCurrency: 'GBP' }, this.LineChartLinkEdit) }}
 
               >
-                <Text style={styles.expenseViewSortText}>GBP</Text>
+                <Text style={[styles.expenseViewSortText,{color: global.dark==='white'? 'black':'#909090'}]}>GBP</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.lineCurrency === 'USD' ? global.color : 'grey', width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1 }}
+                style={{ backgroundColor: this.state.lineCurrency === 'USD' ? global.color : global.dark, width: 100, height: 30, top: 20, justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderColor:global.dark==='white'? '#303030':'#909090' }}
                 onPress={() => { this.setState({ lineCurrency: 'USD' }, this.LineChartLinkEdit) }}
 
               >
-                <Text style={styles.expenseViewSortText}>USD</Text>
+                <Text style={[styles.expenseViewSortText,{color: global.dark==='white'? 'black':'#909090'}]}>USD</Text>
               </TouchableOpacity>
 
             </View>
 
-            <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === 'grey' ? 'black' : 'grey', marginTop: 10, marginBottom: 0 }} />
+            <View style={{ width: '95%', alignSelf: 'center', height: 1, backgroundColor: global.dark === '#303030'? '#505050' : 'darkgrey', marginTop: 10, marginBottom: 0 }} />
             <ScrollView>
 
               <TouchableOpacity
-                style={{ width: 80, height: 20, backgroundColor: 'transparent', justifyContent: 'space-around', marginTop: 20, borderWidth: 0.5, alignSelf: 'flex-end', marginRight: 20 }}
+                style={{ width: 80, height: 20, backgroundColor: 'transparent', justifyContent: 'space-around', marginTop: 20, borderWidth: 0.5, alignSelf: 'flex-end', marginRight: 20, borderColor: global.dark === '#303030'? 'lightgrey' : '#505050' }}
                 onPress={() => { this.LineChartLinkEdit(), this.ExpensesAPICall() }}>
-                <Text style={[styles.text, { fontSize: 12 }]}>REFRESH</Text>
+                <Text style={[styles.text, { fontSize: 12, color: global.dark === '#303030'? 'lightgrey' : '#505050' }]}>REFRESH</Text>
               </TouchableOpacity>
 
               {expenses}
 
               <TouchableOpacity
-                style={{ width: '55%', height: 40, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10, justifyContent: 'space-around', marginBottom: 50 }}
+                style={{ width: '55%', height: 40, alignSelf: 'center', backgroundColor: 'grey', borderRadius: 20, borderWidth: global.dark === '#303030' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10, justifyContent: 'space-around', marginBottom: 50 }}
                 onPress={() => this.state.nav.navigate('ViewExpenses')}
               >
                 <Text style={{ textAlign: 'center' }}>VIEW ALL EXPENSES</Text>

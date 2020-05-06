@@ -37,13 +37,14 @@ export default class reloadPreferencesScreen extends React.Component {
 
                     })
                     this.state.nav.navigate('Home')
-                    global.color = this.state.color,
-                        global.dark = this.state.dark,
-                        console.log(global.dark)
+                    global.dark=this.state.dark
+                    global.color = this.state.color
                 }
                 else {
                     alert('there was an error loading details')
                 }
+
+                
 
             })
 

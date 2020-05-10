@@ -223,7 +223,7 @@ export default class ViewExpenses extends React.Component {
               onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, cashcard: val.transactionPlace, amount: val.expenseCost, online: val.transactionOnline })} >
               <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
               <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
-              <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth:200 }}>{val.transactionTitle}</Text>
+              <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth:'45%' }}>{val.transactionTitle}</Text>
             </TouchableOpacity>
 
             < Modal transparent={true} visible={this.state.show} animationType={'fade'}>

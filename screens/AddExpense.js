@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, Modal } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, Modal, Dimensions } from 'react-native';
 import styles from '../MyStyleSheet';
 
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
@@ -32,6 +32,8 @@ export default class AddExpense extends React.Component {
         };
         this.selectionOnPress = this.selectionOnPress.bind(this);
     }
+
+    screenwidth = Math.round(Dimensions.get('window').width);
 
     selectionOnPress(PurchaseLocation) {
         this.setState({ cashCard: PurchaseLocation });
@@ -173,7 +175,7 @@ export default class AddExpense extends React.Component {
             <Modal animationType={'slide'} transparent={true}>
                 <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'center' }}>
                     <ScrollView horizontal={true}>
-                        <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40, marginRight: 5 }}>
+                        <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40, marginRight: 5, width:this.screenwidth }}>
 
                             <Text style={styles.heading}>New Expense</Text>
 
@@ -272,7 +274,7 @@ export default class AddExpense extends React.Component {
                             </View>
                         </View>
 
-                        <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40 }}>
+                        <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40, width:this.screenwidth}}>
 
                             <Text style={styles.heading}>Periodic Expense</Text>
 

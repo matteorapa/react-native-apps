@@ -10,8 +10,10 @@ const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', '
 const BarDataLabels = ['EUR', 'GBP', 'USD'];
 var temp = [0];
 var BarTemp = [0];
-dataLabels = [''];
+dataLabels = ['']; 
 export default class Analytics extends React.Component {
+
+  screenWidth = Math.round(Dimensions.get('window').width);
 
   constructor({ navigation }) {
     super();
@@ -178,7 +180,6 @@ export default class Analytics extends React.Component {
       ],
     };
 
-    screenWidth = Math.round(Dimensions.get('window').width);
     screenHeight = 0.35 * Math.round(Dimensions.get('window').height);
 
     return (
@@ -193,7 +194,7 @@ export default class Analytics extends React.Component {
             <View>
               <PieChart
                 data={this.state.pieData}
-                width={screenWidth}
+                width={screenWidth-20}
                 height={screenHeight}
                 style={{ backgroundColor: 'transparent', position: 'relative' }}
                 hasLegend={true}
@@ -214,8 +215,6 @@ export default class Analytics extends React.Component {
                 <Text style={[styles.expenseViewSortText, {color: global.dark ==='white'? 'black': '#909090'}]}>FILTER</Text>
               </TouchableOpacity>
 
-              <Text style={{ alignSelf: 'center', justifyContent: 'space-around', position: 'absolute', top: '50%', zIndex: -1 }}>No data to show</Text>
-
             </View>
 
             <View>
@@ -224,9 +223,8 @@ export default class Analytics extends React.Component {
 
               <LineChart
                 data={line}
-                width={screenWidth} // from react-native
+                width={screenWidth-10} // from react-native
                 height={240}
-                yAxisLabel={'€'}
                 withInnerLines={false}
                 withDots={false}
                 chartConfig={{
@@ -239,7 +237,9 @@ export default class Analytics extends React.Component {
                 }}
                 bezier
                 style={{
-                  marginVertical: 8,
+                  alignSelf:'center',
+                  marginLeft:5,
+                  marginVertical: 0,
                   borderRadius: 0
                 }}
               />

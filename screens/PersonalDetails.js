@@ -121,19 +121,19 @@ export default class PersonalDetails extends React.Component {
 
                 return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
                     <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 80, height: 30, borderRadius: 20, position: 'absolute', left: '6%', top: 48, justifyContent: 'space-around' }}
+                        <TouchableOpacity style={{ backgroundColor: global.dark==='white'? 'darkgrey':'#505050', width: 80, height: 30, borderRadius: 20, position: 'absolute', left: '6%', top: 48, justifyContent: 'space-around' }}
                             onPress={() => this.state.nav.navigate('Profile')}
                         >
                             <Text style={styles.text}>BACK</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 80, height: 30, borderRadius: 20, position: 'absolute', right: '6%', top: 48, justifyContent: 'space-around' }}
+                        <TouchableOpacity style={{ backgroundColor: global.dark==='white'? 'darkgrey':'#505050', width: 80, height: 30, borderRadius: 20, position: 'absolute', right: '6%', top: 48, justifyContent: 'space-around' }}
                             onPress={() => this.setState({ show: true, name: val.name, surname: val.surname, email: val.email, dob: val.dob })}
                         >
                             <Text style={styles.text}>EDIT</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ width: '95%', paddingTop: 30, paddingBottom: 30, alignSelf: 'center', backgroundColor: 'lightgrey', borderRadius: 20, flexDirection: 'row', top: '20%' }} >
+                    <View style={{ width: '95%', paddingTop: 30, paddingBottom: 30, alignSelf: 'center', backgroundColor: global.dark==='white'? 'darkgrey':'#505050', borderRadius: 20, flexDirection: 'row', top: '20%' }} >
                         <View style={{ alignItems: 'center', flex: 4, marginRight: 10 }}>
                             <Text style={styles.viewDetails}>Name</Text>
 
@@ -173,8 +173,8 @@ export default class PersonalDetails extends React.Component {
                             {details}
 
                             < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-                                <View style={{ flex: 1, backgroundColor: global.dark }}>
-                                    <View style={{ height: '60%', backgroundColor: global.dark, top: '10%', justifyContent: 'space-around' }}>
+                                <View style={{ flex: 1, backgroundColor: global.dark, justifyContent:'space-around' }}>
+                                    <View style={{ height: '60%', backgroundColor: global.dark }}>
 
 
 

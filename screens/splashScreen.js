@@ -2,6 +2,8 @@ import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, Animated, BackHandler, Dimensions, Easing } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 // import { Easing } from 'react-native-reanimated';
+import styles from '../MyStyleSheet';
+
 
 export function alertMethod() {
 
@@ -18,16 +20,9 @@ export default class splashScreen extends React.Component {
         super();
         this.state = {
             nav: navigation,
-            yValue1: new Animated.Value(screenHeight),
-            yValue2: new Animated.Value(screenHeight),
-            yValue3: new Animated.Value(screenHeight),
-            yValue4: new Animated.Value(screenHeight),
-            yValue5: new Animated.Value(screenHeight),
-            yValue6: new Animated.Value(screenHeight),
-            yValue7: new Animated.Value(screenHeight),
-            yValue8: new Animated.Value(screenHeight),
-            yValue9: new Animated.Value(screenHeight),
-
+            fadeValue1: new Animated.Value(0),
+            fadeValue2: new Animated.Value(0),
+            fadeValue3: new Animated.Value(0),
         };
     }
 
@@ -41,7 +36,7 @@ export default class splashScreen extends React.Component {
         setTimeout(() => {
             this.state.nav.navigate('reloadPreferencesScreen')
             this.state.nav.navigate('Home')
-        }, 4000);
+        }, 5500);
 
         fetch('http://myvault.technology/api/pref', {
             method: 'GET',
@@ -63,10 +58,10 @@ export default class splashScreen extends React.Component {
                     alert('there was an error loading details')
                 }
 
-                if(this.state.dark = 'grey'){
+                if (this.state.dark = 'grey') {
                     global.dark = '#303030'
                 }
-                else if(this.state.dark = 'white'){
+                else if (this.state.dark = 'white') {
                     global.dark = 'white'
                 }
                 global.color = this.state.color
@@ -104,128 +99,102 @@ export default class splashScreen extends React.Component {
 
     }
 
-    _moveAnimation = () => {
-        Animated.timing(this.state.yValue1, {
-            toValue: 0,
+    _fadeAnimation = () => {
+        Animated.timing(this.state.fadeValue1, {
+            toValue: 1,
             duration: 1000,
-            useNativeDriver: false,
-            easing: Easing.ease,
+            useNativeDriver: 'false'
         }).start()
         setTimeout(() => {
-            Animated.timing(this.state.yValue2, {
+            Animated.timing(this.state.fadeValue1, {
                 toValue: 0,
                 duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
-            }).start()
-        }, 250);
-        setTimeout(() => {
-            Animated.timing(this.state.yValue3, {
-                toValue: 0,
-                duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
-            }).start()
-        }, 500);
-        setTimeout(() => {
-            Animated.timing(this.state.yValue4, {
-                toValue: 0,
-                duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
-            }).start()
-        }, 750);
-        setTimeout(() => {
-            Animated.timing(this.state.yValue5, {
-                toValue: 0,
-                duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
+                useNativeDriver: 'false'
             }).start()
         }, 1000);
         setTimeout(() => {
-            Animated.timing(this.state.yValue6, {
-                toValue: 0,
+            Animated.timing(this.state.fadeValue2, {
+                toValue: 1,
                 duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
-            }).start()
-        }, 1250);
-        setTimeout(() => {
-            Animated.timing(this.state.yValue7, {
-                toValue: 0,
-                duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
+                useNativeDriver: 'false'
             }).start()
         }, 1500);
         setTimeout(() => {
-            Animated.timing(this.state.yValue8, {
+            Animated.timing(this.state.fadeValue2, {
                 toValue: 0,
                 duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
+                useNativeDriver: 'false'
             }).start()
-        }, 1750);
+        }, 2500);
         setTimeout(() => {
-            Animated.timing(this.state.yValue9, {
-                toValue: 0,
+            Animated.timing(this.state.fadeValue3, {
+                toValue: 1,
                 duration: 1000,
-                useNativeDriver: false,
-                easing: Easing.ease,
+                useNativeDriver: 'false'
             }).start()
-        }, 2000);
-
+        }, 3000);
+        setTimeout(() => {
+            Animated.timing(this.state.fadeValue3, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: 'false'
+            }).start()
+        }, 3500);
+        setTimeout(() => {
+            Animated.timing(this.state.fadeValue3, {
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: 'false'
+            }).start()
+        }, 4000);setTimeout(() => {
+            Animated.timing(this.state.fadeValue3, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: 'false'
+            }).start()
+        }, 4500);
+        setTimeout(() => {
+            Animated.timing(this.state.fadeValue3, {
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: 'false'
+            }).start()
+        }, 5000);setTimeout(() => {
+            Animated.timing(this.state.fadeValue3, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: 'false'
+            }).start()
+        }, 5500);
     }
+
 
     render() {
 
 
         return (
 
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <View style={{ flex: 1 }}>
 
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'lightblue', bottom: this.state.yValue1 }} onPress={this._moveAnimation()}>
+            <View style={[styles.container, { backgroundColor: 'darkgrey' }]} >
 
+
+                <View style={{ height: '50%', alignSelf:'center', justifyContent:'space-around',  top:'25%'}}>
+                    <Animated.View style={{ width: (screenWidth), opacity: this.state.fadeValue1 }} onPress={this._fadeAnimation()}>
+                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 25, fontWeight: 'bold' }}>Retrieving your data</Text>
                     </Animated.View>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'red', bottom: this.state.yValue2 }} >
 
+                    <Animated.View style={{ width: (screenWidth), opacity: this.state.fadeValue2 }} onPress={this._fadeAnimation()}>
+                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 25, fontWeight: 'bold' }}>Calculating your expenses</Text>
                     </Animated.View>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'darkgreen', bottom: this.state.yValue3 }} >
 
-                    </Animated.View>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'lightgreen', bottom: this.state.yValue4 }} onPress={this._moveAnimation()}>
-
-                    </Animated.View>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'grey', bottom: this.state.yValue5 }} >
-
-                    </Animated.View>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'wheat', bottom: this.state.yValue6 }} >
-
-                    </Animated.View>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'coral', bottom: this.state.yValue7 }} onPress={this._moveAnimation()}>
-
-                    </Animated.View>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'lavender', bottom: this.state.yValue8 }} >
-
-                    </Animated.View>
-                    <Animated.View style={{ width: (screenWidth / 3), height: (screenWidth / 3), backgroundColor: 'darkred', bottom: this.state.yValue9 }} >
-
+                    <Animated.View style={{ width: (screenWidth),  opacity: this.state.fadeValue3 }} onPress={this._fadeAnimation()}>
+                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 25, fontWeight: 'bold' }}>Opening your vault</Text>
                     </Animated.View>
                 </View>
 
-                <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center' }}>Welcome Back!</Text>
-                </View>
+
             </View>
-        )
 
+        )
     }
 }

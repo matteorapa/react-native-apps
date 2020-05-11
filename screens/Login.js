@@ -83,21 +83,19 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View style={[styles.container, styles.central]} >
+      <View style={[styles.container, styles.central,{backgroundColor:'darkgrey'}]} >
         <View>
           <Text style={styles.heading}>MyVault</Text>
         </View>
-        <View style={styles.formBox}>
-          <Text>Email</Text>
-          <TextInput style={styles.input} name='email'
+        <View style={[styles.formBox, {width: 300, height:300, borderRadius:150, justifyContent:'space-around'}]}>
+          <TextInput style={{textAlign:'center', padding: 10, marginTop:50}} name='email'
             placeholder={"Email"}
             onChangeText={(email) => this.setState({ email })}
             autoCapitalize={false}
             value={this.state.email}
           />
 
-          <Text >Password</Text>
-          <TextInput style={styles.input} placeholder={"Password"}
+          <TextInput style={{textAlign:'center', padding:10, marginBottom:50}} placeholder={"Password"}
             onChangeText={(password) => this.setState({ password })}
             value={this.state.password}
             autoCapitalize={false}
@@ -106,15 +104,15 @@ export default class Login extends React.Component {
 
 
         </View>
-        <TouchableOpacity style={styles.roundButton} title="Sign-in" onPress={() => this.login()}>
+        <TouchableOpacity style={[styles.loginSignupButton,{borderRadius:100, width:100, height:100, justifyContent:'space-around'}]} title="Sign-in" onPress={() => this.login()}>
           <Text style={styles.text}>Sign In</Text>
         </TouchableOpacity>
 
         <View>
-          <Text style={[styles.mutedText, { top: 30 }]}>Don't have an account?</Text>
+          <Text style={[styles.mutedText, { top: 30, color:'#707070' }]}>Don't have an account?</Text>
           <Text></Text>
           <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
-            <Text style={[styles.centerText, styles.actionText, { top: 30, fontSize:15}]}>Create an Account</Text>
+            <Text style={{ marginTop: 30, fontSize:15, textAlign:'center', color:'white'}}>Create one!</Text>
           </TouchableOpacity>
         </View>
 

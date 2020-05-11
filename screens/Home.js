@@ -147,7 +147,7 @@ export default class Home extends React.Component {
 
     if (this.state.isLoading) {
       return (
-        <View style={styles.container}>
+        <View style={[styles.container,{backgroundColor:global.dark}]}>
           <Text>Loading</Text>
         </View>
       )

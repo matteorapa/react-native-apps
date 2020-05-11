@@ -59,11 +59,11 @@ export default class reloadPreferencesScreen extends React.Component {
 
         return (
 
-            <View style={{ flex: 1, backgroundColor: 'lightgrey'}}>
-                    <TouchableOpacity style={{ position: 'absolute', zIndex: 1, width: 200, height: 40, borderRadius: 25, backgroundColor: 'grey', alignSelf: 'center', padding: 10, top:'50%' }}
+            <View style={{ flex: 1, backgroundColor: 'darkgrey', justifyContent:'space-around'}}>
+                    <TouchableOpacity style={{ zIndex: 1, width: 200, height: 200, borderRadius: 100, backgroundColor: 'grey', alignSelf: 'center', padding: 10, justifyContent:'space-around' }}
                         onPress={() => this.componentDidMount()}
                     >
-                        <Text style={{ color: 'white', textAlign: 'center' }}>Reload with new theme</Text>
+                        <Text style={{ color: 'white', textAlign: 'center', textAlign:'center' }}>Reload with new theme</Text>
                     </TouchableOpacity>
             </View>
         )

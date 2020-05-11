@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
+var compareToMonths = [2,4,6,9,11];
 
 export default class CreateAnAccountScreen extends React.Component {
 
@@ -14,6 +15,9 @@ export default class CreateAnAccountScreen extends React.Component {
       email: '',
       password: '',
       dob: '',
+      day: '',
+      month: '',
+      year: '',
     };
   }
 
@@ -64,8 +68,23 @@ export default class CreateAnAccountScreen extends React.Component {
 
   async signup() {
     //this.componentDidMount();
-    if (this.state.name === '' || this.state.surname === '' || this.state.email === '' || this.state.password === '' || this.state.dob === '' || !this.state.email.includes("@") || !this.state.email.includes(".com")){
+    if (this.state.name === '' || this.state.surname === '' || this.state.email === '' || this.state.password === '' || !this.state.email.includes("@") || !this.state.email.includes(".com")) {
       Alert.alert('Oops', 'Please ensure valid data is entered in all fields')
+    }
+    else if (this.state.day > 31) {
+      Alert.alert('Error posting date', 'Please ensure date is valid');
+    }
+    else if (this.state.month > 12) {
+      Alert.alert('Error posting date', 'Please ensure date is valid');
+    }
+    else if (this.state.day > 29 && this.state.periodicMonth == 2) {
+      Alert.alert('Error posting date', 'Please ensure date is valid');
+    }
+    else if (this.state.year > 2020) {
+      Alert.alert('Error posting date', 'Please ensure date is valid');
+    }
+    else if (this.state.day > 30 && this.state.periodicMonth == compareToMonths) {
+      Alert.alert('Error posting date', 'Please ensure date is valid');
     }
     else {
       this.apiCall();
@@ -73,89 +92,97 @@ export default class CreateAnAccountScreen extends React.Component {
     }
   }
 
+  setDOB() {
+    this.setState({
+      dob: this.state.year + '-' + this.state.month + '-' + this.state.day
+    }, () => { this.signup() });
+
+  }
+
   render() {
 
     return (
 
-      <View style={[styles.container, styles.central]}>
-        
+      <View style={[styles.container, styles.central, { backgroundColor: 'darkgrey' }]}>
+
         <View>
-        <Text style={styles.heading}>Sign Up</Text>
+          <Text style={styles.heading}>Sign Up</Text>
         </View>
         <View style={styles.formBox}>
-
-          <View >
-            <Text>Name</Text>
-            <TextInput style={styles.input}
-                    placeholder={"Name"}
-                    onChangeText={(name) => this.setState({ name })}
-                    value={this.state.name}
-                    Name={this.state.name}
-                  />
-          </View>
-
           <View>
-            <Text>Surname</Text>
-            <TextInput style={styles.input}
-                    placeholder={"Surname"}
-                    onChangeText={(surname) => this.setState({ surname })}
-                    value={this.state.surname}
-                    Surname={this.state.surname}
-                  />
-          </View>
 
-          <View>
-                  <Text style={styles.Label1}>Date of Birth</Text>
-                  <TextInput style={styles.input}
-                    placeholder={"yyyy/mm/dd"}
-                    onChangeText={(dob) => this.setState({ dob })}
-                    value={this.state.dob}
-                    DOB={this.state.dob}
-                  />
-          </View>
+            <View style={{ flexDirection: 'row', width: '100%', padding: 5 }}>
+              <Text style={{ flex: 1, paddingTop: 10, paddingBottom: 10 }}>Name</Text>
 
-          <View>
-                  <Text>Email</Text>
-                  <TextInput style={styles.input}
-                    placeholder={"johndoe@mailbox.com"}
-                    onChangeText={(email) => this.setState({ email })}
-                    autoCapitalize = {false}
-                    value={this.state.email}
-                    Email={this.state.email}
-                  />
-          </View>
+              <TextInput style={{ flex: 2, paddingTop: 10, paddingBottom: 10, borderBottomWidth: 0.4, borderColor: 'grey' }}
+                onChangeText={(name) => this.setState({ name })}
+                autoCapitalize={true}
+              />
+            </View>
+            <View style={{ flexDirection: 'row', width: '100%', padding: 5 }}>
+              <Text style={{ flex: 1, paddingTop: 10, paddingBottom: 10 }}>Surname</Text>
 
-                <View>
-                  <Text>Pasword</Text>
-                  <TextInput style={styles.input}
-                    placeholder={"Password"}
-                    onChangeText={(password) => this.setState({ password })}
-                    value={this.state.password}
-                    Password={this.state.password}
-                    autoCapitalize = {false}
-                    secureTextEntry={true}
-                  />
-                </View>
-                
-          </View>
+              <TextInput style={{ flex: 2, paddingTop: 10, paddingBottom: 10, borderBottomWidth: 0.4, borderColor: 'grey' }}
+                onChangeText={(surname) => this.setState({ surname })}
+                autoCapitalize={true}
+              />
+            </View>
+            <View style={{ flexDirection: 'row', width: '100%', padding: 5 }}>
+              <Text style={{ flex: 1, paddingTop: 10, paddingBottom: 10 }}>Email</Text>
 
-          <View style={styles.roundButton}>
-            <TouchableOpacity  onPress={() => this.signup()}>
-                <Text style={{ fontSize: 20, textAlign: 'center', color: '#26baee' }}  >Sign up</Text>
-              </TouchableOpacity>  
+              <TextInput style={{ flex: 2, paddingTop: 10, paddingBottom: 10, borderBottomWidth: 0.4, borderColor: 'grey' }}
+                onChangeText={(email) => this.setState({ email })}
+                autoCapitalize={false}
+              />
+            </View>
+            <View style={{ flexDirection: 'row', width: '100%', padding: 5 }}>
+              <Text style={{ flex: 1, paddingTop: 10, paddingBottom: 10 }}>Password</Text>
+
+              <TextInput style={{ flex: 2, paddingTop: 10, paddingBottom: 10, borderBottomWidth: 0.4, borderColor: 'grey' }}
+                onChangeText={(password) => this.setState({ password })}
+                autoCapitalize={false}
+              />
+            </View>
+            <View style={{ flexDirection: 'row', width: '100%', padding: 5 }}>
+
+              <Text style={{ flex: 1, paddingTop: 10, paddingBottom: 10 }}>DOB</Text>
+
+              <View style={{ flex: 2, paddingTop: 10, paddingBottom: 10, flexDirection: 'row' }}>
+                <TextInput style={{ flex: 1, borderBottomWidth: 0.4, borderColor: 'grey', marginRight: 7, paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} placeholder={'DD'} maxLength={2}
+                  onChangeText={(day) => this.setState({ day })}
+                  autoCapitalize={false}
+                />
+                <TextInput style={{ flex: 1, borderBottomWidth: 0.4, borderColor: 'grey', marginRight: 7, paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} placeholder={'MM'} maxLength={2}
+                  onChangeText={(month) => this.setState({ month })}
+                  autoCapitalize={false}
+                />
+                <TextInput style={{ flex: 2, borderBottomWidth: 0.4, borderColor: 'grey', paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} placeholder={'YYYY'} maxLength={4}
+                  onChangeText={(year) => this.setState({ year })}
+                  autoCapitalize={false}
+                />
+              </View>
             </View>
 
-            <View>
-              
-              <TouchableOpacity onPress={() => this.state.nav.navigate('Login')}>
-                <Text style={[styles.centerText, styles.actionText, {marginTop:20, fontSize:15}]}>Sign in instead?</Text>
-              </TouchableOpacity>
-            </View>
           </View>
+        </View>
 
-       
-      
-      
+        <View style={styles.loginSignupButton}>
+          <TouchableOpacity onPress={() => this.setDOB()}>
+            <Text style={{ fontSize: 15, textAlign: 'center' }}  >Sign up</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View>
+
+          <TouchableOpacity onPress={() => this.state.nav.navigate('Login')}>
+            <Text style={[styles.centerText, styles.actionText, { marginTop: 20, fontSize: 15 }]}>Sign in instead?</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+
+
+
 
     );
   }

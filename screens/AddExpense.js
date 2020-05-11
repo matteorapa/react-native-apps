@@ -334,7 +334,7 @@ export default class AddExpense extends React.Component {
 
                                         </View>
 
-                                        <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', left: Platform.OS === 'ios' ? '5%' : '13%', bottom: Platform.OS === 'ios' ? 100 : 85 }}>
+                                        <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', left: Platform.OS === 'ios' ? '5%' : '15%', bottom: Platform.OS === 'ios' ? 100 : 85 }}>
                                             <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'weekly' })}
                                                 style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "weekly" ? "lightgrey" : "grey" }}>
                                                 <Text style={{ justifyContent: 'center', textAlign: "center" }} > Weekly</Text>

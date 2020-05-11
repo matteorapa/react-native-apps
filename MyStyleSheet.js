@@ -19,12 +19,6 @@ export default StyleSheet.create({
         fontSize: 12,
         color: 'grey'
     },
-    centerText:{
-        textAlign: 'center',
-    },
-    actionText: {
-        color: 'darkslategrey'
-    },
     mutedText: {
         color: 'grey',
     },
@@ -80,52 +74,49 @@ export default StyleSheet.create({
          
     },
 
-    roundButton : {
-        width: '80%',
+    loginSignupButton : {
+        width: '60%',
         top:15,
         borderRadius: 25,
         padding: 16,
         marginVertical: 12,
         marginHorizontal: 24,
         backgroundColor: 'lightgrey',
-        shadowColor: "lightgray",
+        shadowColor: "#707070",
+        borderColor:'black',
+        borderWidth:0.5,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 0,
         },
         shadowOpacity: 0.5,
-        shadowRadius: 6.68,
+        shadowRadius: 7,
 
         elevation: 11,
     },
 
     formBox : {
         width: '80%',
-        borderRadius: 25,
+        borderRadius: 50,
         paddingVertical: 40,
         paddingHorizontal: 20,
         marginVertical: 12,
         marginHorizontal: 24,
         backgroundColor: 'lightgrey',
-        shadowColor: "lightgrey",
+        shadowColor: "#707070",
+        borderColor:'black',
+        borderWidth:0.5,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 0,
         },
         shadowOpacity: 0.5,
-        shadowRadius: 6.68,
+        shadowRadius: 7,
 
         elevation: 11,
     },
 
-    input : {
-        borderBottomColor: 'lightgrey',
-        borderBottomWidth: 1,
-        marginBottom: 10,
-        fontSize: 16,
-        padding: 3,
-        marginVertical: 6
-    },
+    
 
     body: {
         flex: 10,
@@ -294,8 +285,9 @@ export default StyleSheet.create({
     },
 
     periodicCategoryPicker: {
-        width: Platform.OS === 'ios' ? 180 : 200,
+        width: Platform.OS === 'ios' ? 180 : '60%',
         bottom: Platform.OS === 'ios' ? 80 : 30,
+        marginLeft: Platform.OS ==='android'? '10%':0,
         alignSelf: Platform.OS === 'ios'?'flex-end': 'center',
         marginRight:20
     },

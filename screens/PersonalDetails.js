@@ -28,7 +28,7 @@ export default class PersonalDetails extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://myvault.technology/api/users/details', {
+        fetch('https://myvault.technology/api/users/details', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -56,7 +56,7 @@ export default class PersonalDetails extends React.Component {
 
     async apiCall() {
 
-        await fetch('http://myvault.technology/api/users/update', {
+        await fetch('https://myvault.technology/api/users/update', {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',

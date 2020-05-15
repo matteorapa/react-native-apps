@@ -28,7 +28,7 @@ export default class themeColorPicker extends React.Component {
 
     async apiCall() {
         console.log(this.state.dark)
-        await fetch('http://myvault.technology/api/pref', {
+        await fetch('https://myvault.technology/api/pref', {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',

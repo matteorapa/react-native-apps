@@ -38,7 +38,7 @@ export default class splashScreen extends React.Component {
             this.state.nav.navigate('Home')
         }, 5500);
 
-        fetch('http://myvault.technology/api/pref', {
+        fetch('https://myvault.technology/api/pref', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -75,7 +75,7 @@ export default class splashScreen extends React.Component {
 
     async apiCall() {
 
-        await fetch('http://myvault.technology/api/expenses/periodic', {
+        await fetch('https://myvault.technology/api/expenses/periodic', {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',

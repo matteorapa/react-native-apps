@@ -4,8 +4,8 @@ import { TextInput, ScrollView } from 'react-native-gesture-handler';
 import Footer from '../components/Footer';
 import styles from '../MyStyleSheet';
 
-var APIDelLink = 'http://myvault.technology/api/expenses/del/';
-var APIGetByTimeLink = 'http://myvault.technology/api/expenses/';
+var APIDelLink = 'https://myvault.technology/api/expenses/del/';
+var APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
 
 export default class ViewExpenses extends React.Component {
 
@@ -84,7 +84,7 @@ export default class ViewExpenses extends React.Component {
 
         if (response.success) {
           this.setState({ show: false })
-          APIDelLink = 'http://myvault.technology/api/expenses/del/';
+          APIDelLink = 'https://myvault.technology/api/expenses/del/';
         }
         else {
           console.log('Unsuccessful')
@@ -105,26 +105,26 @@ export default class ViewExpenses extends React.Component {
   }
 
   getAllExpenses() {
-    APIGetByTimeLink = 'http://myvault.technology/api/expenses/';
+    APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'all' })
     APIGetByTimeLink = APIGetByTimeLink;
     this.componentDidMount();
   }
 
   getWeekExpenses() {
-    APIGetByTimeLink = 'http://myvault.technology/api/expenses/';
+    APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'this week' })
     APIGetByTimeLink = APIGetByTimeLink + 'w';
     this.componentDidMount();
   }
   getMonthExpenses() {
-    APIGetByTimeLink = 'http://myvault.technology/api/expenses/';
+    APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'this month' })
     APIGetByTimeLink = APIGetByTimeLink + 'm';
     this.componentDidMount();
   }
   getYearExpenses() {
-    APIGetByTimeLink = 'http://myvault.technology/api/expenses/';
+    APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'this year' })
     APIGetByTimeLink = APIGetByTimeLink + 'y';
     this.componentDidMount();

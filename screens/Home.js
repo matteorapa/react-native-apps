@@ -5,7 +5,7 @@ import { LineChart } from "react-native-chart-kit";
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
 import { exp } from 'react-native-reanimated';
-var lineChartLink = 'http://myvault.technology/api/analytics/MonthlyTotals';
+var lineChartLink = 'https://myvault.technology/api/analytics/MonthlyTotals';
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 var temp = [0];
 var count = 0;
@@ -83,7 +83,7 @@ export default class Home extends React.Component {
   }
 
   ExpensesAPICall() {
-    fetch('http://myvault.technology/api/expenses/m', {
+    fetch('https://myvault.technology/api/expenses/m', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -113,7 +113,7 @@ export default class Home extends React.Component {
   LineChartLinkEdit() {
     temp = [0];
     dataLabels = [''];
-    lineChartLink = 'http://myvault.technology/api/analytics/MonthlyTotals';
+    lineChartLink = 'https://myvault.technology/api/analytics/MonthlyTotals';
     this.LineChartAPICall();
   }
 

@@ -25,7 +25,7 @@ export default class splashScreen extends React.Component {
     }
 
     delete() {
-        fetch('http://myvault.technology/api/users', {
+        fetch('https://myvault.technology/api/users', {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',

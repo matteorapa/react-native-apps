@@ -4,8 +4,8 @@ import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
 import { PieChart, BarChart, LineChart } from "react-native-chart-kit";
 import { ScrollView } from 'react-native-gesture-handler';
-var pieChartLink = 'http://myvault.technology/api/analytics/CategoryTotals';
-var lineChartLink = 'http://myvault.technology/api/analytics/MonthlyTotals';
+var pieChartLink = 'https://myvault.technology/api/analytics/CategoryTotals';
+var lineChartLink = 'https://myvault.technology/api/analytics/MonthlyTotals';
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 const BarDataLabels = ['EUR', 'GBP', 'USD'];
 var temp = [0];
@@ -108,7 +108,7 @@ export default class Analytics extends React.Component {
   }
 
   BarChartAPICall() {
-    fetch('http://myvault.technology/api/analytics/CurrencyTotals', {
+    fetch('https://myvault.technology/api/analytics/CurrencyTotals', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -150,7 +150,7 @@ export default class Analytics extends React.Component {
 
   FilterPieChart() {
     this.setState({ pieData: [] })
-    pieChartLink = 'http://myvault.technology/api/analytics/CategoryTotals';
+    pieChartLink = 'https://myvault.technology/api/analytics/CategoryTotals';
     this.PieChartAPICall();
     this.setState({ pieFilterModalShow: false })
   }
@@ -158,7 +158,7 @@ export default class Analytics extends React.Component {
   FilterLineChart() {
     temp = [0];
     dataLabels = [''];
-    lineChartLink = 'http://myvault.technology/api/analytics/MonthlyTotals';
+    lineChartLink = 'https://myvault.technology/api/analytics/MonthlyTotals';
     this.LineChartAPICall();
   }
 

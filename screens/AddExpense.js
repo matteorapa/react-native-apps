@@ -3,9 +3,10 @@ import { View, Text, Button, Image, TouchableOpacity, Picker, Platform, Alert, M
 import styles from '../MyStyleSheet';
 
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
-import Home from './Home';
-global.newExpense = false;
 var compareToMonths = [2,4,6,9,11];
+const day = new RegExp("^[1-31]+$");
+const month = new RegExp("^[1-12]+$");
+const year = new RegExp("^[1900-2020]+$");
 export default class AddExpense extends React.Component {
     constructor({ navigation }) {
         super();
@@ -41,7 +42,7 @@ export default class AddExpense extends React.Component {
 
     async apiCall() {
 
-        await fetch('http://myvault.technology/api/expenses', {
+        await fetch('https://myvault.technology/api/expenses', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -83,7 +84,7 @@ export default class AddExpense extends React.Component {
 
     async periodicApiCall() {
 
-        await fetch('http://myvault.technology/api/expenses/periodic', {
+        await fetch('https://myvault.technology/api/expenses/periodic', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -143,18 +144,18 @@ export default class AddExpense extends React.Component {
         if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
         }
-        else if (this.state.periodicDay > 31) {
-            Alert.alert('Error posting date', 'Please ensure date is valid');
-        }
-        else if (this.state.periodicMonth > 12) {
-            Alert.alert('Error posting date', 'Please ensure date is valid');
-        }
-        else if (this.state.periodicDay > 29 && this.state.periodicMonth == 2) {
-            Alert.alert('Error posting date', 'Please ensure date is valid');
-        }
-        else if (this.state.year > 2020) {
-            Alert.alert('Error posting date', 'Please ensure date is valid');
-        }
+        else if (!day.test(this.state.periodicDay)) {
+            Alert.alert('Error posting date', 'Please ensure date is valid!');
+          }
+          else if (!month.test(this.state.periodicMonth)) {
+            Alert.alert('Error posting date', 'Please ensure date is valid!');
+          }
+          else if (this.state.periodicDay > 29 && this.state.periodicMonth == 2) {
+            Alert.alert('Error posting date', 'Please ensure date is valid!');
+          }
+          else if (!year.test(this.state.periodicYear)) {
+            Alert.alert('Error posting date', 'Please ensure date is valid!');
+          }
         else if (this.state.periodicDay > 30 && this.state.periodicMonth == compareToMonths){
             Alert.alert('Error posting date', 'Please ensure date is valid');
         }else {
@@ -174,7 +175,7 @@ export default class AddExpense extends React.Component {
         return (
             <Modal animationType={'slide'} transparent={true}>
                 <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'center' }}>
-                    <ScrollView horizontal={true}>
+                    <ScrollView horizontal={true} pagingEnabled={true}>
                         <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40, marginRight: 5, width:this.screenwidth }}>
 
                             <Text style={styles.heading}>New Expense</Text>
@@ -352,7 +353,8 @@ export default class AddExpense extends React.Component {
                                         <Text style={{ position: 'absolute', left: Platform.OS === 'ios' ? 25 : 30, bottom: Platform.OS === 'ios' ? 60 : 25, fontSize: 15, fontWeight: '400' }}>Start Date: </Text>
                                         <View style={{ flexDirection: 'row', position: 'absolute', left: Platform.OS ==='ios'? '22.5%':'35%', bottom: 10, alignSelf: 'center' }}>
                                             <TextInput
-                                                style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: 'grey', textAlign: 'center' }}
+                                                style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: 'grey', textAlign: 'center' }} 
+                                                maxLength={2}
                                                 placeholder={'DD'}
                                                 onChangeText={(periodicDay) => this.setState({ periodicDay })}
                                                 value={this.state.periodicDay}
@@ -360,6 +362,7 @@ export default class AddExpense extends React.Component {
                                             </TextInput>
                                             <TextInput
                                                 style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: "grey", textAlign: 'center' }}
+                                                maxLength={2}
                                                 placeholder={'MM'}
                                                 onChangeText={(periodicMonth) => this.setState({ periodicMonth })}
                                                 value={this.state.periodicMonth}
@@ -367,6 +370,7 @@ export default class AddExpense extends React.Component {
                                             </TextInput>
                                             <TextInput
                                                 style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: "grey", textAlign: 'center' }}
+                                                maxLength={4}
                                                 placeholder={'YYYY'}
                                                 onChangeText={(periodicYear) => this.setState({ periodicYear })}
                                                 value={this.state.periodicYear}

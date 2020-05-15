@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform, KeyboardAvoidingView, BackHandler } from 'react-native';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
+const validPasswordChars = new RegExp("^[a-zA-Z0-9.,?!@£$+€&*-]+$");
 
 export default class Login extends React.Component {
 
@@ -29,7 +30,7 @@ export default class Login extends React.Component {
 
   async apiCall() {
 
-    await fetch('http://myvault.technology/api/login', {
+    await fetch('https://myvault.technology/api/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -74,6 +75,9 @@ export default class Login extends React.Component {
   async login() {
     if (this.state.email === '' || this.state.password === '') {
       Alert.alert('Oops!', 'Please ensure all fields are filled')
+    }
+    else if (!validPasswordChars.test(this.state.password)){
+      Alert.alert('Error','Password contains invalid characters!')
     }
     else {
       this.apiCall();

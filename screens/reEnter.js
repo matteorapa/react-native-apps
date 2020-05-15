@@ -20,7 +20,7 @@ export default class reEnter extends React.Component {
         }).start();
 
 
-        fetch('http://myvault.technology/api/pref', {
+        fetch('https://myvault.technology/api/pref', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',

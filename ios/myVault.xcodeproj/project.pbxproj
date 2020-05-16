@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* GAPTassignmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GAPTassignmentTests.m */; };
+		00E356F31AD99517003FC87E /* myVaultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* myVaultTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		22F65033AE10C891AC7AFDE1 /* libPods-GAPTassignment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B41C6A603165C545E3CB551D /* libPods-GAPTassignment.a */; };
-		252DC5C9927C1F1122220447 /* libPods-GAPTassignmentTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22259C8A9EB9BD1D662493 /* libPods-GAPTassignmentTests.a */; };
-		255DFAF20A95BD41258E0832 /* libPods-GAPTassignment-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3C3E935393053539334F0B /* libPods-GAPTassignment-tvOSTests.a */; };
+		22F65033AE10C891AC7AFDE1 /* libPods-myVault.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B41C6A603165C545E3CB551D /* libPods-myVault.a */; };
+		252DC5C9927C1F1122220447 /* libPods-myVaultTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C22259C8A9EB9BD1D662493 /* libPods-myVaultTests.a */; };
+		255DFAF20A95BD41258E0832 /* libPods-myVault-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3C3E935393053539334F0B /* libPods-myVault-tvOSTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* GAPTassignmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GAPTassignmentTests.m */; };
-		357322CE5122FAC775BAB4A0 /* libPods-GAPTassignment-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF25074945257AF9F65406B /* libPods-GAPTassignment-tvOS.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* myVaultTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* myVaultTests.m */; };
+		357322CE5122FAC775BAB4A0 /* libPods-myVault-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF25074945257AF9F65406B /* libPods-myVault-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,45 +28,45 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = GAPTassignment;
+			remoteInfo = myVault;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "GAPTassignment-tvOS";
+			remoteInfo = "myVault-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* GAPTassignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GAPTassignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* myVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* GAPTassignmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAPTassignmentTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* GAPTassignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GAPTassignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = GAPTassignment/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = GAPTassignment/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* myVaultTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myVaultTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* myVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = myVault/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = myVault/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GAPTassignment/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GAPTassignment/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GAPTassignment/main.m; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* GAPTassignment-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GAPTassignment-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* GAPTassignment-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GAPTassignment-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6094D418D80177C47D761274 /* Pods-GAPTassignment-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignment-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-GAPTassignment-tvOS/Pods-GAPTassignment-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		661285B0BBE8EDA109F54CDC /* Pods-GAPTassignment-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignment-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GAPTassignment-tvOSTests/Pods-GAPTassignment-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6B7403E8BFB41FEE68AF731F /* Pods-GAPTassignmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignmentTests.release.xcconfig"; path = "Target Support Files/Pods-GAPTassignmentTests/Pods-GAPTassignmentTests.release.xcconfig"; sourceTree = "<group>"; };
-		76507872CDAFA56AE37675BF /* Pods-GAPTassignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignment.release.xcconfig"; path = "Target Support Files/Pods-GAPTassignment/Pods-GAPTassignment.release.xcconfig"; sourceTree = "<group>"; };
-		7C3C3E935393053539334F0B /* libPods-GAPTassignment-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GAPTassignment-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		86415AC1571487E9DEF4B45F /* Pods-GAPTassignmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignmentTests.debug.xcconfig"; path = "Target Support Files/Pods-GAPTassignmentTests/Pods-GAPTassignmentTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8C22259C8A9EB9BD1D662493 /* libPods-GAPTassignmentTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GAPTassignmentTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CBDD333481EB4108899100B /* Pods-GAPTassignment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignment.debug.xcconfig"; path = "Target Support Files/Pods-GAPTassignment/Pods-GAPTassignment.debug.xcconfig"; sourceTree = "<group>"; };
-		B41C6A603165C545E3CB551D /* libPods-GAPTassignment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GAPTassignment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAF25074945257AF9F65406B /* libPods-GAPTassignment-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GAPTassignment-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C72FCD44020D004A31DB37AB /* Pods-GAPTassignment-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignment-tvOS.release.xcconfig"; path = "Target Support Files/Pods-GAPTassignment-tvOS/Pods-GAPTassignment-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = myVault/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = myVault/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = myVault/main.m; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* myVault-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "myVault-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* myVault-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "myVault-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6094D418D80177C47D761274 /* Pods-myVault-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVault-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-myVault-tvOS/Pods-myVault-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		661285B0BBE8EDA109F54CDC /* Pods-myVault-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVault-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-myVault-tvOSTests/Pods-myVault-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6B7403E8BFB41FEE68AF731F /* Pods-myVaultTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVaultTests.release.xcconfig"; path = "Target Support Files/Pods-myVaultTests/Pods-myVaultTests.release.xcconfig"; sourceTree = "<group>"; };
+		76507872CDAFA56AE37675BF /* Pods-myVault.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVault.release.xcconfig"; path = "Target Support Files/Pods-myVault/Pods-myVault.release.xcconfig"; sourceTree = "<group>"; };
+		7C3C3E935393053539334F0B /* libPods-myVault-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myVault-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86415AC1571487E9DEF4B45F /* Pods-myVaultTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVaultTests.debug.xcconfig"; path = "Target Support Files/Pods-myVaultTests/Pods-myVaultTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C22259C8A9EB9BD1D662493 /* libPods-myVaultTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myVaultTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CBDD333481EB4108899100B /* Pods-myVault.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVault.debug.xcconfig"; path = "Target Support Files/Pods-myVault/Pods-myVault.debug.xcconfig"; sourceTree = "<group>"; };
+		B41C6A603165C545E3CB551D /* libPods-myVault.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myVault.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF25074945257AF9F65406B /* libPods-myVault-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myVault-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C72FCD44020D004A31DB37AB /* Pods-myVault-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVault-tvOS.release.xcconfig"; path = "Target Support Files/Pods-myVault-tvOS/Pods-myVault-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		FCBC9C263666F81812937EAB /* Pods-GAPTassignment-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAPTassignment-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-GAPTassignment-tvOSTests/Pods-GAPTassignment-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		FCBC9C263666F81812937EAB /* Pods-myVault-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVault-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-myVault-tvOSTests/Pods-myVault-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				252DC5C9927C1F1122220447 /* libPods-GAPTassignmentTests.a in Frameworks */,
+				252DC5C9927C1F1122220447 /* libPods-myVaultTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22F65033AE10C891AC7AFDE1 /* libPods-GAPTassignment.a in Frameworks */,
+				22F65033AE10C891AC7AFDE1 /* libPods-myVault.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				357322CE5122FAC775BAB4A0 /* libPods-GAPTassignment-tvOS.a in Frameworks */,
+				357322CE5122FAC775BAB4A0 /* libPods-myVault-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,20 +98,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				255DFAF20A95BD41258E0832 /* libPods-GAPTassignment-tvOSTests.a in Frameworks */,
+				255DFAF20A95BD41258E0832 /* libPods-myVault-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* GAPTassignmentTests */ = {
+		00E356EF1AD99517003FC87E /* myVaultTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* GAPTassignmentTests.m */,
+				00E356F21AD99517003FC87E /* myVaultTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = GAPTassignmentTests;
+			path = myVaultTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -122,7 +122,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* GAPTassignment */ = {
+		13B07FAE1A68108700A75B9A /* myVault */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -133,20 +133,20 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = GAPTassignment;
+			name = myVault;
 			sourceTree = "<group>";
 		};
 		25C71CDA415A6AAAEBA70803 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8CBDD333481EB4108899100B /* Pods-GAPTassignment.debug.xcconfig */,
-				76507872CDAFA56AE37675BF /* Pods-GAPTassignment.release.xcconfig */,
-				6094D418D80177C47D761274 /* Pods-GAPTassignment-tvOS.debug.xcconfig */,
-				C72FCD44020D004A31DB37AB /* Pods-GAPTassignment-tvOS.release.xcconfig */,
-				661285B0BBE8EDA109F54CDC /* Pods-GAPTassignment-tvOSTests.debug.xcconfig */,
-				FCBC9C263666F81812937EAB /* Pods-GAPTassignment-tvOSTests.release.xcconfig */,
-				86415AC1571487E9DEF4B45F /* Pods-GAPTassignmentTests.debug.xcconfig */,
-				6B7403E8BFB41FEE68AF731F /* Pods-GAPTassignmentTests.release.xcconfig */,
+				8CBDD333481EB4108899100B /* Pods-myVault.debug.xcconfig */,
+				76507872CDAFA56AE37675BF /* Pods-myVault.release.xcconfig */,
+				6094D418D80177C47D761274 /* Pods-myVault-tvOS.debug.xcconfig */,
+				C72FCD44020D004A31DB37AB /* Pods-myVault-tvOS.release.xcconfig */,
+				661285B0BBE8EDA109F54CDC /* Pods-myVault-tvOSTests.debug.xcconfig */,
+				FCBC9C263666F81812937EAB /* Pods-myVault-tvOSTests.release.xcconfig */,
+				86415AC1571487E9DEF4B45F /* Pods-myVaultTests.debug.xcconfig */,
+				6B7403E8BFB41FEE68AF731F /* Pods-myVaultTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -156,10 +156,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				B41C6A603165C545E3CB551D /* libPods-GAPTassignment.a */,
-				BAF25074945257AF9F65406B /* libPods-GAPTassignment-tvOS.a */,
-				7C3C3E935393053539334F0B /* libPods-GAPTassignment-tvOSTests.a */,
-				8C22259C8A9EB9BD1D662493 /* libPods-GAPTassignmentTests.a */,
+				B41C6A603165C545E3CB551D /* libPods-myVault.a */,
+				BAF25074945257AF9F65406B /* libPods-myVault-tvOS.a */,
+				7C3C3E935393053539334F0B /* libPods-myVault-tvOSTests.a */,
+				8C22259C8A9EB9BD1D662493 /* libPods-myVaultTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,9 +174,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* GAPTassignment */,
+				13B07FAE1A68108700A75B9A /* myVault */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* GAPTassignmentTests */,
+				00E356EF1AD99517003FC87E /* myVaultTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				25C71CDA415A6AAAEBA70803 /* Pods */,
@@ -189,10 +189,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* GAPTassignment.app */,
-				00E356EE1AD99517003FC87E /* GAPTassignmentTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* GAPTassignment-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* GAPTassignment-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* myVault.app */,
+				00E356EE1AD99517003FC87E /* myVaultTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* myVault-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* myVault-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,9 +200,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* GAPTassignmentTests */ = {
+		00E356ED1AD99517003FC87E /* myVaultTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GAPTassignmentTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myVaultTests" */;
 			buildPhases = (
 				B30A647A6B2878214C030C04 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -214,14 +214,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = GAPTassignmentTests;
-			productName = GAPTassignmentTests;
-			productReference = 00E356EE1AD99517003FC87E /* GAPTassignmentTests.xctest */;
+			name = myVaultTests;
+			productName = myVaultTests;
+			productReference = 00E356EE1AD99517003FC87E /* myVaultTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* GAPTassignment */ = {
+		13B07F861A680F5B00A75B9A /* myVault */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "GAPTassignment" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "myVault" */;
 			buildPhases = (
 				4DA98AEA08F76BE06284824B /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -234,14 +234,14 @@
 			);
 			dependencies = (
 			);
-			name = GAPTassignment;
-			productName = GAPTassignment;
-			productReference = 13B07F961A680F5B00A75B9A /* GAPTassignment.app */;
+			name = myVault;
+			productName = myVault;
+			productReference = 13B07F961A680F5B00A75B9A /* myVault.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* GAPTassignment-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* myVault-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GAPTassignment-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "myVault-tvOS" */;
 			buildPhases = (
 				1D7A61D3B279BA24226335EF /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -254,14 +254,14 @@
 			);
 			dependencies = (
 			);
-			name = "GAPTassignment-tvOS";
-			productName = "GAPTassignment-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* GAPTassignment-tvOS.app */;
+			name = "myVault-tvOS";
+			productName = "myVault-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* myVault-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* GAPTassignment-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* myVault-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GAPTassignment-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "myVault-tvOSTests" */;
 			buildPhases = (
 				E8E4825A5ED2CF959574F29B /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -273,9 +273,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "GAPTassignment-tvOSTests";
-			productName = "GAPTassignment-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* GAPTassignment-tvOSTests.xctest */;
+			name = "myVault-tvOSTests";
+			productName = "myVault-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* myVault-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -302,7 +302,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "GAPTassignment" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "myVault" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -318,10 +318,10 @@
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* GAPTassignment */,
-				00E356ED1AD99517003FC87E /* GAPTassignmentTests */,
-				2D02E47A1E0B4A5D006451C7 /* GAPTassignment-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* GAPTassignment-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* myVault */,
+				00E356ED1AD99517003FC87E /* myVaultTests */,
+				2D02E47A1E0B4A5D006451C7 /* myVault-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* myVault-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -400,7 +400,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GAPTassignment-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-myVault-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -436,7 +436,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GAPTassignment-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-myVault-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -458,7 +458,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GAPTassignmentTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-myVaultTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -480,7 +480,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GAPTassignment-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-myVault-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -532,7 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* GAPTassignmentTests.m in Sources */,
+				00E356F31AD99517003FC87E /* myVaultTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,7 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* GAPTassignmentTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* myVaultTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,12 +567,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* GAPTassignment */;
+			target = 13B07F861A680F5B00A75B9A /* myVault */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* GAPTassignment-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* myVault-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -584,7 +584,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = GAPTassignment;
+			path = myVault;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -592,7 +592,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86415AC1571487E9DEF4B45F /* Pods-GAPTassignmentTests.debug.xcconfig */;
+			baseConfigurationReference = 86415AC1571487E9DEF4B45F /* Pods-myVaultTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -602,7 +602,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GAPTassignmentTests/Info.plist;
+				INFOPLIST_FILE = myVaultTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -612,20 +612,20 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GAPTassignment.app/GAPTassignment";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myVault.app/myVault";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B7403E8BFB41FEE68AF731F /* Pods-GAPTassignmentTests.release.xcconfig */;
+			baseConfigurationReference = 6B7403E8BFB41FEE68AF731F /* Pods-myVaultTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GAPTassignmentTests/Info.plist;
+				INFOPLIST_FILE = myVaultTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -635,13 +635,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GAPTassignment.app/GAPTassignment";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myVault.app/myVault";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CBDD333481EB4108899100B /* Pods-GAPTassignment.debug.xcconfig */;
+			baseConfigurationReference = 8CBDD333481EB4108899100B /* Pods-myVault.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -649,7 +649,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GAPTassignment/Info.plist;
+				INFOPLIST_FILE = myVault/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -657,21 +657,21 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = GAPTassignment;
+				PRODUCT_NAME = myVault;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76507872CDAFA56AE37675BF /* Pods-GAPTassignment.release.xcconfig */;
+			baseConfigurationReference = 76507872CDAFA56AE37675BF /* Pods-myVault.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GAPTassignment/Info.plist;
+				INFOPLIST_FILE = myVault/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -679,14 +679,14 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = GAPTassignment;
+				PRODUCT_NAME = myVault;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6094D418D80177C47D761274 /* Pods-GAPTassignment-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 6094D418D80177C47D761274 /* Pods-myVault-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -700,14 +700,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "GAPTassignment-tvOS/Info.plist";
+				INFOPLIST_FILE = "myVault-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GAPTassignment-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myVault-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -717,7 +717,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C72FCD44020D004A31DB37AB /* Pods-GAPTassignment-tvOS.release.xcconfig */;
+			baseConfigurationReference = C72FCD44020D004A31DB37AB /* Pods-myVault-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -731,14 +731,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "GAPTassignment-tvOS/Info.plist";
+				INFOPLIST_FILE = "myVault-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GAPTassignment-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myVault-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -748,7 +748,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 661285B0BBE8EDA109F54CDC /* Pods-GAPTassignment-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 661285B0BBE8EDA109F54CDC /* Pods-myVault-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -761,24 +761,24 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "GAPTassignment-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "myVault-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GAPTassignment-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myVault-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GAPTassignment-tvOS.app/GAPTassignment-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myVault-tvOS.app/myVault-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCBC9C263666F81812937EAB /* Pods-GAPTassignment-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = FCBC9C263666F81812937EAB /* Pods-myVault-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -791,17 +791,17 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "GAPTassignment-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "myVault-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GAPTassignment-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myVault-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GAPTassignment-tvOS.app/GAPTassignment-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myVault-tvOS.app/myVault-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -908,7 +908,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GAPTassignmentTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myVaultTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -917,7 +917,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "GAPTassignment" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "myVault" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -926,7 +926,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GAPTassignment-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "myVault-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -935,7 +935,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GAPTassignment-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "myVault-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -944,7 +944,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "GAPTassignment" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "myVault" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

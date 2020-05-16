@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "GAPTassignment-tvOS.app"
-               BlueprintName = "GAPTassignment-tvOS"
-               ReferencedContainer = "container:GAPTassignment.xcodeproj">
+               BuildableName = "myVault-tvOS.app"
+               BlueprintName = "myVault-tvOS"
+               ReferencedContainer = "container:myVault.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "GAPTassignment-tvOSTests.xctest"
-               BlueprintName = "GAPTassignment-tvOSTests"
-               ReferencedContainer = "container:GAPTassignment.xcodeproj">
+               BuildableName = "myVault-tvOSTests.xctest"
+               BlueprintName = "myVault-tvOSTests"
+               ReferencedContainer = "container:myVault.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "GAPTassignment-tvOSTests.xctest"
-               BlueprintName = "GAPTassignment-tvOSTests"
-               ReferencedContainer = "container:GAPTassignment.xcodeproj">
+               BuildableName = "myVault-tvOSTests.xctest"
+               BlueprintName = "myVault-tvOSTests"
+               ReferencedContainer = "container:myVault.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "GAPTassignment-tvOS.app"
-            BlueprintName = "GAPTassignment-tvOS"
-            ReferencedContainer = "container:GAPTassignment.xcodeproj">
+            BuildableName = "myVault-tvOS.app"
+            BlueprintName = "myVault-tvOS"
+            ReferencedContainer = "container:myVault.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "GAPTassignment-tvOS.app"
-            BlueprintName = "GAPTassignment-tvOS"
-            ReferencedContainer = "container:GAPTassignment.xcodeproj">
+            BuildableName = "myVault-tvOS.app"
+            BlueprintName = "myVault-tvOS"
+            ReferencedContainer = "container:myVault.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "GAPTassignment-tvOS.app"
-            BlueprintName = "GAPTassignment-tvOS"
-            ReferencedContainer = "container:GAPTassignment.xcodeproj">
+            BuildableName = "myVault-tvOS.app"
+            BlueprintName = "myVault-tvOS"
+            ReferencedContainer = "container:myVault.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

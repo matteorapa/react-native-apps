@@ -5,6 +5,7 @@ import Footer from './Footer';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import { alertMethod } from '../screens/splashScreen';
 
+
 var darkColor = ''
 export default class themeColorPicker extends React.Component {
 

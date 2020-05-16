@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'GAPTassignment' do
-  # Pods for GAPTassignment
+target 'myVault' do
+  # Pods for myVault
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -35,7 +35,7 @@ target 'GAPTassignment' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
-  target 'GAPTassignmentTests' do
+  target 'myVaultTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -43,10 +43,10 @@ target 'GAPTassignment' do
   use_native_modules!
 end
 
-target 'GAPTassignment-tvOS' do
-  # Pods for GAPTassignment-tvOS
+target 'myVault-tvOS' do
+  # Pods for myVault-tvOS
 
-  target 'GAPTassignment-tvOSTests' do
+  target 'myVault-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

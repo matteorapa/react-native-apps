@@ -317,28 +317,28 @@ export default class ViewExpenses extends React.Component {
             <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
                 onPress={() => this.getAllExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>ALL</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
                 onPress={() => this.getWeekExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
                 onPress={() => this.getMonthExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : 'grey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
                 onPress={() => this.getYearExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
@@ -359,352 +359,170 @@ export default class ViewExpenses extends React.Component {
     else {
       let expenses = this.state.dataSource.map((val, key) => {
         if (val.expenseType == this.state.filterCategory | this.state.filterCategory === '') {
-          if (val.transactionTitle == "New tile") {
-            return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
-              <View style={{ height: 10 }}></View>
+          return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
+            <View style={{ height: 10 }}></View>
 
-              <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
-                onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, cashcard: val.transactionPlace, amount: val.expenseCost, online: val.transactionOnline })} >
-                <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
-                <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
-                <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth: '45%' }}>{val.transactionTitle}</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
+              onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, cashcard: val.transactionPlace, amount: val.expenseCost, online: val.transactionOnline })} >
+              <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
+              <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
+              <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth: '45%' }}>{val.transactionTitle}</Text>
+            </TouchableOpacity>
 
-              < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-                <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'center' }}>
-                  <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 20, borderRadius: 40, width: '90%', height: '60%', alignSelf: 'center', justifyContent: 'center' }}>
-                    <ScrollView>
+            < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
+              <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'center' }}>
+                <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 20, borderRadius: 40, width: '90%', height: '60%', alignSelf: 'center', justifyContent: 'center' }}>
+                  <ScrollView>
 
-                      <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity style={{ justifyContent: 'space-around', width: 100, height: 30, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', left: 20, top: 20 }} onPress={() => { this.setState({ show: false }) }}>
-                          <Text style={{ fontSize: 14, textAlign: 'center', color: 'white', fontWeight: '300' }}>CLOSE</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ justifyContent: 'space-around', width: 100, height: 30, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 20, top: 20 }} onPress={() => { this.setState({ show: false, edit: true }) }}>
-                          <Text style={{ fontSize: 14, textAlign: 'center', color: 'white', fontWeight: '300' }}>EDIT</Text>
-                        </TouchableOpacity>
-                      </View>
-
-                      <View style={{ flexDirection: 'row', marginTop: 80 }}>
-                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Title</Text>
-
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Category</Text>
-
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Currency</Text>
-
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Price</Text>
-
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Date</Text>
-
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Purchase</Text>
-
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Purchased by</Text>
-                        </View>
-
-                        <View style={{ flex: 0.1, height: '100%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center' }}></View>
-
-                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
-                          <Text style={styles.viewDetails}>{this.state.title}</Text>
-                          <Text style={styles.viewDetails}>{this.state.category}</Text>
-                          <Text style={styles.viewDetails}>{this.state.currency}</Text>
-                          <Text style={styles.viewDetails}>{this.state.amount}</Text>
-                          <Text style={styles.viewDetails}>{this.state.date.split('T00:00:00.000Z')}</Text>
-                          <Text style={styles.viewDetails}>{this.state.online ? 'Online' : 'Local'}</Text>
-                          <Text style={styles.viewDetails}>{this.state.cashcard}</Text>
-
-                        </View>
-                      </View>
-                      <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 30, justifyContent: 'space-around', top: 30, marginBottom: 50 }} onPress={() => this.deleteExpense()}>
-                        <Text style={{ color: 'white', fontSize: 15, fontWeight: '500', textAlign: 'center' }}>Remove</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                      <TouchableOpacity style={{ justifyContent: 'space-around', width: 100, height: 30, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', left: 20, top: 20 }} onPress={() => { this.setState({ show: false }) }}>
+                        <Text style={{ fontSize: 14, textAlign: 'center', color: 'white', fontWeight: '300' }}>CLOSE</Text>
                       </TouchableOpacity>
+                      <TouchableOpacity style={{ justifyContent: 'space-around', width: 100, height: 30, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 20, top: 20 }} onPress={() => { this.setState({ show: false, edit: true }) }}>
+                        <Text style={{ fontSize: 14, textAlign: 'center', color: 'white', fontWeight: '300' }}>EDIT</Text>
+                      </TouchableOpacity>
+                    </View>
 
-                    </ScrollView>
-                  </View>
-                </View>
-              </Modal >
-              <Modal animationType={'fade'} transparent={true} visible={this.state.edit}>
-                <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'flex-end', justifyContent: 'space-around' }}>
-                  <View style={{ backgroundColor: global.color, height: 600, borderRadius: 40, width: '100%' }}>
+                    <View style={{ flexDirection: 'row', marginTop: 80 }}>
+                      <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Title</Text>
 
+                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Category</Text>
 
-                    <View style={[styles.body, { marginTop: 50 }]}>
-                      <View style={{ flex: 4 }}>
-                        <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'darkgrey' : '#707070' }]}>
+                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Currency</Text>
 
+                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Amount' : 'Price'}</Text>
 
+                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Date</Text>
 
-                          <View style={{ flexDirection: 'row' }}>
+                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Spent' : 'Purchase'}</Text>
 
-                            <TextInput style={styles.expenseTitleInput}
-                              placeholder={this.state.amount}
-                              onChangeText={(title) => this.setState({ title })}
-                              value={this.state.title}
-                            />
-
-                            <Text style={[styles.Label2, { marginRight: 30 }]}>Amount Spent </Text>
-
-                            <Picker
-                              style={styles.currencyPicker}
-                              selectedValue={this.state.currency}
-                              onValueChange={(itemValue, itemIndex) => this.setState({ currency: currency })}
-                            >
-                              <Picker.Item label="€" value="eur" />
-                              <Picker.Item label="£" value="gbp" />
-                              <Picker.Item label="$" value="usd" />
-                            </Picker>
-
-                            <TextInput style={styles.amountInput}
-                              placeholder={this.state.amount}
-                              onChangeText={(amount) => this.setState({ amount })}
-                              value={this.state.amount}
-                              Amount={this.state.amount}
-                            />
-                          </View>
-
-                          <View style={{ flexDirection: 'row' }}>
-                            <Picker
-                              style={styles.categoryPicker}
-                              selectedValue={this.state.category}
-                              onValueChange={(itemValue, itemIndex) => this.setState({ category: itemValue })}
-                            >
-                              <Picker.Item label="-Select Category-" value="" />
-                              <Picker.Item label="Groceries" value="Groceries" />
-                              <Picker.Item label="Food" value="Food" />
-                              <Picker.Item label="Shopping" value="Shopping" />
-                              <Picker.Item label="Travel" value="Travel" />
-                              <Picker.Item label="Leisure" value="Leisure" />
-                              <Picker.Item label="Health" value="Health" />
-                              <Picker.Item label="Home" value="Home" />
-                              <Picker.Item label="Tech" value="Tech" />
-                              <Picker.Item label="Utilities" value="Utilities" />
-                              <Picker.Item label="Bills" value="Bills" />
-                              <Picker.Item label="Other" value="Other" />
-                            </Picker>
-
-                            <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '5%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
-                              <TouchableOpacity onPress={() => this.setState({ cashcard: 'Cash' })}
-                                style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash" ? "lightgrey" : "grey" }}>
-                                <Text style={{ justifyContent: 'center', textAlign: "center" }} > Cash</Text>
-                              </TouchableOpacity>
-                              <TouchableOpacity onPress={() => this.setState({ cashcard: 'Card' })}
-                                style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Card" ? "lightgrey" : "grey" }}>
-                                <Text style={{ textAlign: "center" }}> Card</Text>
-                              </TouchableOpacity>
-                            </View>
-                            <Text style={{ position: 'absolute', right: 25, bottom: Platform.OS === 'ios' ? 80 : 10 }}>{this.state.onlineSwitch ? 'Online Purchase' : 'Online Purchase?'}</Text>
-                            <Switch onValueChange={(online) => this.setState({ online })} value={this.state.online}
-                              style={{ position: 'absolute', right: 50, bottom: Platform.OS === 'ios' ? 30 : -30 }}
-                            />
-                          </View>
-                        </View>
-
+                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Type' : 'Purchased by'}</Text>
                       </View>
 
-                      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                      <View style={{ flex: 0.1, height: '100%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center' }}></View>
 
-                        <TouchableOpacity
-                          style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
-                          onPress={() => this.setState({ edit: false })}
-                        >
-                          <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>CANCEL</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }}
-                          onPress={() => this.saveEditedExpense()}>
-                          <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>SAVE</Text>
-                        </TouchableOpacity>
+                      <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                        <Text style={styles.viewDetails}>{this.state.title}</Text>
+                        <Text style={styles.viewDetails}>{this.state.category}</Text>
+                        <Text style={styles.viewDetails}>{this.state.currency}</Text>
+                        <Text style={styles.viewDetails}>{this.state.amount}</Text>
+                        <Text style={styles.viewDetails}>{this.state.date.split('T00:00:00.000Z')}</Text>
+                        <Text style={styles.viewDetails}>{this.state.online ? 'Online' : 'Local'}</Text>
+                        <Text style={styles.viewDetails}>{this.state.cashcard}</Text>
 
                       </View>
                     </View>
-                  </View>
+                    <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 30, justifyContent: 'space-around', top: 30, marginBottom: 50 }} onPress={() => this.deleteExpense()}>
+                      <Text style={{ color: 'white', fontSize: 15, fontWeight: '500', textAlign: 'center' }}>Remove</Text>
+                    </TouchableOpacity>
+
+                  </ScrollView>
                 </View>
-              </Modal >
-            </View >
-          }
-          else {
-            return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
-              <View style={{ height: 10 }}></View>
+              </View>
+            </Modal >
+            <Modal animationType={'fade'} transparent={true} visible={this.state.edit}>
+              <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'flex-end', justifyContent: 'space-around' }}>
+                <View style={{ backgroundColor: global.color, height: 600, borderRadius: 40, width: '100%' }}>
 
-              <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
-                onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, amount: val.expenseCost })} >
-                <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
-                <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
-                <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth: '45%' }}>{val.transactionTitle}</Text>
-              </TouchableOpacity>
 
-              < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-                <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'center' }}>
-                  <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 20, borderRadius: 40, width: '90%', height: '60%', alignSelf: 'center', justifyContent: 'center' }}>
-                    <ScrollView>
+                  <View style={[styles.body, { marginTop: 50 }]}>
+                    <View style={{ flex: 4 }}>
+                      <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'darkgrey' : '#707070' }]}>
 
-                      <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity style={{ justifyContent: 'space-around', width: 100, height: 30, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', left: 20, top: 20 }} onPress={() => { this.setState({ show: false }) }}>
-                          <Text style={{ fontSize: 14, textAlign: 'center', color: 'white', fontWeight: '300' }}>CLOSE</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ justifyContent: 'space-around', width: 100, height: 30, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 20, top: 20 }} onPress={() => { this.setState({ show: false, edit: true }) }}>
-                          <Text style={{ fontSize: 14, textAlign: 'center', color: 'white', fontWeight: '300' }}>EDIT</Text>
-                        </TouchableOpacity>
-                      </View>
 
-                      <View style={{ flexDirection: 'row', marginTop: 80 }}>
-                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Title</Text>
 
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Category</Text>
+                        <View style={{ flexDirection: 'row' }}>
 
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Currency</Text>
+                          <TextInput style={styles.expenseTitleInput}
+                            placeholder={this.state.amount}
+                            onChangeText={(title) => this.setState({ title })}
+                            value={this.state.title}
+                          />
 
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Amount</Text>
+                          <Text style={[styles.Label2, { marginRight: 30 }]}>Amount Spent </Text>
 
-                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Type</Text>
+                          <Picker
+                            style={styles.currencyPicker}
+                            selectedValue={this.state.currency}
+                            onValueChange={(itemValue, itemIndex) => this.setState({ currency: currency })}
+                          >
+                            <Picker.Item label="€" value="eur" />
+                            <Picker.Item label="£" value="gbp" />
+                            <Picker.Item label="$" value="usd" />
+                          </Picker>
+
+                          <TextInput style={styles.amountInput}
+                            placeholder={this.state.amount}
+                            onChangeText={(amount) => this.setState({ amount })}
+                            value={this.state.amount}
+                            Amount={this.state.amount}
+                          />
                         </View>
 
-                        <View style={{ flex: 0.1, height: '100%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center' }}></View>
+                        <View style={{ flexDirection: 'row' }}>
+                          <Picker
+                            style={styles.categoryPicker}
+                            selectedValue={this.state.category}
+                            onValueChange={(itemValue, itemIndex) => this.setState({ category: itemValue })}
+                          >
+                            <Picker.Item label="-Select Category-" value="" />
+                            <Picker.Item label="Groceries" value="Groceries" />
+                            <Picker.Item label="Food" value="Food" />
+                            <Picker.Item label="Shopping" value="Shopping" />
+                            <Picker.Item label="Travel" value="Travel" />
+                            <Picker.Item label="Leisure" value="Leisure" />
+                            <Picker.Item label="Health" value="Health" />
+                            <Picker.Item label="Home" value="Home" />
+                            <Picker.Item label="Tech" value="Tech" />
+                            <Picker.Item label="Utilities" value="Utilities" />
+                            <Picker.Item label="Bills" value="Bills" />
+                            <Picker.Item label="Other" value="Other" />
+                          </Picker>
 
-                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
-                          <Text style={styles.viewDetails}>{this.state.title}</Text>
-                          <Text style={styles.viewDetails}>{this.state.category}</Text>
-                          <Text style={styles.viewDetails}>{this.state.currency}</Text>
-                          <Text style={styles.viewDetails}>{this.state.amount}</Text>
-                          <Text style={styles.viewDetails}>Periodic</Text>
+                          <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '5%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
+                            <TouchableOpacity onPress={() => this.setState({ cashcard: 'Cash' })}
+                              disabled={this.state.cashcard === 'Periodic' ? true : false}
+                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash" ? "lightgrey" : "grey" }}>
+                              <Text style={{ justifyContent: 'center', textAlign: "center" }} > {this.state.cashcard === 'Periodic' ? 'Periodic' : 'Cash'}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.setState({ cashcard: 'Card' })}
+                              disabled={this.state.cashcard === 'Periodic' ? true : false}
+                              style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Card" ? "lightgrey" : "grey" }}>
+                              <Text style={{ textAlign: "center" }}> {this.state.cashcard === 'Periodic' ? '' : 'Card'}</Text>
+                            </TouchableOpacity>
+                          </View>
+                          <Text style={{ position: 'absolute', right: 25, bottom: Platform.OS === 'ios' ? 80 : 10 }}>{this.state.onlineSwitch ? 'Online Purchase' : 'Online Purchase?'}</Text>
+                          <Switch onValueChange={(online) => this.setState({ online })} value={this.state.online}
+                            style={{ position: 'absolute', right: 50, bottom: Platform.OS === 'ios' ? 30 : -30 }}
+                          />
                         </View>
                       </View>
-                      <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 30, justifyContent: 'space-around', top: 30, marginBottom: 50 }} onPress={() => this.deleteExpense()}>
-                        <Text style={{ color: 'white', fontSize: 15, fontWeight: '500', textAlign: 'center' }}>Remove</Text>
+
+                    </View>
+
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+
+                      <TouchableOpacity
+                        style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
+                        onPress={() => this.setState({ edit: false })}
+                      >
+                        <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>CANCEL</Text>
                       </TouchableOpacity>
 
-                    </ScrollView>
-                  </View>
-                </View>
-              </Modal >
-              <Modal animationType={'fade'} transparent={true} visible={this.state.edit}>
-                <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'flex-end', justifyContent: 'space-around' }}>
-                  <View style={{ backgroundColor: global.color, height: 600, borderRadius: 40, width: '100%' }}>
+                      <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }}
+                        onPress={() => this.saveEditedExpense()}>
+                        <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>SAVE</Text>
+                      </TouchableOpacity>
 
-
-                    <View style={[styles.body, { marginTop: 50 }]}>
-                      <View style={{ flex: 4 }}>
-                        <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'darkgrey' : '#707070' }]}>
-
-
-
-                          <View style={{ flexDirection: 'row' }}>
-
-                            <TextInput style={styles.expenseTitleInput}
-                              placeholder={'Title'}
-                              onChangeText={(periodicTitle) => this.setState({ periodicTitle })}
-                              value={this.state.periodicTitle}
-                            />
-
-                            <Text style={[styles.Label3, { marginRight: 40, marginLeft: 10 }]}>Amount</Text>
-
-                            <Picker
-                              style={[styles.currencyPicker, { top: Platform.OS === 'ios' ? 0 : -10, right: Platform.OS === 'ios' ? 60 : 30 }]}
-                              selectedValue={this.state.periodicCurrency}
-                              onValueChange={(itemValue, itemIndex) => this.setState({ periodicCurrency: itemValue })}
-                            >
-                              <Picker.Item label="€" value="eur" />
-                              <Picker.Item label="£" value="gbp" />
-                              <Picker.Item label="$" value="usd" />
-                            </Picker>
-
-                            <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 160 : 130, right: 50, }]}
-                              placeholder={"0"}
-                              onChangeText={(periodicAmount) => this.setState({ periodicAmount })}
-                              value={this.state.periodicAmount}
-                              Amount={this.state.periodicAmount}
-                            />
-                          </View>
-
-                          <View >
-                            <Picker
-                              style={styles.periodicCategoryPicker}
-                              selectedValue={this.state.periodicCategory}
-                              onValueChange={(itemValue, itemIndex) => this.setState({ periodicCategory: itemValue })}
-                            >
-                              <Picker.Item label="-Select Category-" value="" />
-                              <Picker.Item label="Groceries" value="Groceries" />
-                              <Picker.Item label="Food" value="Food" />
-                              <Picker.Item label="Shopping" value="Shopping" />
-                              <Picker.Item label="Travel" value="Travel" />
-                              <Picker.Item label="Leisure" value="Leisure" />
-                              <Picker.Item label="Health" value="Health" />
-                              <Picker.Item label="Home" value="Home" />
-                              <Picker.Item label="Tech" value="Tech" />
-                              <Picker.Item label="Utilities" value="Utilities" />
-                              <Picker.Item label="Bills" value="Bills" />
-                              <Picker.Item label="Other" value="Other" />
-                            </Picker>
-
-                          </View>
-
-                          <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', left: Platform.OS === 'ios' ? '5%' : '15%', bottom: Platform.OS === 'ios' ? 100 : 85 }}>
-                            <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'weekly' })}
-                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "weekly" ? "lightgrey" : "grey" }}>
-                              <Text style={{ justifyContent: 'center', textAlign: "center" }} > Weekly</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'monthly' })}
-                              style={{ width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "monthly" ? "lightgrey" : "grey" }}>
-                              <Text style={{ textAlign: "center" }}> Monthly</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'annually' })}
-                              style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "annually" ? "lightgrey" : "grey" }}>
-                              <Text style={{ textAlign: "center" }}> Annually</Text>
-                            </TouchableOpacity>
-                          </View>
-
-                          <Text style={{ position: 'absolute', left: Platform.OS === 'ios' ? 25 : 30, bottom: Platform.OS === 'ios' ? 60 : 25, fontSize: 15, fontWeight: '400' }}>Start Date: </Text>
-                          <View style={{ flexDirection: 'row', position: 'absolute', left: Platform.OS === 'ios' ? '22.5%' : '35%', bottom: 10, alignSelf: 'center' }}>
-                            <TextInput
-                              style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: 'grey', textAlign: 'center' }}
-                              maxLength={2}
-                              placeholder={'DD'}
-                              onChangeText={(periodicDay) => this.setState({ periodicDay })}
-                              value={this.state.periodicDay}
-                            >
-                            </TextInput>
-                            <TextInput
-                              style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: "grey", textAlign: 'center' }}
-                              maxLength={2}
-                              placeholder={'MM'}
-                              onChangeText={(periodicMonth) => this.setState({ periodicMonth })}
-                              value={this.state.periodicMonth}
-                            >
-                            </TextInput>
-                            <TextInput
-                              style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: "grey", textAlign: 'center' }}
-                              maxLength={4}
-                              placeholder={'YYYY'}
-                              onChangeText={(periodicYear) => this.setState({ periodicYear })}
-                              value={this.state.periodicYear}
-                            >
-                            </TextInput>
-                          </View>
-                        </View>
-
-                      </View>
-
-                      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-
-                        <TouchableOpacity
-                          style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
-                          onPress={() => this.setState({ edit: false })}
-                        >
-                          <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>CANCEL</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }}
-                          onPress={() => this.prepPeriodicExpenseSaveEdit()}>
-                          <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>SAVE</Text>
-                        </TouchableOpacity>
-
-                      </View>
                     </View>
                   </View>
                 </View>
-              </Modal >
-            </View >
-          }
+              </View>
+            </Modal >
+          </View >
+
+
         }
       });
 
@@ -722,28 +540,28 @@ export default class ViewExpenses extends React.Component {
             <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
                 onPress={() => { this.getAllExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>ALL</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
                 onPress={() => { this.getWeekExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
                 onPress={() => { this.getMonthExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : 'darkgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
                 onPress={() => { this.getYearExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS YEAR</Text>

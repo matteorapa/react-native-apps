@@ -158,11 +158,11 @@ export default class Home extends React.Component {
           count++;
           return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
             <View style={{ height: 10 }}></View>
-            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === '#303030'? '#505050' : 'darkgrey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}>
+            <View style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === '#303030'? '#505050' : 'darkgrey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}>
               <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 20, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
               <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
               <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth:'45%' }}>{val.transactionTitle}</Text>
-            </TouchableOpacity>
+            </View>
           </View >
         }
         count = 0

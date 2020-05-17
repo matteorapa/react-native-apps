@@ -32,6 +32,9 @@ export default class splashScreen extends React.Component {
     }
 
     componentDidMount() {
+
+        this.periodicAPICall();
+
         BackHandler.addEventListener('hardwareBackPress', this.backbutton);
         setTimeout(() => {
             this.state.nav.navigate('reloadPreferencesScreen')
@@ -73,7 +76,7 @@ export default class splashScreen extends React.Component {
 
     }
 
-    async apiCall() {
+    async periodicAPICall() {
 
         await fetch('https://myvault.technology/api/expenses/periodic', {
             method: 'PUT',
@@ -89,6 +92,7 @@ export default class splashScreen extends React.Component {
             .then((response) => {
 
                 if (response.success) {
+                    console.log(response)
                 }
                 else {
                     console.log('something went wrong!')

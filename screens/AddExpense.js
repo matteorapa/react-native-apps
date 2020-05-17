@@ -23,11 +23,12 @@ export default class AddExpense extends React.Component {
             periodicAmount: '',
             periodicCurrency: 'eur',
             periodicCategory: '',
-            periodicRepeat: '1 week',
+            periodicRepeat: 'day',
             periodicDay: '',
             periodicMonth: '',
             periodicYear: '',
             date: '',
+            interval: '1',
 
             type: 'one',
 
@@ -85,7 +86,7 @@ export default class AddExpense extends React.Component {
     }
 
     async periodicApiCall() {
-
+        console.log(this.state.interval)
         await fetch('https://myvault.technology/api/expenses/periodic', {
             method: 'POST',
             headers: {
@@ -99,6 +100,7 @@ export default class AddExpense extends React.Component {
                 currency: this.state.periodicCurrency,
                 title: this.state.periodicTitle,
                 date: this.state.date,
+                interval: this.state.interval
             })
         })
 
@@ -108,8 +110,9 @@ export default class AddExpense extends React.Component {
 
                 if (response.success) {
                     console.log('Expense successfully posted!')
-                    this.state.nav.pop()
-                }
+                    this.state.nav.pop();
+                    this.state.nav.navigate('Home');
+                    this.state.nav.navigate('viewPeriodicExpenses')                }
                 else {
                     console.log('something went wrong!')
                     console.log(response)
@@ -136,9 +139,7 @@ export default class AddExpense extends React.Component {
         else {
             this.apiCall();
             console.log('Sending credentials post to express server using title: ' + this.state.title + ' amount: ' + this.state.amount + ' currency: ' + this.state.currency + ' category: ' + this.state.category + ' cash/card: ' + this.state.cashCard + " online? " + this.state.onlineSwitch);
-            this.state.nav.pop();
-            this.state.nav.navigate('Home');
-            this.state.nav.navigate('ViewExpenses')
+
         }
     }
 
@@ -146,30 +147,34 @@ export default class AddExpense extends React.Component {
 
         if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
-        // }
-        // else if (!day.test(this.state.periodicDay)) {
-        //     Alert.alert('Error posting date', 'Please ensure date is valid 1!');
-        // }
-        // else if (!month.test(this.state.periodicMonth)) {
-        //     Alert.alert('Error posting date', 'Please ensure date is valid 2!');
-        // }
-        // else if (this.state.periodicDay > 29 && this.state.periodicMonth == 2) {
-        //     Alert.alert('Error posting date', 'Please ensure date is valid 3!');
-        // }
-        // else if (!year.test(this.state.periodicYear)) {
-        //     Alert.alert('Error posting date', 'Please ensure date is valid 4!');
-        // }
-        // else if (this.state.periodicDay > 30 && this.state.periodicMonth == compareToMonths) {
-        //     Alert.alert('Error posting date', 'Please ensure date is valid 5');
+            // }
+            // else if (!day.test(this.state.periodicDay)) {
+            //     Alert.alert('Error posting date', 'Please ensure date is valid 1!');
+            // }
+            // else if (!month.test(this.state.periodicMonth)) {
+            //     Alert.alert('Error posting date', 'Please ensure date is valid 2!');
+            // }
+            // else if (this.state.periodicDay > 29 && this.state.periodicMonth == 2) {
+            //     Alert.alert('Error posting date', 'Please ensure date is valid 3!');
+            // }
+            // else if (!year.test(this.state.periodicYear)) {
+            //     Alert.alert('Error posting date', 'Please ensure date is valid 4!');
+            // }
+            // else if (this.state.periodicDay > 30 && this.state.periodicMonth == compareToMonths) {
+            //     Alert.alert('Error posting date', 'Please ensure date is valid 5');
         } else {
             this.periodicApiCall();
+            this.state.nav.pop();
+            this.state.nav.navigate('Home');
+            this.state.nav.navigate('ViewExpenses')
         }
 
     }
 
     prepPeriodicExpense() {
         this.setState({
-            date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay
+            date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay,
+            interval: this.state.interval + " " + this.state.periodicRepeat
         }, () => { this.postPeriodicExpense() });
 
     }
@@ -178,16 +183,16 @@ export default class AddExpense extends React.Component {
         return (
             <Modal animationType={'slide'} transparent={true}>
                 <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'center' }}>
-                    <ScrollView horizontal={true} pagingEnabled={true}ref={(node) => this.scroll = node} scrollEnabled={false}>
+                    <ScrollView horizontal={true} pagingEnabled={true} ref={(node) => this.scroll = node} scrollEnabled={false}>
                         <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40, marginRight: 5, width: this.screenwidth }}>
 
                             <View style={[styles.addExpenseTitleContainer, { width: this.screenwidth * 0.94, height: 40 }]}>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'one' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'one' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'one' ? global.color : 'grey', padding: 5, alignContent: 'center', justifyContent: 'space-around' }}
-                                    onPress={() => {this.setState({ type: 'one' }), this.scroll.scrollTo({ x: 0})}}>
+                                    onPress={() => { this.setState({ type: 'one' }), this.scroll.scrollTo({ x: 0 }) }}>
                                     <Text style={styles.addExpenseHeading}>One Time Expense</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'periodic' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'periodic' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'periodic' ? global.color : 'grey', right: 0, alignContent: 'center', justifyContent: 'space-around' }}
-                                    onPress={() => {this.setState({type:'periodic'}), this.scroll.scrollTo({ x: this.screenwidth})}}>
+                                    onPress={() => { this.setState({ type: 'periodic' }), this.scroll.scrollTo({ x: this.screenwidth }) }}>
                                     <Text style={styles.addExpenseHeading}>Periodic Expense</Text>
                                 </TouchableOpacity>
                             </View>
@@ -289,49 +294,46 @@ export default class AddExpense extends React.Component {
 
                         <View style={{ backgroundColor: global.color, height: 600, top: '5%', borderRadius: 40, width: this.screenwidth }}>
 
-                        <View style={[styles.addExpenseTitleContainer, { width: this.screenwidth * 0.94, height: 40 }]}>
+                            <View style={[styles.addExpenseTitleContainer, { width: this.screenwidth * 0.94, height: 40 }]}>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'one' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'one' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'one' ? global.color : 'grey', padding: 5, alignContent: 'center', justifyContent: 'space-around' }}
-                                    onPress={() => {this.setState({ type: 'one' }), this.scroll.scrollTo({ x: 0})}}>
+                                    onPress={() => { this.setState({ type: 'one' }), this.scroll.scrollTo({ x: 0 }) }}>
                                     <Text style={styles.addExpenseHeading}>One Time Expense</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'periodic' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'periodic' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'periodic' ? global.color : 'grey', right: 0, alignContent: 'center', justifyContent: 'space-around' }}
-                                    onPress={() => {this.setState({type:'periodic'}), this.scroll.scrollTo({ x: this.screenwidth})}}>
+                                    onPress={() => { this.setState({ type: 'periodic' }), this.scroll.scrollTo({ x: this.screenwidth }) }}>
                                     <Text style={styles.addExpenseHeading}>Periodic Expense</Text>
                                 </TouchableOpacity>
                             </View>
 
                             <View style={styles.body}>
-                                <View style={{ flex: 4}}>
-                                    <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'darkgrey' : '#707070'}]}>
+                                <View style={{ flex: 4 }}>
+                                    <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'darkgrey' : '#707070' }]}>
 
+                                        <TextInput style={[styles.expenseTitleInput, { top: 10 }]}
+                                            placeholder={'Title'}
+                                            onChangeText={(periodicTitle) => this.setState({ periodicTitle })}
+                                            value={this.state.periodicTitle}
+                                        />
+                                        <View style={{ flexDirection: 'column', marginLeft:40 }}>
+                                            <Text style={[styles.Label3, { right: Platform.OS === 'ios'? 20:0, top: Platform.OS==='ios'? 20:100 }]}>Amount</Text>
+                                            <View style={{ width: 100, height: 100, flexDirection: 'row', top: Platform.OS==='ios'? -55:-40, marginLeft: Platform.OS==='ios'? 0:'15%' }}>
+                                                <Picker
+                                                    style={[styles.currencyPicker, { top: Platform.OS === 'ios' ? 0 : -10, right:0 }]}
+                                                    selectedValue={this.state.periodicCurrency}
+                                                    onValueChange={(itemValue, itemIndex) => this.setState({ periodicCurrency: itemValue })}
+                                                >
+                                                    <Picker.Item label="€" value="eur" />
+                                                    <Picker.Item label="£" value="gbp" />
+                                                    <Picker.Item label="$" value="usd" />
+                                                </Picker>
 
-
-                                        <View style={{ flexDirection: 'row' }}>
-
-                                            <TextInput style={styles.expenseTitleInput}
-                                                placeholder={'Title'}
-                                                onChangeText={(periodicTitle) => this.setState({ periodicTitle })}
-                                                value={this.state.periodicTitle}
-                                            />
-
-                                            <Text style={[styles.Label3, { marginRight: 40, marginLeft: 10 }]}>Amount</Text>
-
-                                            <Picker
-                                                style={[styles.currencyPicker, { top: Platform.OS === 'ios' ? 0 : -10, right: Platform.OS === 'ios' ? 60 : 30 }]}
-                                                selectedValue={this.state.periodicCurrency}
-                                                onValueChange={(itemValue, itemIndex) => this.setState({ periodicCurrency: itemValue })}
-                                            >
-                                                <Picker.Item label="€" value="eur" />
-                                                <Picker.Item label="£" value="gbp" />
-                                                <Picker.Item label="$" value="usd" />
-                                            </Picker>
-
-                                            <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 160 : 130, right: 50, }]}
-                                                placeholder={"0"}
-                                                onChangeText={(periodicAmount) => this.setState({ periodicAmount })}
-                                                value={this.state.periodicAmount}
-                                                Amount={this.state.periodicAmount}
-                                            />
+                                                <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 140 : 130, right: 0, }]}
+                                                    placeholder={"0"}
+                                                    onChangeText={(periodicAmount) => this.setState({ periodicAmount })}
+                                                    value={this.state.periodicAmount}
+                                                    Amount={this.state.periodicAmount}
+                                                />
+                                            </View>
                                         </View>
 
                                         <View >
@@ -356,19 +358,33 @@ export default class AddExpense extends React.Component {
 
                                         </View>
 
-                                        <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', left: Platform.OS === 'ios' ? '5%' : '15%', bottom: Platform.OS === 'ios' ? 100 : 85 }}>
-                                            <TouchableOpacity onPress={() => this.setState({ periodicRepeat: '1 week' })}
-                                                style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "1 week" ? "lightgrey" : "grey" }}>
-                                                <Text style={{ justifyContent: 'center', textAlign: "center" }} > Weekly</Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity onPress={() => this.setState({ periodicRepeat: '1 month' })}
-                                                style={{ width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "1 month" ? "lightgrey" : "grey" }}>
-                                                <Text style={{ textAlign: "center" }}> Monthly</Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity onPress={() => this.setState({ periodicRepeat: '1 year' })}
-                                                style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "1 year" ? "lightgrey" : "grey" }}>
-                                                <Text style={{ textAlign: "center" }}> Annually</Text>
-                                            </TouchableOpacity>
+                                        <View style={{ flexDirection:'column' , position: 'absolute', right: '5%', bottom: Platform.OS === 'ios' ? 100 : 80, width: '90%' }}>
+
+                                            <Text style={{ fontSize: 20, fontWeight: "600", position: 'absolute', textAlign: 'left', marginTop: '10%' }}>Repeat each</Text>
+                                            <TextInput style={{ marginTop: 30, left: '35%', fontSize: 15, borderWidth: 1, position: 'absolute', padding: 10, width: 40, textAlign: 'center', justifyContent: 'space-around' }}
+                                                onChangeText={(interval) => this.setState({ interval })}
+                                                value={this.state.interval}/>
+
+                                            <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
+                                                <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'day' })}
+                                                    style={{ borderTopLeftRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "day" ? "lightgrey" : "grey" }}>
+                                                    <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Day' : 'Days'}</Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'week' })}
+                                                    style={{ borderTopRightRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "week" ? "lightgrey" : "grey" }}>
+                                                    <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Week' : 'Weeks'}</Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
+                                                <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'month' })}
+                                                    style={{ width: 90, height: 50, justifyContent: 'space-around', borderBottomLeftRadius:  25 , backgroundColor: this.state.periodicRepeat === "month" ? "lightgrey" : "grey" }}>
+                                                    <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Month' : 'Months'}</Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'year' })}
+                                                    style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomRightRadius: 25, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "year" ? "lightgrey" : "grey" }}>
+                                                    <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Year' : 'Years'}</Text>
+                                                </TouchableOpacity>
+                                            </View>
                                         </View>
 
                                         <Text style={{ position: 'absolute', left: Platform.OS === 'ios' ? 25 : 30, bottom: Platform.OS === 'ios' ? 60 : 25, fontSize: 15, fontWeight: '400' }}>Start Date: </Text>

@@ -298,10 +298,9 @@ export default StyleSheet.create({
 
     periodicCategoryPicker: {
         width: Platform.OS === 'ios' ? 180 : '60%',
-        bottom: Platform.OS === 'ios' ? 80 : 30,
-        marginLeft: Platform.OS ==='android'? '10%':0,
+        bottom: Platform.OS === 'ios' ? 180 : 100,
         alignSelf: Platform.OS === 'ios'?'flex-end': 'center',
-        marginRight:20
+        marginRight:5
     },
 
     Label2: {
@@ -317,7 +316,7 @@ export default StyleSheet.create({
         padding: 20,
         fontSize: 20,
         fontWeight: 'bold',
-        top: Platform.OS === 'ios' ? 70 : -20
+
     },
 
     viewDetails: {

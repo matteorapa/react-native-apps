@@ -317,28 +317,28 @@ export default class ViewExpenses extends React.Component {
             <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
                 onPress={() => this.getAllExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>ALL</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
                 onPress={() => this.getWeekExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
                 onPress={() => this.getMonthExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
                 onPress={() => this.getYearExpenses()}
               >
                 <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
@@ -383,42 +383,78 @@ export default class ViewExpenses extends React.Component {
                       </TouchableOpacity>
                     </View>
 
-                    <View style={{ flexDirection: 'row', marginTop: 80 }}>
-                      <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
-                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Title</Text>
-
-                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Category</Text>
-
-                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Currency</Text>
-
-                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Amount' : 'Price'}</Text>
-
-                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Date</Text>
-
-                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Spent' : 'Purchase'}</Text>
-
-                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Type' : 'Purchased by'}</Text>
+                    <View style={{ flexDirection: 'column', marginTop: 80 }}>
+                      <View style={{ flexDirection: 'row' }}>
+                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Title</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                          <Text style={styles.viewDetails}>{this.state.title}</Text>
+                        </View>
                       </View>
 
-                      <View style={{ flex: 0.1, height: '100%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center' }}></View>
-
-                      <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
-                        <Text style={styles.viewDetails}>{this.state.title}</Text>
-                        <Text style={styles.viewDetails}>{this.state.category}</Text>
-                        <Text style={styles.viewDetails}>{this.state.currency}</Text>
-                        <Text style={styles.viewDetails}>{this.state.amount}</Text>
-                        <Text style={styles.viewDetails}>{this.state.date.split('T00:00:00.000Z')}</Text>
-                        <Text style={styles.viewDetails}>{this.state.online ? 'Online' : 'Local'}</Text>
-                        <Text style={styles.viewDetails}>{this.state.cashcard}</Text>
-
+                      <View style={{ flexDirection: 'row' }}>
+                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Category</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                          <Text style={styles.viewDetails}>{this.state.category}</Text>
+                        </View>
                       </View>
+
+                      <View style={{ flexDirection: 'row' }}>
+                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Currency</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                          <Text style={styles.viewDetails}>{this.state.currency}</Text>
+                        </View>
+                      </View>
+
+                      <View style={{ flexDirection: 'row' }}>
+                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Amount' : 'Price'}</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                          <Text style={styles.viewDetails}>{this.state.cashcard}</Text>
+                        </View>
+                      </View>
+
+                      <View style={{ flexDirection: 'row' }}>
+                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Date</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                          <Text style={styles.viewDetails}>{this.state.date.split('T00:00:00.000Z')}</Text>
+                        </View>
+                      </View>
+
+                      <View style={{ flexDirection: 'row' }}>
+                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Spent' : 'Purchase'}</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                          <Text style={styles.viewDetails}>{this.state.online ? 'Online' : 'Local'}</Text>
+                        </View>
+                      </View>
+
+                      <View style={{ flexDirection: 'row' }}>
+                        <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                          <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Type' : 'Purchased by'}</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                          <Text style={styles.viewDetails}>{this.state.cashcard}</Text>
+                        </View>
+                      </View>
+
                     </View>
-                    <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 30, justifyContent: 'space-around', top: 30, marginBottom: 50 }} onPress={() => this.deleteExpense()}>
-                      <Text style={{ color: 'white', fontSize: 15, fontWeight: '500', textAlign: 'center' }}>Remove</Text>
-                    </TouchableOpacity>
+
+                  <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 30, justifyContent: 'space-around', top: 30, marginBottom: 50 }} onPress={() => this.deleteExpense()}>
+                    <Text style={{ color: 'white', fontSize: 15, fontWeight: '500', textAlign: 'center' }}>Remove</Text>
+                  </TouchableOpacity>
 
                   </ScrollView>
-                </View>
+              </View>
               </View>
             </Modal >
             <Modal animationType={'fade'} transparent={true} visible={this.state.edit}>
@@ -445,7 +481,7 @@ export default class ViewExpenses extends React.Component {
                           <Picker
                             style={styles.currencyPicker}
                             selectedValue={this.state.currency}
-                            onValueChange={(itemValue, itemIndex) => this.setState({ currency: currency })}
+                            onValueChange={(itemValue, itemIndex) => this.setState({ currency: itemValue })}
                           >
                             <Picker.Item label="€" value="eur" />
                             <Picker.Item label="£" value="gbp" />
@@ -492,7 +528,7 @@ export default class ViewExpenses extends React.Component {
                               <Text style={{ textAlign: "center" }}> {this.state.cashcard === 'Periodic' ? '' : 'Card'}</Text>
                             </TouchableOpacity>
                           </View>
-                          <Text style={{ position: 'absolute', right: 25, bottom: Platform.OS === 'ios' ? 80 : 10 }}>{this.state.onlineSwitch ? 'Online Purchase' : 'Online Purchase?'}</Text>
+                          <Text style={{ position: 'absolute', right: 25, bottom: Platform.OS === 'ios' ? 80 : 10 }}>{this.state.cashcard === 'Periodic' ? 'Online payment?' : 'Online Purchase?'}</Text>
                           <Switch onValueChange={(online) => this.setState({ online })} value={this.state.online}
                             style={{ position: 'absolute', right: 50, bottom: Platform.OS === 'ios' ? 30 : -30 }}
                           />
@@ -524,113 +560,113 @@ export default class ViewExpenses extends React.Component {
 
 
         }
-      });
+  });
 
 
 
-      return (
-        <View style={[styles.container, { backgroundColor: global.dark }]}>
-          <View style={styles.header}>
-            <View style={styles.headerContainer}>
-              <Text style={[styles.heading, { color: global.color }]}>Expenses</Text>
+  return(
+        <View style = { [styles.container, { backgroundColor: global.dark }]} >
+      <View style={styles.header}>
+        <View style={styles.headerContainer}>
+          <Text style={[styles.heading, { color: global.color }]}>Expenses</Text>
+        </View>
+      </View>
+
+      <View style={styles.body}>
+        <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
+
+          <TouchableOpacity
+            style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+            onPress={() => { this.getAllExpenses(), this.setState({ filterCategory: "" }) }}
+          >
+            <Text style={styles.expenseViewSortText}>ALL</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+            onPress={() => { this.getWeekExpenses(), this.setState({ filterCategory: "" }) }}
+          >
+            <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+            onPress={() => { this.getMonthExpenses(), this.setState({ filterCategory: "" }) }}
+          >
+            <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+            onPress={() => { this.getYearExpenses(), this.setState({ filterCategory: "" }) }}
+          >
+            <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
+          </TouchableOpacity>
+
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+          <TouchableOpacity
+            style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-start', marginLeft: '2.5%', borderWidth: 1, margin: 10, borderColor: global.dark === 'white' ? 'black' : '#909090' }}
+            onPress={() => this.state.nav.navigate('viewPeriodicExpenses')}
+          >
+            <Text style={[styles.text, { fontSize: 12, color: global.dark === 'white' ? 'black' : '#909090' }]}>PERIODIC EXPENSES</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-end', marginRight: '2.5%', borderWidth: 1, margin: 10, borderColor: global.dark === 'white' ? 'black' : '#909090' }}
+            onPress={() => this.setState({ showFilter: true })}
+          >
+            <Text style={[styles.text, { fontSize: 12, color: global.dark === 'white' ? 'black' : '#909090' }]}>{this.state.filterCategory === '' ? 'FILTER' : 'FILTER: ' + this.state.filterCategory.toLocaleUpperCase()}</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ flex: 7 }}>
+          <ScrollView name='scroll'>
+            {expenses}
+          </ScrollView>
+        </View>
+      </View>
+
+      <Footer navigateUser={this.navigateUser} />
+
+
+      < Modal transparent={true} visible={this.state.showFilter} animationType={'none'}>
+        <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'space-around' }}>
+          <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 70, borderRadius: 40, width: '75%', alignSelf: 'center', justifyContent: 'center', height: '50%' }}>
+
+
+            <TouchableOpacity style={{ justifyContent: 'space-around', width: 50, height: 50, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 30, top: 25 }} onPress={() => { this.setState({ showFilter: false }) }}>
+              <Text style={{ fontSize: 40, textAlign: 'center', color: 'white' }}>-</Text>
+            </TouchableOpacity>
+
+            <View style={{ flexDirection: 'row' }}>
+
+              <Picker
+                style={[styles.categoryPicker, { left: '22%' }]}
+                selectedValue={this.state.filterCategory}
+                onValueChange={(itemValue, itemIndex) => this.setState({ filterCategory: itemValue })}
+              >
+                <Picker.Item label="All" value="" />
+                <Picker.Item label="Groceries" value="Groceries" />
+                <Picker.Item label="Food" value="Food" />
+                <Picker.Item label="Shopping" value="Shopping" />
+                <Picker.Item label="Travel" value="Travel" />
+                <Picker.Item label="Leisure" value="Leisure" />
+                <Picker.Item label="Health" value="Health" />
+                <Picker.Item label="Home" value="Home" />
+                <Picker.Item label="Tech" value="Tech" />
+                <Picker.Item label="Utilities" value="Utilities" />
+                <Picker.Item label="Bills" value="Bills" />
+                <Picker.Item label="Other" value="Other" />
+              </Picker>
+
+
             </View>
+            <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 40, justifyContent: 'space-around', bottom: 20 }} onPress={() => this.setState({ showFilter: false })}>
+              <Text style={{ color: 'white', fontSize: 15, fontWeight: '300', textAlign: 'center' }}>APPLY FILTER</Text>
+            </TouchableOpacity>
           </View>
-
-          <View style={styles.body}>
-            <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
-
-              <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
-                onPress={() => { this.getAllExpenses(), this.setState({ filterCategory: "" }) }}
-              >
-                <Text style={styles.expenseViewSortText}>ALL</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
-                onPress={() => { this.getWeekExpenses(), this.setState({ filterCategory: "" }) }}
-              >
-                <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
-                onPress={() => { this.getMonthExpenses(), this.setState({ filterCategory: "" }) }}
-              >
-                <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark==='#303030'? '#505050':'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
-                onPress={() => { this.getYearExpenses(), this.setState({ filterCategory: "" }) }}
-              >
-                <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
-              </TouchableOpacity>
-
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-              <TouchableOpacity
-                style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-start', marginLeft: '2.5%', borderWidth: 1, margin: 10, borderColor: global.dark === 'white' ? 'black' : '#909090' }}
-                onPress={() => this.state.nav.navigate('viewPeriodicExpenses')}
-              >
-                <Text style={[styles.text, { fontSize: 12, color: global.dark === 'white' ? 'black' : '#909090' }]}>PERIODIC EXPENSES</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-end', marginRight: '2.5%', borderWidth: 1, margin: 10, borderColor: global.dark === 'white' ? 'black' : '#909090' }}
-                onPress={() => this.setState({ showFilter: true })}
-              >
-                <Text style={[styles.text, { fontSize: 12, color: global.dark === 'white' ? 'black' : '#909090' }]}>{this.state.filterCategory === '' ? 'FILTER' : 'FILTER: ' + this.state.filterCategory.toLocaleUpperCase()}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 7 }}>
-              <ScrollView name='scroll'>
-                {expenses}
-              </ScrollView>
-            </View>
-          </View>
-
-          <Footer navigateUser={this.navigateUser} />
-
-
-          < Modal transparent={true} visible={this.state.showFilter} animationType={'none'}>
-            <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'space-around' }}>
-              <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 70, borderRadius: 40, width: '75%', alignSelf: 'center', justifyContent: 'center', height: '50%' }}>
-
-
-                <TouchableOpacity style={{ justifyContent: 'space-around', width: 50, height: 50, borderRadius: 25, backgroundColor: 'grey', position: 'absolute', right: 30, top: 25 }} onPress={() => { this.setState({ showFilter: false }) }}>
-                  <Text style={{ fontSize: 40, textAlign: 'center', color: 'white' }}>-</Text>
-                </TouchableOpacity>
-
-                <View style={{ flexDirection: 'row' }}>
-
-                  <Picker
-                    style={[styles.categoryPicker, { left: '22%' }]}
-                    selectedValue={this.state.filterCategory}
-                    onValueChange={(itemValue, itemIndex) => this.setState({ filterCategory: itemValue })}
-                  >
-                    <Picker.Item label="All" value="" />
-                    <Picker.Item label="Groceries" value="Groceries" />
-                    <Picker.Item label="Food" value="Food" />
-                    <Picker.Item label="Shopping" value="Shopping" />
-                    <Picker.Item label="Travel" value="Travel" />
-                    <Picker.Item label="Leisure" value="Leisure" />
-                    <Picker.Item label="Health" value="Health" />
-                    <Picker.Item label="Home" value="Home" />
-                    <Picker.Item label="Tech" value="Tech" />
-                    <Picker.Item label="Utilities" value="Utilities" />
-                    <Picker.Item label="Bills" value="Bills" />
-                    <Picker.Item label="Other" value="Other" />
-                  </Picker>
-
-
-                </View>
-                <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 40, justifyContent: 'space-around', bottom: 20 }} onPress={() => this.setState({ showFilter: false })}>
-                  <Text style={{ color: 'white', fontSize: 15, fontWeight: '300', textAlign: 'center' }}>APPLY FILTER</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal >
+        </View>
+      </Modal >
         </View>
 
 

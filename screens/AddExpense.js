@@ -130,14 +130,15 @@ export default class AddExpense extends React.Component {
     }
 
     async postExpense() {
-        //this.componentDidMount();
         if (this.state.title === '' || this.state.category === '' || this.state.cashCard === '' || this.state.amount === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
         }
         else {
             this.apiCall();
             console.log('Sending credentials post to express server using title: ' + this.state.title + ' amount: ' + this.state.amount + ' currency: ' + this.state.currency + ' category: ' + this.state.category + ' cash/card: ' + this.state.cashCard + " online? " + this.state.onlineSwitch);
-            this.state.nav.pop()
+            this.state.nav.pop();
+            this.state.nav.navigate('Home');
+            this.state.nav.navigate('ViewExpenses')
         }
     }
 

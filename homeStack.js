@@ -10,8 +10,9 @@ import Home from './screens/Home';
 import Profile from './screens/Profile';
 import CreateAnAccount from './screens/CreateAnAccount';
 import Login from './screens/Login';
-import reloadPreferencesScreen from './screens/reloadPreferencesScreen'
+import reloadPreferencesScreen from './screens/reloadPreferencesScreen';
 import ViewExpenses from './screens/ViewExpenses';
+import viewPeriodicExpenses from './screens/viewPeriodicExpenses';
 import Analytics from './screens/Analytics';
 import Financials from './screens/Financials';
 import PersonalDetails from './screens/PersonalDetails';
@@ -35,6 +36,7 @@ export default function App() {
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
         <Stack.Screen name="CreateAnAccount" component={CreateAnAccount} options={{ headerShown: false }} />
         <Stack.Screen name="ViewExpenses" component={ViewExpenses} options={{ headerShown: false }} />
+        <Stack.Screen name="viewPeriodicExpenses" component={viewPeriodicExpenses} options={{ headerShown: false }} />
         <Stack.Screen name="Analytics" component={Analytics} options={{ headerShown: false }} />
         <Stack.Screen name="Financials" component={Financials} options={{ headerShown: false }} />
         <Stack.Screen name="AddExpense" component={AddExpense} options={{ headerShown: false, cardStyle: { backgroundColor: 'transparent' }, animationEnabled: false, }} />

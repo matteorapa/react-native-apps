@@ -7,10 +7,14 @@ export default StyleSheet.create({
     // typography
     heading: {
         fontSize: 36,
-        padding: 6,
+        padding: 5,
         marginVertical: Platform.OS === 'ios'? 17: 10,
         marginHorizontal: 24,
         top: Platform.OS === 'ios'? 15:0
+    },
+    addExpenseHeading:{
+        fontSize: 20,
+        textAlign:'center',
     },
     linkText: {
         fontSize: 18, 
@@ -48,6 +52,14 @@ export default StyleSheet.create({
         flex:1,
         backgroundColor: 'white',
 
+    },
+
+    addExpenseTitleContainer:{
+        flexDirection: 'row', 
+        backgroundColor: 'grey', 
+        alignSelf: 'center',
+        borderRadius: 30,
+        margin:20,
     },
 
     central: {

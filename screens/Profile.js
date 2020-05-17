@@ -54,15 +54,10 @@ export default class Profile extends React.Component {
               <Text style={styles.linkText}>Select Theme Color</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.link, { backgroundColor: global.dark ==='white'? 'darkgrey':'#505050',  borderColor:'#707070'}]} 
-            onPress={() => this.navigateUser('privacypolicy')}>
-              <Text style={styles.linkText}>Privacy Policy</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity style={[styles.link, { backgroundColor: global.dark ==='white'? 'darkgrey':'#505050',  borderColor:'#707070' }]} 
             onPress={() => this.confirmCloseAccount()}>
               <Text style={styles.linkText}>Close Account</Text>
-              <Text style={[styles.smallText, { color: global.color, fontWeight:'400', marginTop: 5}]}>This action is not reversible. All your data will be deleted.</Text>
+              <Text style={[styles.smallText, { color: global.dark ==='white'? '#505050':'darkgrey', fontWeight:'400', marginTop: 5}]}>This action is not reversible. All your data will be deleted.</Text>
 
             </TouchableOpacity>
 

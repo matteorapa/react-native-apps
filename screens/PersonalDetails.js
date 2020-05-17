@@ -17,7 +17,10 @@ export default class PersonalDetails extends React.Component {
             surname: '',
             email: '',
             dob: '',
-            newDOB: ''
+            newDOB: '',
+            year: '',
+            month: '',
+            day: ''
         };
 
         this.navigateUser = this.navigateUser.bind(this);
@@ -119,39 +122,62 @@ export default class PersonalDetails extends React.Component {
 
             let details = this.state.dataSource.map((val, key) => {
 
-                return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
-                    <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity style={{ backgroundColor: global.dark==='white'? 'darkgrey':'#505050', width: 80, height: 30, borderRadius: 20, position: 'absolute', left: '6%', top: 48, justifyContent: 'space-around' }}
-                            onPress={() => this.state.nav.navigate('Profile')}
-                        >
-                            <Text style={styles.text}>BACK</Text>
-                        </TouchableOpacity>
+                return <View key={key} style={[styles.container, { backgroundColor: 'global.dark', justifyContent: 'space-around' }]} >
+                    <View>
+                        <View style={{ flexDirection: 'row', marginBottom:50 }}>
+                            <TouchableOpacity style={{ backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', width: 80, height: 30, borderRadius: 20, position: 'absolute', left: '6%', justifyContent: 'space-around' }}
+                                onPress={() => this.state.nav.navigate('Profile')}
+                            >
+                                <Text style={styles.text}>BACK</Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity style={{ backgroundColor: global.dark==='white'? 'darkgrey':'#505050', width: 80, height: 30, borderRadius: 20, position: 'absolute', right: '6%', top: 48, justifyContent: 'space-around' }}
-                            onPress={() => this.setState({ show: true, name: val.name, surname: val.surname, email: val.email, dob: val.dob })}
-                        >
-                            <Text style={styles.text}>EDIT</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ width: '95%', paddingTop: 30, paddingBottom: 30, alignSelf: 'center', backgroundColor: global.dark==='white'? 'darkgrey':'#505050', borderRadius: 20, flexDirection: 'row', top: '20%' }} >
-                        <View style={{ alignItems: 'center', flex: 4, marginRight: 10 }}>
-                            <Text style={styles.viewDetails}>Name</Text>
-
-                            <Text style={styles.viewDetails}>Surname</Text>
-
-                            <Text style={styles.viewDetails}>Email</Text>
-
-                            <Text style={styles.viewDetails}>Date of Birth</Text>
+                            <TouchableOpacity style={{ backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', width: 80, height: 30, borderRadius: 20, position: 'absolute', right: '6%', justifyContent: 'space-around' }}
+                                onPress={() => this.setState({ show: true, name: val.name, surname: val.surname, email: val.email, dob: val.dob, year: (val.dob).substring(0, 4), month: (val.dob).substring(5, 7), day: (val.dob).substring(8, 10) })}
+                            >
+                                <Text style={styles.text}>EDIT</Text>
+                            </TouchableOpacity>
                         </View>
 
-                        <View style={{ flex: 0.1, position: 'relative', width: 1, height: '100%', backgroundColor: global.dark, zIndex: 1 }}></View>
+                        <View style={{ width: '95%', paddingTop: 30, paddingBottom: 30, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20 }} >
 
+                            <View style={{ flexDirection: 'column', marginTop: 0 }}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20 }}>
+                                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Name</Text>
+                                    </View>
+                                    <View style={{ alignItems: 'flex-end', marginRight: 20, flex: 4 }}>
+                                        <Text style={styles.viewDetails}>{val.name}</Text>
+                                    </View>
+                                </View>
 
-                        <View style={{ flex: 4, alignItems: 'center', marginLeft: 10, width: '45%' }}>
-                            <Text style={styles.viewDetails}>{val.name}</Text>
-                            <Text style={styles.viewDetails}>{val.surname}</Text>
-                            <Text style={styles.viewDetails}>{val.email}</Text>
-                            <Text style={styles.viewDetails}>{val.dob.split('T00:00:00.000Z')}</Text>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20 }}>
+                                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Surname</Text>
+                                    </View>
+                                    <View style={{ alignItems: 'flex-end', marginRight: 20, flex: 4 }}>
+                                        <Text style={styles.viewDetails}>{val.surname}</Text>
+                                    </View>
+                                </View>
+
+                                <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20 }}>
+                                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Email</Text>
+                                    </View>
+                                    <View style={{ alignItems: 'flex-end', marginRight: 20, flex: 4 }}>
+                                        <Text style={styles.viewDetails}>{val.email}</Text>
+                                    </View>
+                                </View>
+
+                                <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20 }}>
+                                        <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Date of Birth</Text>
+                                    </View>
+                                    <View style={{ alignItems: 'flex-end', marginRight: 20, flex: 4 }}>
+                                        <Text style={styles.viewDetails}>{val.dob.split('T00:00:00.000Z')}</Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={{ position: 'absolute', width: 1, height: '95%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 40 }}></View>
                         </View>
                     </View>
                 </View >
@@ -173,8 +199,8 @@ export default class PersonalDetails extends React.Component {
                             {details}
 
                             < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-                                <View style={{ flex: 1, backgroundColor: global.dark, justifyContent:'space-around' }}>
-                                    <View style={{ height: '60%', backgroundColor: global.dark }}>
+                                <View style={{ flex: 1, backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', justifyContent: 'space-around' }}>
+                                    <View style={{ justifyContent: 'space-around', backgroundColor: 'transparent' }}>
 
 
 
@@ -190,35 +216,62 @@ export default class PersonalDetails extends React.Component {
                                             >
                                                 <Text style={styles.text}>SAVE</Text>
                                             </TouchableOpacity>
-                                            <View style={{ alignItems: 'center', flex: 4, marginRight: 10 }}>
-                                                <Text style={styles.viewDetails}>Name</Text>
+                                            <View style={{ width: '100%', alignSelf: 'center', borderRadius: 20 }} >
 
-                                                <Text style={styles.viewDetails}>Surname</Text>
+                                                <View style={{ flexDirection: 'column', marginTop: 0 }}>
+                                                    <View style={{ flexDirection: 'row' }}>
+                                                        <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20 }}>
+                                                            <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Name</Text>
+                                                        </View>
+                                                        <View style={{ alignItems: 'flex-end', marginRight: 20, flex: 4 }}>
+                                                            <TextInput style={styles.viewDetails}>{this.state.name}</TextInput>
+                                                        </View>
+                                                    </View>
 
-                                                <Text style={styles.viewDetails}>Email</Text>
+                                                    <View style={{ flexDirection: 'row' }}>
+                                                        <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20 }}>
+                                                            <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Surname</Text>
+                                                        </View>
+                                                        <View style={{ alignItems: 'flex-end', marginRight: 20, flex: 4 }}>
+                                                            <TextInput style={styles.viewDetails}>{this.state.surname}</TextInput>
+                                                        </View>
+                                                    </View>
 
-                                                <Text style={styles.viewDetails}>Date of Birth</Text>
-                                            </View>
+                                                    <View style={{ flexDirection: 'row' }}>
+                                                        <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20 }}>
+                                                            <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Email</Text>
+                                                        </View>
+                                                        <View style={{ alignItems: 'flex-end', marginRight: 20, flex: 4 }}>
+                                                            <TextInput style={styles.viewDetails}>{this.state.email}</TextInput>
+                                                        </View>
+                                                    </View>
 
-                                            <View style={{ flex: 0.1, position: 'relative', width: 1, height: '100%', backgroundColor: global.dark, zIndex: 1 }}></View>
+                                                    <View style={{ flexDirection: 'row', margintop: 10, marginBottom: 10 }}>
+                                                        <View style={{ alignItems: 'flex-start', flex: 4, marginLeft: 20, justifyContent: 'space-around' }}>
+                                                            <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Date of Birth</Text>
+                                                        </View>
 
-                                            <View style={{ alignItems: 'center', marginLeft: 10, width: '45%', flex: 4 }}>
-                                                <TextInput style={styles.viewDetails}
-                                                    placeholder={this.state.name}
-                                                    onChangeText={(name) => this.setState({ name })}
-                                                    value={this.state.name}
-                                                />
-                                                <TextInput style={styles.viewDetails}
-                                                    placeholder={this.state.surname}
-                                                    onChangeText={(surname) => this.setState({ surname })}
-                                                    value={this.state.surname}
-                                                />
-                                                <TextInput style={styles.viewDetails}
-                                                    placeholder={this.state.email}
-                                                    onChangeText={(email) => this.setState({ email })}
-                                                    value={this.state.email}
-                                                />
-                                                <Text style={styles.viewDetails}>{this.state.dob.split('T00:00:00.000Z')}</Text>
+                                                        <View style={{ flex: 3, paddingTop: 10, paddingBottom: 10, flexDirection: 'row', marginRight: 15 }}>
+                                                            <TextInput style={{ flex: 1, borderBottomWidth: 0.4, borderColor: 'grey', marginRight: 7, paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} maxLength={2}
+                                                                onChangeText={(day) => this.setState({ day })}
+                                                                placeholder={'DD'}
+                                                                value={this.state.day}
+                                                            />
+                                                            <TextInput style={{ flex: 1, borderBottomWidth: 0.4, borderColor: 'grey', marginRight: 7, paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} maxLength={2}
+                                                                onChangeText={(month) => this.setState({ month })}
+                                                                placeholder={'MM'}
+                                                                value={this.state.month}
+                                                            />
+                                                            <TextInput style={{ flex: 2, borderBottomWidth: 0.4, borderColor: 'grey', paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} maxLength={4}
+                                                                onChangeText={(year) => this.setState({ year })}
+                                                                placeholder={'YYYY'}
+                                                                value={this.state.year}
+                                                            />
+                                                        </View>
+
+                                                    </View>
+                                                </View>
+                                                <View style={{ position: 'absolute', width: 1, height: '95%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 0 }}></View>
                                             </View>
                                         </View>
                                     </View>

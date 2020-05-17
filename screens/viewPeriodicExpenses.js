@@ -41,7 +41,7 @@ export default class viewPeriodicExpenses extends React.Component {
             periodicDay: '',
             periodicMonth: '',
             periodicYear: '',
-            date: '',
+            periodicDate: '',
         };
 
         this.navigateUser = this.navigateUser.bind(this);
@@ -115,6 +115,7 @@ export default class viewPeriodicExpenses extends React.Component {
                     this.setState({ show: false })
                     APIDelLink = 'https://myvault.technology/api/expenses/periodic/del/';
                     this.componentDidMount();
+                    console.log(response.output(0).lasttransdate)
                 }
                 else {
                     console.log('Unsuccessful')
@@ -150,7 +151,7 @@ export default class viewPeriodicExpenses extends React.Component {
 
                 if (response.success) {
                     console.log('Expense successfully posted!')
-                    this.setState({edit:false})
+                    this.setState({ edit: false })
                     this.componentDidMount();
                 }
                 else {
@@ -203,7 +204,7 @@ export default class viewPeriodicExpenses extends React.Component {
         this.componentDidMount();
     }
 
-    
+
 
     convertCurrency(c) {
 
@@ -262,14 +263,14 @@ export default class viewPeriodicExpenses extends React.Component {
                         <View style={{ height: 10 }}></View>
 
                         <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
-                            onPress={() => this.setState({ show: true, periodicID: val.periodicid, periodicTitle: val.transactiontitle, date: val.transactionDate, periodicCurrency: val.transactioncurrency, periodicCategory: val.expensetype, periodicAmount: val.expensecost })} >
+                            onPress={() => this.setState({ show: true, periodicID: val.periodicid, periodicTitle: val.transactiontitle, periodicDate: val.lasttransdate, periodicCurrency: val.transactioncurrency, periodicCategory: val.expensetype, periodicAmount: val.expensecost, periodicYear: (val.lasttransdate).substring(0,4), periodicMonth: (val.lasttransdate).substring(5,7), periodicDay: (val.lasttransdate).substring(8,10) })} >
                             <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactioncurrency)}{val.expensecost}</Text>
-                            <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.periodicid}</Text>
+                            <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.lasttransdate.split('T00:00:00.000Z')}</Text>
                             <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth: '45%' }}>{val.transactiontitle}</Text>
                         </TouchableOpacity>
 
                         < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-                            <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'center' }}>
+                            <View style={{ flex: 1, backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', justifyContent: 'center' }}>
                                 <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 20, borderRadius: 40, width: '90%', height: '60%', alignSelf: 'center', justifyContent: 'center' }}>
                                     <ScrollView>
 
@@ -282,27 +283,52 @@ export default class viewPeriodicExpenses extends React.Component {
                                             </TouchableOpacity>
                                         </View>
 
-                                        <View style={{ flexDirection: 'row', marginTop: 80 }}>
-                                            <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
-                                                <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Title</Text>
+                                        <View style={{ position: 'absolute', width: 1, height: '60%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 100 }}></View>
 
-                                                <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Category</Text>
-
-                                                <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Currency</Text>
-
-                                                <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Amount</Text>
-
-                                                <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Type</Text>
+                                        <View style={{ flexDirection: 'column', marginTop: 80 }}>
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                                                    <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Title</Text>
+                                                </View>
+                                                <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                                                    <Text style={styles.viewDetails}>{this.state.periodicTitle}</Text>
+                                                </View>
                                             </View>
 
-                                            <View style={{ flex: 0.1, height: '100%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center' }}></View>
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                                                    <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Category</Text>
+                                                </View>
+                                                <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                                                    <Text style={styles.viewDetails}>{this.state.periodicCategory}</Text>
+                                                </View>
+                                            </View>
 
-                                            <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
-                                                <Text style={styles.viewDetails}>{this.state.periodicTitle}</Text>
-                                                <Text style={styles.viewDetails}>{this.state.periodicCategory}</Text>
-                                                <Text style={styles.viewDetails}>{this.state.periodicCurrency}</Text>
-                                                <Text style={styles.viewDetails}>{this.state.periodicAmount}</Text>
-                                                <Text style={styles.viewDetails}>Periodic</Text>
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                                                    <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Currency</Text>
+                                                </View>
+                                                <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                                                    <Text style={styles.viewDetails}>{this.state.periodicCurrency}</Text>
+                                                </View>
+                                            </View>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                                                    <Text style={[styles.viewDetails, { fontWeight: "600" }]}>{this.state.cashcard === 'Periodic' ? 'Amount' : 'Price'}</Text>
+                                                </View>
+                                                <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                                                    <Text style={styles.viewDetails}>{this.state.periodicAmount}</Text>
+                                                </View>
+                                            </View>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <View style={{ alignItems: 'flex-start', flex: 4, marginRight: 20 }}>
+                                                    <Text style={[styles.viewDetails, { fontWeight: "600" }]}>Date</Text>
+                                                </View>
+                                                <View style={{ alignItems: 'flex-end', marginLeft: 20, flex: 4 }}>
+                                                    <Text style={styles.viewDetails}>{this.state.periodicDate.split('T00:00:00.000Z')}</Text>
+                                                </View>
                                             </View>
                                         </View>
                                         <TouchableOpacity style={{ backgroundColor: 'grey', borderRadius: 20, height: 30, justifyContent: 'space-around', top: 30, marginBottom: 50 }} onPress={() => this.deleteExpense()}>

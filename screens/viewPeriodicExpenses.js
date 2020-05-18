@@ -271,7 +271,7 @@ export default class viewPeriodicExpenses extends React.Component {
                         <View style={{ height: 10 }}></View>
 
                         <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
-                            onPress={() => this.setState({ show: true, periodicID: val.periodicid, periodicTitle: val.transactiontitle, periodicDate: val.lasttransdate, periodicCurrency: val.transactioncurrency, periodicCategory: val.expensetype, periodicAmount: val.expensecost, periodicYear: (val.lasttransdate).substring(0, 4), periodicMonth: (val.lasttransdate).substring(5, 7), periodicDay: (val.lasttransdate).substring(8, 10), interval: val.interval.substring(-1,1), periodicRepeat: val.interval.substring(1)})} >
+                            onPress={() => this.setState({ show: true, periodicID: val.periodicid, periodicTitle: val.transactiontitle, periodicDate: val.lasttransdate, periodicCurrency: val.transactioncurrency, periodicCategory: val.expensetype, periodicAmount: val.expensecost, periodicYear: (val.lasttransdate).substring(0, 4), periodicMonth: (val.lasttransdate).substring(5, 7), periodicDay: (val.lasttransdate).substring(8, 10), interval: val.interval.substring(-1, 1), periodicRepeat: val.interval.substring(1) })} >
                             <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactioncurrency)}{val.expensecost}</Text>
                             <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.lasttransdate.split('T00:00:00.000Z')}</Text>
                             <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth: '45%' }}>{val.transactiontitle}</Text>
@@ -356,8 +356,8 @@ export default class viewPeriodicExpenses extends React.Component {
                                         <View style={{ flex: 4 }}>
                                             <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'darkgrey' : '#707070' }]}>
 
-                                                <TextInput style={[styles.expenseTitleInput, { top: 10 }]}
-                                                    placeholder={'Title'}
+                                                <TextInput style={[styles.expenseTitleInput, { top: 10, backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
+                                                    placeholder={'Expense Title'}
                                                     onChangeText={(periodicTitle) => this.setState({ periodicTitle })}
                                                     value={this.state.periodicTitle}
                                                 />
@@ -374,7 +374,7 @@ export default class viewPeriodicExpenses extends React.Component {
                                                             <Picker.Item label="$" value="usd" />
                                                         </Picker>
 
-                                                        <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 140 : 130, right: 0, }]}
+                                                        <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 110 : 130, right: 0, backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                             placeholder={"0"}
                                                             onChangeText={(periodicAmount) => this.setState({ periodicAmount })}
                                                             value={this.state.periodicAmount}
@@ -414,21 +414,21 @@ export default class viewPeriodicExpenses extends React.Component {
 
                                                     <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'day' })}
-                                                            style={{ borderTopLeftRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes( "day") ? "lightgrey" : "grey" }}>
+                                                            style={{ borderTopLeftRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("day") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Day' : 'Days'}</Text>
                                                         </TouchableOpacity>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'week' })}
-                                                            style={{ borderTopRightRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes( "week") ? "lightgrey" : "grey" }}>
+                                                            style={{ borderTopRightRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("week") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Week' : 'Weeks'}</Text>
                                                         </TouchableOpacity>
                                                     </View>
                                                     <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'month' })}
-                                                            style={{ width: 90, height: 50, justifyContent: 'space-around', borderBottomLeftRadius: 25, backgroundColor: this.state.periodicRepeat.includes("month") ? "lightgrey" : "grey" }}>
+                                                            style={{ width: 90, height: 50, justifyContent: 'space-around', borderBottomLeftRadius: 25, backgroundColor: this.state.periodicRepeat.includes("month") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Month' : 'Months'}</Text>
                                                         </TouchableOpacity>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'year' })}
-                                                            style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomRightRadius: 25, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("year") ? "lightgrey" : "grey" }}>
+                                                            style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomRightRadius: 25, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("year") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Year' : 'Years'}</Text>
                                                         </TouchableOpacity>
                                                     </View>
@@ -437,7 +437,7 @@ export default class viewPeriodicExpenses extends React.Component {
                                                 <Text style={{ position: 'absolute', left: Platform.OS === 'ios' ? 25 : 30, bottom: Platform.OS === 'ios' ? 60 : 25, fontSize: 15, fontWeight: '400' }}>Start Date: </Text>
                                                 <View style={{ flexDirection: 'row', position: 'absolute', left: Platform.OS === 'ios' ? '22.5%' : '35%', bottom: 10, alignSelf: 'center' }}>
                                                     <TextInput
-                                                        style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: 'grey', textAlign: 'center' }}
+                                                        style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: global.dark === 'white' ? 'darkgrey' : 'grey', textAlign: 'center' }}
                                                         maxLength={2}
                                                         placeholder={'DD'}
                                                         onChangeText={(periodicDay) => this.setState({ periodicDay })}
@@ -445,7 +445,7 @@ export default class viewPeriodicExpenses extends React.Component {
                                                     >
                                                     </TextInput>
                                                     <TextInput
-                                                        style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: "grey", textAlign: 'center' }}
+                                                        style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: global.dark === 'white' ? 'darkgrey' : 'grey', textAlign: 'center' }}
                                                         maxLength={2}
                                                         placeholder={'MM'}
                                                         onChangeText={(periodicMonth) => this.setState({ periodicMonth })}
@@ -453,7 +453,7 @@ export default class viewPeriodicExpenses extends React.Component {
                                                     >
                                                     </TextInput>
                                                     <TextInput
-                                                        style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: "grey", textAlign: 'center' }}
+                                                        style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: global.dark === 'white' ? 'darkgrey' : 'grey', textAlign: 'center' }}
                                                         maxLength={4}
                                                         placeholder={'YYYY'}
                                                         onChangeText={(periodicYear) => this.setState({ periodicYear })}

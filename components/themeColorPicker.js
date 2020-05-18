@@ -69,18 +69,18 @@ export default class themeColorPicker extends React.Component {
         return (
             <Modal animationType={'slide'} transparent={true} visible={true}>
                 <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center', top: 50 }}>
-                    <View style={{ backgroundColor: global.dark, height: "70%", top: '4%', borderRadius: 40, borderWidth: 3, alignContent: 'flex-end' }}>
+                    <View style={{ backgroundColor: this.state.dark, height: "70%", top: '4%', borderRadius: 40, borderWidth: 3, alignContent: 'flex-end' }}>
                         <ScrollView>
-                            <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, right: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: global.dark === '#303030' ? '#505050' : 'lightgrey', justifyContent: 'center', borderWidth: 2 }}
+                            <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, right: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: this.state.color, justifyContent: 'center', borderWidth: 2 }}
                                 onPress={() => this.postNewTheme()}
                             >
-                                <Text style={[styles.text, { color: 'white' }]}>save</Text>
+                                <Text style={[styles.text, { color: 'black' }]}>save</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, left: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: global.dark === '#303030' ? '#505050' : 'lightgrey', justifyContent: 'center', borderWidth: 2 }}
+                            <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, left: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: this.state.color, justifyContent: 'center', borderWidth: 2 }}
                                 onPress={() => this.state.nav.pop()}
                             >
-                                <Text style={[styles.text, { color: 'white' }]}>back</Text>
+                                <Text style={[styles.text, { color: 'black' }]}>back</Text>
                             </TouchableOpacity>
 
                             <View style={styles.body}>
@@ -110,12 +110,12 @@ export default class themeColorPicker extends React.Component {
                                     <TouchableOpacity onPress={() => this.setState({ color: 'coral' })} style={[styles.themecolorpickerbuttons, { backgroundColor: 'coral', borderWidth: this.state.color === 'coral' ? 2 : 0 }]} />
                                 </View>
                                 <View style={{ flexDirection: 'row', alignSelf: 'center', top: 100, marginBottom: 120 }}>
-                                    <TouchableOpacity style={{ backgroundColor: this.state.dark === 'white' ? "lightgrey" : "darkgrey", width: 120, height: 60, justifyContent: 'space-around', alignSelf: 'center', borderWidth: this.state.dark === 'white' ? 2 : 0 }}
+                                    <TouchableOpacity style={{ backgroundColor: this.state.dark === 'white' ? this.state.color : "darkgrey", width: 120, height: 60, justifyContent: 'space-around', alignSelf: 'center', borderWidth: this.state.dark === 'white' ? 2 : 0 }}
                                         onPress={()=>this.setState({dark: 'white'})}
                                     >
                                         <Text style={{ textAlign: 'center' }}>Light Mode</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{ backgroundColor: this.state.dark === '#303030' ? "lightgrey" : "darkgrey", width: 120, height: 60, justifyContent: 'space-around', alignSelf: 'center', borderWidth: this.state.dark === '#303030' ? 2 : 0 }}
+                                    <TouchableOpacity style={{ backgroundColor: this.state.dark === '#303030' ? this.state.color : "darkgrey", width: 120, height: 60, justifyContent: 'space-around', alignSelf: 'center', borderWidth: this.state.dark === '#303030' ? 2 : 0 }}
                                         onPress={() => this.setState({ dark: '#303030' })}
                                     >
                                         <Text style={{ textAlign: 'center' }}>Dark Mode</Text>

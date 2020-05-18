@@ -184,15 +184,15 @@ export default class splashScreen extends React.Component {
 
                 <View style={{ height: '50%', alignSelf:'center', justifyContent:'space-around',  top:'25%'}}>
                     <Animated.View style={{ width: (screenWidth), opacity: this.state.fadeValue1 }} onPress={this._fadeAnimation()}>
-                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 25, fontWeight: 'bold' }}>Retrieving your data</Text>
+                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 32, fontWeight: '200' }}>Retrieving your data</Text>
                     </Animated.View>
 
                     <Animated.View style={{ width: (screenWidth), opacity: this.state.fadeValue2 }} onPress={this._fadeAnimation()}>
-                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 25, fontWeight: 'bold' }}>Calculating your expenses</Text>
+                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 32, fontWeight: '200' }}>Calculating your expenses</Text>
                     </Animated.View>
 
                     <Animated.View style={{ width: (screenWidth),  opacity: this.state.fadeValue3 }} onPress={this._fadeAnimation()}>
-                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 25, fontWeight: 'bold' }}>Opening your vault</Text>
+                        <Text style={{ textAlign: 'center', justifyContent: 'space-around', fontSize: 32, fontWeight: '200' }}>Opening your vault</Text>
                     </Animated.View>
                 </View>
 

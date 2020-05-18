@@ -13,7 +13,8 @@ export default StyleSheet.create({
         top: Platform.OS === 'ios'? 15:0
     },
     addExpenseHeading:{
-        fontSize: 20,
+        fontSize: 17,
+        fontWeight:'200',
         textAlign:'center',
     },
     linkText: {
@@ -298,9 +299,9 @@ export default StyleSheet.create({
 
     periodicCategoryPicker: {
         width: Platform.OS === 'ios' ? 180 : '60%',
-        bottom: Platform.OS === 'ios' ? 180 : 100,
+        bottom: Platform.OS === 'ios' ? 150 : 100,
         alignSelf: Platform.OS === 'ios'?'flex-end': 'center',
-        marginRight:5
+        marginRight:Platform.OS==='ios'? 10:0
     },
 
     Label2: {

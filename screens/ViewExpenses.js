@@ -57,6 +57,7 @@ export default class ViewExpenses extends React.Component {
   }
 
   componentDidMount() {
+    this.periodicInstancesUpdateAPICall();
     this.fetchExpenses();
   }
 
@@ -240,6 +241,33 @@ export default class ViewExpenses extends React.Component {
 
   }
 
+  async periodicInstancesUpdateAPICall() {
+
+    await fetch('https://myvault.technology/api/expenses/periodic', {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + global.clientToken,
+      },
+    })
+
+
+      .then(response => (response.json()))
+      .then((response) => {
+
+        if (response.success) {
+          console.log(response)
+        }
+        else {
+          console.log('something went wrong!')
+          console.log(response)
+        }
+      })
+      .catch(error => console.warn(error))
+
+  }
+
   deleteExpense() {
     this.apiCall();
     console.log('removing record no. ' + this.state.id);
@@ -362,11 +390,11 @@ export default class ViewExpenses extends React.Component {
           return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
             <View style={{ height: 10 }}></View>
 
-            <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
+            <TouchableOpacity style={{ width: '95%', height: 70, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 8, marginBottom: 8 }}
               onPress={() => this.setState({ show: true, id: val.expenseid, title: val.transactionTitle, date: val.transactionDate, currency: val.transactionCurrency, category: val.expenseType, cashcard: val.transactionPlace, amount: val.expenseCost, online: val.transactionOnline })} >
-              <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
-              <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
-              <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth: '45%' }}>{val.transactionTitle}</Text>
+              <Text style={{ fontSize: 32, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 15 : 15, left: 30, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
+              <Text style={{ position: 'absolute', fontSize: 16, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
+              <Text style={{ position: 'absolute', fontSize: 24, right: 30, top: 30, maxWidth: '50%' }}>{val.transactionTitle}</Text>
             </TouchableOpacity>
 
             < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
@@ -383,8 +411,8 @@ export default class ViewExpenses extends React.Component {
                       </TouchableOpacity>
                     </View>
 
-                    <View style={{ position: 'absolute', width:1, height: '70%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop:100 }}></View>
-                    
+                    <View style={{ position: 'absolute', width: 1, height: '70%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 100 }}></View>
+
                     <View style={{ flexDirection: 'column', marginTop: 80 }}>
 
                       <View style={{ flexDirection: 'row' }}>
@@ -473,8 +501,8 @@ export default class ViewExpenses extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
 
-                          <TextInput style={styles.expenseTitleInput}
-                            placeholder={this.state.amount}
+                          <TextInput style={[styles.expenseTitleInput, { backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
+                            placeholder={'Expense Title'}
                             onChangeText={(title) => this.setState({ title })}
                             value={this.state.title}
                           />
@@ -491,8 +519,8 @@ export default class ViewExpenses extends React.Component {
                             <Picker.Item label="$" value="usd" />
                           </Picker>
 
-                          <TextInput style={styles.amountInput}
-                            placeholder={this.state.amount}
+                          <TextInput style={[styles.amountInput, { backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
+                            placeholder={"0"}
                             onChangeText={(amount) => this.setState({ amount })}
                             value={this.state.amount}
                             Amount={this.state.amount}
@@ -522,12 +550,12 @@ export default class ViewExpenses extends React.Component {
                           <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '5%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
                             <TouchableOpacity onPress={() => this.setState({ cashcard: 'Cash' })}
                               disabled={this.state.cashcard === 'Periodic' ? true : false}
-                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash" ? "lightgrey" : "grey" }}>
+                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash" ? global.color :global.dark === 'white' ?"darkgrey":'grey'  }}>
                               <Text style={{ justifyContent: 'center', textAlign: "center" }} > {this.state.cashcard === 'Periodic' ? 'Periodic' : 'Cash'}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => this.setState({ cashcard: 'Card' })}
                               disabled={this.state.cashcard === 'Periodic' ? true : false}
-                              style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Card" ? "lightgrey" : "grey" }}>
+                              style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Card" ? global.color :global.dark === 'white' ?"darkgrey":'grey' }}>
                               <Text style={{ textAlign: "center" }}> {this.state.cashcard === 'Periodic' ? '' : 'Card'}</Text>
                             </TouchableOpacity>
                           </View>
@@ -543,15 +571,14 @@ export default class ViewExpenses extends React.Component {
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
 
                       <TouchableOpacity
-                        style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
-                        onPress={() => this.setState({ edit: false })}
+                        style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
+                        onPress={() => this.setState({edit:false})}
                       >
-                        <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>CANCEL</Text>
+                        <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Cancel</Text>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={{ backgroundColor: 'lightgrey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }}
-                        onPress={() => this.saveEditedExpense()}>
-                        <Text style={{ justifyContent: 'center', textAlign: "center", color: 'grey', fontWeight: 'bold' }}>SAVE</Text>
+                      <TouchableOpacity style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }} onPress={() => this.postExpense()}>
+                        <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Go!</Text>
                       </TouchableOpacity>
 
                     </View>

@@ -19,6 +19,7 @@ export default class reloadPreferencesScreen extends React.Component {
     }
 
     componentDidMount() {
+        console.disableYellowBox = true;
         BackHandler.addEventListener('hardwareBackPress', this.backbutton);
         fetch('https://myvault.technology/api/pref', {
             method: 'GET',

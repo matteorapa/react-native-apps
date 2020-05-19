@@ -21,6 +21,7 @@ export default class Login extends React.Component {
   //to prevent alert showing when program is run ive changed the api call to a reg method
 
   componentDidMount() {
+    console.disableYellowBox = true;
     BackHandler.addEventListener('hardwareBackPress', this.backbutton);
   }
 

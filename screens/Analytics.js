@@ -34,7 +34,7 @@ export default class Analytics extends React.Component {
   }
 
   componentDidMount() {
-
+    console.disableYellowBox = true;
     this.PieChartAPICall();
     this.LineChartAPICall();
     this.BarChartAPICall();

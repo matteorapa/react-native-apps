@@ -14,7 +14,6 @@ import reloadPreferencesScreen from './screens/reloadPreferencesScreen';
 import ViewExpenses from './screens/ViewExpenses';
 import viewPeriodicExpenses from './screens/viewPeriodicExpenses';
 import Analytics from './screens/Analytics';
-import Financials from './screens/Financials';
 import PersonalDetails from './screens/PersonalDetails';
 import AddExpense from './screens/AddExpense';
 import themeColorPicker from './components/themeColorPicker';
@@ -38,7 +37,6 @@ export default function App() {
         <Stack.Screen name="ViewExpenses" component={ViewExpenses} options={{ headerShown: false }} />
         <Stack.Screen name="viewPeriodicExpenses" component={viewPeriodicExpenses} options={{ headerShown: false }} />
         <Stack.Screen name="Analytics" component={Analytics} options={{ headerShown: false }} />
-        <Stack.Screen name="Financials" component={Financials} options={{ headerShown: false }} />
         <Stack.Screen name="AddExpense" component={AddExpense} options={{ headerShown: false, cardStyle: { backgroundColor: 'transparent' }, animationEnabled: false, }} />
         <Stack.Screen name="themeColorPicker" component={themeColorPicker} options={{ headerShown: false, cardStyle: { backgroundColor: 'transparent' }, animationEnabled: false, }} />
         <Stack.Screen name="GoodbyeMessage" component={GoodbyeMessage} options={{ headerShown: false, gestureEnabled: false, cardStyle: { backgroundColor: 'transparent' }, animationEnabled: false, }} />

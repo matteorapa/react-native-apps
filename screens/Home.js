@@ -4,13 +4,10 @@ import { Switch, ScrollView } from 'react-native-gesture-handler';
 import { LineChart } from "react-native-chart-kit";
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
-import { exp } from 'react-native-reanimated';
 var lineChartLink = 'https://myvault.technology/api/analytics/MonthlyTotals';
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 var temp = [0];
-var count = 0;
 var dataLabels = [''];
-
 export default class Home extends React.Component {
 
   constructor({ navigation }) {
@@ -32,6 +29,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    console.disableYellowBox = true;
     BackHandler.addEventListener('hardwareBackPress', this.backbutton);
     this.LineChartAPICall();
     this.ExpensesAPICall();
@@ -153,20 +151,16 @@ export default class Home extends React.Component {
       )
     }
     else {
-      let expenses = this.state.expensesData.map((val, key) => {
-        if (count < 10) {
-          count++;
-          return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
+      let expenses = this.state.expensesData.slice(0,5).map((val, key) => {
+            return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
 
-            <View style={{ width: '95%', height: 60, alignSelf: 'center', backgroundColor: global.dark === '#303030' ? '#505050' : 'darkgrey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}>
+              <View style={{ width: '95%', height: 60, alignSelf: 'center', backgroundColor: global.dark === '#303030' ? '#505050' : 'darkgrey', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}>
 
-              <Text style={{ fontSize: 24, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 10, left: 20, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
-              <Text style={{ position: 'absolute', fontSize: 12, right: 30, top: 10 }}>{val.transactionDate.split('T00:00:00.000Z')}</Text>
-              <Text style={{ position: 'absolute', fontSize: 18, right: 30, top: 25, maxWidth: '50%' }}>{val.transactionTitle}</Text>
-            </View>
-          </View >
-        }
-        count = 0
+                <Text style={{ fontSize: 24, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 10, left: 20, color: global.color }}>{this.convertCurrency(val.transactionCurrency)}{val.expenseCost}</Text>
+                <Text style={{ position: 'absolute', fontSize: 22, right: 30, top: '28%', maxWidth: '50%' }}>{val.transactionTitle}</Text>
+              
+              </View>
+            </View >
       });
       return (
         <View style={[styles.container, { backgroundColor: global.dark }]} >
@@ -233,7 +227,7 @@ export default class Home extends React.Component {
             <ScrollView>
 
               <TouchableOpacity
-                style={{ width: 80, height: 20, backgroundColor: 'transparent', justifyContent: 'space-around', marginTop: 20, marginBottom:10, borderWidth: 0.5, alignSelf: 'flex-end', marginRight: 20, borderColor: global.dark === '#303030' ? 'lightgrey' : '#505050' }}
+                style={{ width: 80, height: 20, backgroundColor: 'transparent', justifyContent: 'space-around', marginTop: 20, marginBottom: 10, borderWidth: 0.5, alignSelf: 'flex-end', marginRight: 20, borderColor: global.dark === '#303030' ? 'lightgrey' : '#505050' }}
                 onPress={() => { this.LineChartLinkEdit(), this.ExpensesAPICall() }}>
                 <Text style={[styles.text, { fontSize: 12, color: global.dark === '#303030' ? 'lightgrey' : '#505050' }]}>REFRESH</Text>
               </TouchableOpacity>

@@ -25,10 +25,6 @@ export default class CreateAnAccountScreen extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.apiCall();
-  // }
-
   async apiCall() {
     try {
       fetch('httpss://myvault.technology/api/users', {
@@ -72,7 +68,6 @@ export default class CreateAnAccountScreen extends React.Component {
   }
 
   async signup() {
-    //this.componentDidMount();
     if (this.state.name === '' || this.state.surname === '' || this.state.email === '' || this.state.password === '' || !this.state.email.includes("@") || !this.state.email.includes(".com")) {
       Alert.alert('Oops', 'Please ensure valid data is entered in all fields!')
     }

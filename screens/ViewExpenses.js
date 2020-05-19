@@ -57,6 +57,7 @@ export default class ViewExpenses extends React.Component {
   }
 
   componentDidMount() {
+    console.disableYellowBox = true;
     this.periodicInstancesUpdateAPICall();
     this.fetchExpenses();
   }
@@ -577,7 +578,7 @@ export default class ViewExpenses extends React.Component {
                         <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Cancel</Text>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }} onPress={() => this.postExpense()}>
+                      <TouchableOpacity style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }} onPress={() => this.saveEditedExpense()}>
                         <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Go!</Text>
                       </TouchableOpacity>
 

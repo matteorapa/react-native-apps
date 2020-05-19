@@ -32,7 +32,7 @@ export default class splashScreen extends React.Component {
     }
 
     componentDidMount() {
-
+        console.disableYellowBox = true;
         this.periodicAPICall();
 
         BackHandler.addEventListener('hardwareBackPress', this.backbutton);

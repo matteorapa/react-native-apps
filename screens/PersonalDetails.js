@@ -31,6 +31,7 @@ export default class PersonalDetails extends React.Component {
     }
 
     componentDidMount() {
+        console.disableYellowBox = true;
         fetch('https://myvault.technology/api/users/details', {
             method: 'GET',
             headers: {

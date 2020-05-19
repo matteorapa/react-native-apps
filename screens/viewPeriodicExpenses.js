@@ -58,6 +58,7 @@ export default class viewPeriodicExpenses extends React.Component {
     }
 
     componentDidMount() {
+        console.disableYellowBox = true;
         this.fetchExpenses();
     }
 

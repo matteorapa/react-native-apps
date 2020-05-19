@@ -16,6 +16,7 @@ export default class splashScreen extends React.Component {
     }
 
     componentDidMount() {
+        console.disableYellowBox = true;
         BackHandler.addEventListener('hardwareBackPress', this.backbutton);
         setTimeout(() => {
             this.state.nav.navigate('Login')

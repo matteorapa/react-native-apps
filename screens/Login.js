@@ -77,8 +77,8 @@ export default class Login extends React.Component {
     if (this.state.email === '' || this.state.password === '') {
       Alert.alert('Oops!', 'Please ensure all fields are filled')
     }
-    else if (!validPasswordChars.test(this.state.password)){
-      Alert.alert('Error','Password contains invalid characters!')
+    else if (!validPasswordChars.test(this.state.password)) {
+      Alert.alert('Error', 'Password contains invalid characters!')
     }
     else {
       this.apiCall();
@@ -88,19 +88,19 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View style={[styles.container, styles.central,{backgroundColor:'darkgrey'}]} >
+      <View style={[styles.container, styles.central, { backgroundColor: 'darkgrey' }]} >
         <View>
           <Text style={styles.heading}>MyVault</Text>
         </View>
-        <View style={[styles.formBox, {width: 300, height:300, borderRadius:150, justifyContent:'space-around'}]}>
-          <TextInput style={{textAlign:'center', padding: 10, marginTop:50}} name='email'
+        <View style={[styles.formBox, { width: 300, height: 300, borderRadius: 150, justifyContent: 'space-around' }]}>
+          <TextInput style={{ textAlign: 'center', padding: 10, marginTop: 50 }} name='email'
             placeholder={"Email"}
             onChangeText={(email) => this.setState({ email })}
             autoCapitalize={false}
             value={this.state.email}
           />
 
-          <TextInput style={{textAlign:'center', padding:10, marginBottom:50}} placeholder={"Password"}
+          <TextInput style={{ textAlign: 'center', padding: 10, marginBottom: 50 }} placeholder={"Password"}
             onChangeText={(password) => this.setState({ password })}
             value={this.state.password}
             autoCapitalize={false}
@@ -109,15 +109,15 @@ export default class Login extends React.Component {
 
 
         </View>
-        <TouchableOpacity style={[styles.loginSignupButton,{borderRadius:100, width:100, height:100, justifyContent:'space-around'}]} title="Sign-in" onPress={() => this.login()}>
+        <TouchableOpacity style={[styles.loginSignupButton, { borderRadius: 100, width: 100, height: 100, justifyContent: 'space-around' }]} title="Sign-in" onPress={() => this.login()}>
           <Text style={styles.text}>Sign In</Text>
         </TouchableOpacity>
 
         <View>
-          <Text style={[styles.mutedText, { top: 30, color:'#707070' }]}>Don't have an account?</Text>
+          <Text style={[styles.mutedText, { top: 30, color: '#707070' }]}>Don't have an account?</Text>
           <Text></Text>
           <TouchableOpacity onPress={() => this.state.nav.navigate('CreateAnAccount')}>
-            <Text style={{ marginTop: 30, fontSize:15, textAlign:'center', color:'white'}}>Create one!</Text>
+            <Text style={{ marginTop: 30, fontSize: 15, textAlign: 'center', color: 'white' }}>Create one!</Text>
           </TouchableOpacity>
         </View>
 

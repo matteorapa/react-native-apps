@@ -56,16 +56,19 @@ export default class splashScreen extends React.Component {
                         color: response.output[0].colour,
                         dark: response.output[0].dark,
                     })
+                    console.log(response.output[0].dark)
                 }
                 else {
                     alert('there was an error loading details')
                 }
 
-                if (this.state.dark = 'grey') {
+                if (response.output[0].dark === 'grey') {
                     global.dark = '#303030'
+                    
                 }
-                else if (this.state.dark = 'white') {
+                else if (response.output[0].dark === 'white') {
                     global.dark = 'white'
+                    
                 }
                 global.color = this.state.color
             })

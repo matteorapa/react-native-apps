@@ -70,7 +70,10 @@ export default class Login extends React.Component {
           this.setState({ password: '' })
         }
       })
-      .catch(error => console.warn(error))
+      .catch(error => {
+          console.warn(error)
+          Alert.alert("Error connecting to server!", "Please establish an internet connection and try again")
+        })
 
   }
   async login() {

@@ -4,6 +4,7 @@ import { TextInput, ScrollView } from 'react-native-gesture-handler';
 import Footer from '../components/Footer';
 import styles from '../MyStyleSheet';
 
+var compareToMonths = [2, 4, 6, 9, 11];
 var APIDelLink = 'https://myvault.technology/api/expenses/periodic/del/';
 var APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
 var APISaveEditedExpense = 'https://myvault.technology/api/expenses/edit/';
@@ -175,23 +176,23 @@ export default class viewPeriodicExpenses extends React.Component {
 
     async postPeriodicExpense() {
 
+        var dayInteger = parseInt(this.state.periodicDay)
+        var monthInteger = parseInt(this.state.periodicMonth)
+
         if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
-            // }
-            // else if (!day.test(this.state.periodicDay)) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 1!');
-            // }
-            // else if (!month.test(this.state.periodicMonth)) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 2!');
-            // }
-            // else if (this.state.periodicDay > 29 && this.state.periodicMonth == 2) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 3!');
-            // }
-            // else if (!year.test(this.state.periodicYear)) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 4!');
-            // }
-            // else if (this.state.periodicDay > 30 && this.state.periodicMonth == compareToMonths) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 5');
+        }
+        else if (dayInteger>31 | dayInteger < 1) {
+            Alert.alert('Error posting date', 'Please ensure the day entered is valid!');
+        }
+        else if (monthInteger<1 || monthInteger>12) {
+            Alert.alert('Error posting date', 'Please ensure the month entered is valid!');
+        }
+        else if (dayInteger > 29 && monthInteger == 2 ) {
+            Alert.alert('Error posting date', 'Please ensure a correct day in febuary is selected!');
+        }
+        else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
+            Alert.alert('Error posting date', 'Please ensure the date is valid');
         } else {
             this.periodicApiCall();
             APISaveEditedPeriodicExpense = 'https://myvault.technology/api/expenses/periodic/edit/';

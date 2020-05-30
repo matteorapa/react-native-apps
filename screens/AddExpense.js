@@ -4,9 +4,7 @@ import styles from '../MyStyleSheet';
 
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 var compareToMonths = [2, 4, 6, 9, 11];
-const day = new RegExp("^[1-31]+$");
-const month = new RegExp("^[1-12]+$");
-const year = new RegExp("^[1900-2020]+$");
+
 export default class AddExpense extends React.Component {
     constructor({ navigation }) {
         super();
@@ -29,6 +27,7 @@ export default class AddExpense extends React.Component {
             periodicYear: '',
             date: '',
             interval: '1',
+            requestInterval:'',
 
             type: 'one',
 
@@ -68,6 +67,9 @@ export default class AddExpense extends React.Component {
 
                 if (response.success) {
                     console.log('Expense successfully posted!')
+                    this.state.nav.pop();
+                    this.state.nav.navigate('Home');
+                    this.state.nav.navigate('viewPeriodicExpenses')
                 }
                 else {
                     console.log('something went wrong!')
@@ -100,10 +102,9 @@ export default class AddExpense extends React.Component {
                 currency: this.state.periodicCurrency,
                 title: this.state.periodicTitle,
                 date: this.state.date,
-                interval: this.state.interval
+                interval: this.state.requestInterval
             })
         })
-
 
             .then(response => (response.json()))
             .then((response) => {
@@ -112,19 +113,13 @@ export default class AddExpense extends React.Component {
                     console.log('Expense successfully posted!')
                     this.state.nav.pop();
                     this.state.nav.navigate('Home');
-                    this.state.nav.navigate('viewPeriodicExpenses')                }
+                    this.state.nav.navigate('viewPeriodicExpenses')
+                }
                 else {
                     console.log('something went wrong!')
                     console.log(response)
                     Alert.alert('Oops!', 'Something went wrong')
-                    this.setState({ periodicTitle: '' })
                     this.setState({ periodicCurrency: 'eur' })
-                    this.setState({ periodicCategory: '' })
-                    this.setState({ periodicAmount: '' })
-                    this.setState({ date: '' })
-                    this.setState({ periodicDay: '' })
-                    this.setState({ periodicMonth: '' })
-                    this.setState({ periodicYear: '' })
                     this.setState({ periodicRepeat: '1 week' })
                 }
             })
@@ -145,28 +140,28 @@ export default class AddExpense extends React.Component {
 
     async postPeriodicExpense() {
 
+        var dayInteger = parseInt(this.state.periodicDay)
+        var monthInteger = parseInt(this.state.periodicMonth)
+
+        console.log("|" + this.state.periodicDay + "|" + this.state.periodicMonth + "|" + this.state.periodicYear+"|");
+        
         if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
-            // }
-            // else if (!day.test(this.state.periodicDay)) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 1!');
-            // }
-            // else if (!month.test(this.state.periodicMonth)) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 2!');
-            // }
-            // else if (this.state.periodicDay > 29 && this.state.periodicMonth == 2) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 3!');
-            // }
-            // else if (!year.test(this.state.periodicYear)) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 4!');
-            // }
-            // else if (this.state.periodicDay > 30 && this.state.periodicMonth == compareToMonths) {
-            //     Alert.alert('Error posting date', 'Please ensure date is valid 5');
-        } else {
+        }
+        else if (dayInteger>31 | dayInteger < 1) {
+            Alert.alert('Error posting date', 'Please ensure the day entered is valid!');
+        }
+        else if (monthInteger<1 || monthInteger>12) {
+            Alert.alert('Error posting date', 'Please ensure the month entered is valid!');
+        }
+        else if (dayInteger > 29 && monthInteger == 2 ) {
+            Alert.alert('Error posting date', 'Please ensure a correct day in febuary is selected!');
+        }
+        else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
+            Alert.alert('Error posting date', 'Please ensure the date is valid');
+        }
+        else {
             this.periodicApiCall();
-            this.state.nav.pop();
-            this.state.nav.navigate('Home');
-            this.state.nav.navigate('ViewExpenses')
         }
 
     }
@@ -174,7 +169,7 @@ export default class AddExpense extends React.Component {
     prepPeriodicExpense() {
         this.setState({
             date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay,
-            interval: this.state.interval + " " + this.state.periodicRepeat
+            requestInterval: this.state.interval + " " + this.state.periodicRepeat
         }, () => { this.postPeriodicExpense() });
 
     }
@@ -189,11 +184,11 @@ export default class AddExpense extends React.Component {
                             <View style={[styles.addExpenseTitleContainer, { width: this.screenwidth * 0.94, height: 40 }]}>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'one' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'one' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'one' ? global.color : global.dark, padding: 5, alignContent: 'center', justifyContent: 'space-around' }}
                                     onPress={() => { this.setState({ type: 'one' }), this.scroll.scrollTo({ x: 0 }) }}>
-                                    <Text style={[styles.addExpenseHeading, {color: global.dark==='white'? 'black': this.state.type==='one'?'black':global.color}]}>One Time Expense</Text>
+                                    <Text style={[styles.addExpenseHeading, { color: global.dark === 'white' ? 'black' : this.state.type === 'one' ? 'black' : global.color }]}>One Time Expense</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'periodic' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'periodic' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'periodic' ? global.color : global.dark, right: 0, alignContent: 'center', justifyContent: 'space-around' }}
                                     onPress={() => { this.setState({ type: 'periodic' }), this.scroll.scrollTo({ x: this.screenwidth }) }}>
-                                    <Text style={[styles.addExpenseHeading,{color: global.dark==='white'? 'black': this.state.type==='periodic'?'black':global.color}]}>Periodic Expense</Text>
+                                    <Text style={[styles.addExpenseHeading, { color: global.dark === 'white' ? 'black' : this.state.type === 'periodic' ? 'black' : global.color }]}>Periodic Expense</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -205,7 +200,7 @@ export default class AddExpense extends React.Component {
 
                                         <View style={{ flexDirection: 'row' }}>
 
-                                            <TextInput style={[styles.expenseTitleInput,{backgroundColor:global.dark === 'white' ?"darkgrey":'grey'}]}
+                                            <TextInput style={[styles.expenseTitleInput, { backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                 placeholder={'Expense Title'}
                                                 onChangeText={(title) => this.setState({ title })}
                                                 value={this.state.title}
@@ -223,7 +218,7 @@ export default class AddExpense extends React.Component {
                                                 <Picker.Item label="$" value="usd" />
                                             </Picker>
 
-                                            <TextInput style={[styles.amountInput, {backgroundColor: global.dark === 'white' ?"darkgrey":'grey'}]}
+                                            <TextInput style={[styles.amountInput, { backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                 placeholder={"0"}
                                                 onChangeText={(amount) => this.setState({ amount })}
                                                 value={this.state.amount}
@@ -253,11 +248,11 @@ export default class AddExpense extends React.Component {
 
                                             <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '5%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
                                                 <TouchableOpacity onPress={() => this.setState({ cashCard: 'Cash' })}
-                                                    style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Cash" ? global.color :global.dark === 'white' ?"darkgrey":'grey' }}>
+                                                    style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Cash" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                     <Text style={{ justifyContent: 'center', textAlign: "center" }} > Cash</Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity onPress={() => this.setState({ cashCard: 'Card' })}
-                                                    style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Card" ? global.color : global.dark === 'white' ?"darkgrey":'grey' }}>
+                                                    style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashCard === "Card" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                     <Text style={{ textAlign: "center" }}> Card</Text>
                                                 </TouchableOpacity>
                                             </View>
@@ -273,13 +268,13 @@ export default class AddExpense extends React.Component {
                                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
 
                                     <TouchableOpacity
-                                        style={{ backgroundColor: global.dark==='white'? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
+                                        style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
                                         onPress={() => this.state.nav.pop()}
                                     >
                                         <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Cancel</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity style={{ backgroundColor: global.dark==='white'? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }} onPress={() => this.postExpense()}>
+                                    <TouchableOpacity style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }} onPress={() => this.postExpense()}>
                                         <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Go!</Text>
                                     </TouchableOpacity>
 
@@ -297,11 +292,11 @@ export default class AddExpense extends React.Component {
                             <View style={[styles.addExpenseTitleContainer, { width: this.screenwidth * 0.94, height: 40 }]}>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'one' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'one' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'one' ? global.color : global.dark, padding: 5, alignContent: 'center', justifyContent: 'space-around' }}
                                     onPress={() => { this.setState({ type: 'one' }), this.scroll.scrollTo({ x: 0 }) }}>
-                                    <Text style={[styles.addExpenseHeading,{color: global.dark==='white'? 'black': this.state.type==='one'?'black':global.color}]}>One Time Expense</Text>
+                                    <Text style={[styles.addExpenseHeading, { color: global.dark === 'white' ? 'black' : this.state.type === 'one' ? 'black' : global.color }]}>One Time Expense</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{ position: 'absolute', width: this.state.type === 'periodic' ? this.screenwidth * 0.55 : this.screenwidth * 0.47, zIndex: this.state.type === 'periodic' ? 11 : 0, borderWidth: 1, justifyContent: 'flex-start', borderRadius: 20, height: 40, backgroundColor: this.state.type === 'periodic' ? global.color : global.dark, right: 0, alignContent: 'center', justifyContent: 'space-around' }}
                                     onPress={() => { this.setState({ type: 'periodic' }), this.scroll.scrollTo({ x: this.screenwidth }) }}>
-                                    <Text style={[styles.addExpenseHeading, {color: global.dark==='white'? 'black': this.state.type==='periodic'?'black':global.color}]}>Periodic Expense</Text>
+                                    <Text style={[styles.addExpenseHeading, { color: global.dark === 'white' ? 'black' : this.state.type === 'periodic' ? 'black' : global.color }]}>Periodic Expense</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -309,16 +304,16 @@ export default class AddExpense extends React.Component {
                                 <View style={{ flex: 4 }}>
                                     <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'lightgrey' : '#707070' }]}>
 
-                                        <TextInput style={[styles.expenseTitleInput, { top: 10, backgroundColor: global.dark === 'white' ?"darkgrey":'grey' }]}
+                                        <TextInput style={[styles.expenseTitleInput, { top: 10, backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                             placeholder={'Expense Title'}
                                             onChangeText={(periodicTitle) => this.setState({ periodicTitle })}
                                             value={this.state.periodicTitle}
                                         />
-                                        <View style={{ flexDirection: 'column', marginLeft:40 }}>
-                                            <Text style={[styles.Label3, { right: Platform.OS === 'ios'? 20:0, top: Platform.OS==='ios'? 20:100 }]}>Amount</Text>
-                                            <View style={{ width: 100, height: 100, flexDirection: 'row', top: Platform.OS==='ios'? -55:-40, marginLeft: Platform.OS==='ios'? 0:'15%' }}>
+                                        <View style={{ flexDirection: 'column', marginLeft: 40 }}>
+                                            <Text style={[styles.Label3, { right: Platform.OS === 'ios' ? 20 : 0, top: Platform.OS === 'ios' ? 20 : 100 }]}>Amount</Text>
+                                            <View style={{ width: 100, height: 100, flexDirection: 'row', top: Platform.OS === 'ios' ? -55 : -40, marginLeft: Platform.OS === 'ios' ? 0 : '15%' }}>
                                                 <Picker
-                                                    style={[styles.currencyPicker, { top: Platform.OS === 'ios' ? 0 : -10, right:0 }]}
+                                                    style={[styles.currencyPicker, { top: Platform.OS === 'ios' ? 0 : -10, right: 0 }]}
                                                     selectedValue={this.state.periodicCurrency}
                                                     onValueChange={(itemValue, itemIndex) => this.setState({ periodicCurrency: itemValue })}
                                                 >
@@ -327,7 +322,7 @@ export default class AddExpense extends React.Component {
                                                     <Picker.Item label="$" value="usd" />
                                                 </Picker>
 
-                                                <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 110 : 130, right: 0, backgroundColor: global.dark === 'white' ?"darkgrey":'grey' }]}
+                                                <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 110 : 130, right: 0, backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                     placeholder={"0"}
                                                     onChangeText={(periodicAmount) => this.setState({ periodicAmount })}
                                                     value={this.state.periodicAmount}
@@ -358,30 +353,30 @@ export default class AddExpense extends React.Component {
 
                                         </View>
 
-                                        <View style={{ flexDirection:'column' , position: 'absolute', right: '5%', bottom: Platform.OS === 'ios' ? 100 : 80, width: '90%' }}>
+                                        <View style={{ flexDirection: 'column', position: 'absolute', right: '5%', bottom: Platform.OS === 'ios' ? 100 : 80, width: '90%' }}>
 
                                             <Text style={{ fontSize: 20, fontWeight: "600", position: 'absolute', textAlign: 'left', marginTop: '10%' }}>Repeat each</Text>
                                             <TextInput style={{ marginTop: 30, left: '35%', fontSize: 15, borderWidth: 1, position: 'absolute', padding: 10, width: 40, textAlign: 'center', justifyContent: 'space-around' }}
                                                 onChangeText={(interval) => this.setState({ interval })}
-                                                value={this.state.interval}/>
+                                                value={this.state.interval} />
 
                                             <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
                                                 <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'day' })}
-                                                    style={{ borderTopLeftRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "day" ? global.color : global.dark === 'white' ?"darkgrey":'grey'}}>
+                                                    style={{ borderTopLeftRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "day" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                     <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Day' : 'Days'}</Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'week' })}
-                                                    style={{ borderTopRightRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "week" ? global.color : global.dark === 'white' ?"darkgrey":'grey' }}>
+                                                    style={{ borderTopRightRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "week" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                     <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Week' : 'Weeks'}</Text>
                                                 </TouchableOpacity>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
                                                 <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'month' })}
-                                                    style={{ width: 90, height: 50, justifyContent: 'space-around', borderBottomLeftRadius:  25 , backgroundColor: this.state.periodicRepeat === "month" ? global.color : global.dark === 'white' ?"darkgrey":'grey' }}>
+                                                    style={{ width: 90, height: 50, justifyContent: 'space-around', borderBottomLeftRadius: 25, backgroundColor: this.state.periodicRepeat === "month" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                     <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Month' : 'Months'}</Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'year' })}
-                                                    style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomRightRadius: 25, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "year" ? global.color : global.dark === 'white' ?"darkgrey":'grey'}}>
+                                                    style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomRightRadius: 25, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat === "year" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                     <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Year' : 'Years'}</Text>
                                                 </TouchableOpacity>
                                             </View>
@@ -390,7 +385,7 @@ export default class AddExpense extends React.Component {
                                         <Text style={{ position: 'absolute', left: Platform.OS === 'ios' ? 25 : 30, bottom: Platform.OS === 'ios' ? 60 : 25, fontSize: 15, fontWeight: '400' }}>Start Date: </Text>
                                         <View style={{ flexDirection: 'row', position: 'absolute', left: Platform.OS === 'ios' ? '22.5%' : '35%', bottom: 10, alignSelf: 'center' }}>
                                             <TextInput
-                                                style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: global.dark==='white'? 'darkgrey':'grey', textAlign: 'center' }}
+                                                style={{ borderTopLeftRadius: 40, borderBottomLeftRadius: 40, width: '25%', padding: 15, justifyContent: 'space-around', backgroundColor: global.dark === 'white' ? 'darkgrey' : 'grey', textAlign: 'center' }}
                                                 maxLength={2}
                                                 placeholder={'DD'}
                                                 onChangeText={(periodicDay) => this.setState({ periodicDay })}
@@ -398,7 +393,7 @@ export default class AddExpense extends React.Component {
                                             >
                                             </TextInput>
                                             <TextInput
-                                                style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: global.dark==='white'? 'darkgrey':'grey', textAlign: 'center' }}
+                                                style={{ width: '25%', justifyContent: 'space-around', padding: 15, backgroundColor: global.dark === 'white' ? 'darkgrey' : 'grey', textAlign: 'center' }}
                                                 maxLength={2}
                                                 placeholder={'MM'}
                                                 onChangeText={(periodicMonth) => this.setState({ periodicMonth })}
@@ -406,7 +401,7 @@ export default class AddExpense extends React.Component {
                                             >
                                             </TextInput>
                                             <TextInput
-                                                style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: global.dark==='white'? 'darkgrey':'grey', textAlign: 'center' }}
+                                                style={{ width: '25%', borderBottomRightRadius: 40, borderTopRightRadius: 40, padding: 15, justifyContent: 'space-around', backgroundColor: global.dark === 'white' ? 'darkgrey' : 'grey', textAlign: 'center' }}
                                                 maxLength={4}
                                                 placeholder={'YYYY'}
                                                 onChangeText={(periodicYear) => this.setState({ periodicYear })}
@@ -421,13 +416,13 @@ export default class AddExpense extends React.Component {
                                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
 
                                     <TouchableOpacity
-                                        style={{ backgroundColor: global.dark==='white'? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
+                                        style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
                                         onPress={() => this.state.nav.pop()}
                                     >
                                         <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Cancel</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity style={{ backgroundColor: global.dark==='white'? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }}
+                                    <TouchableOpacity style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, left: 20 }}
                                         onPress={() => this.prepPeriodicExpense()}
                                     >
                                         <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Go!</Text>

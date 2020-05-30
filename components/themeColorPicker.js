@@ -74,7 +74,7 @@ export default class themeColorPicker extends React.Component {
         return (
             <Modal animationType={'slide'} transparent={true} visible={true}>
                 <View style={{ backgroundColor: 'transparent', flex: 1, width: '97%', alignSelf: 'center', top: 50 }}>
-                    <View style={{ backgroundColor: this.state.dark === 'grey' ? '#303030' : 'white', height: "70%", top: '4%', borderRadius: 40, borderWidth: 3, alignContent: 'flex-end' }}>
+                    <View style={{ backgroundColor: this.state.dark === '#303030' ? '#303030' : 'white', height: "70%", top: '4%', borderRadius: 40, borderWidth: 3, alignContent: 'flex-end' }}>
                         <ScrollView>
                             <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, right: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: this.state.color, justifyContent: 'center', borderWidth: 2 }}
                                 onPress={() => this.postNewTheme()}

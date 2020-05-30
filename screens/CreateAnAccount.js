@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
-var compareToMonths = [2,4,6,9,11];
+var compareToMonths = [2, 4, 6, 9, 11];
 const regex = new RegExp("^[a-zA-Z0-9.,?!@£$+€&*-]+$");
 const day = new RegExp("^[1-31]+$");
 const month = new RegExp("^[1-12]+$");
@@ -17,7 +17,7 @@ export default class CreateAnAccountScreen extends React.Component {
       surname: '',
       email: '',
       password: '',
-      confirmPassword:'',
+      confirmPassword: '',
       dob: '',
       day: '',
       month: '',
@@ -27,7 +27,7 @@ export default class CreateAnAccountScreen extends React.Component {
 
   async apiCall() {
     try {
-      fetch('httpss://myvault.technology/api/users', {
+      fetch('https://myvault.technology/api/users', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -56,7 +56,7 @@ export default class CreateAnAccountScreen extends React.Component {
             this.setState({ surname: '' })
             this.setState({ email: '' })
             this.setState({ password: '' })
-            this.setState({confirmPassword:''})
+            this.setState({ confirmPassword: '' })
             this.setState({ dob: '' })
           }
         })
@@ -68,29 +68,34 @@ export default class CreateAnAccountScreen extends React.Component {
   }
 
   async signup() {
+
+    var dayInteger = parseInt(this.state.day)
+    var monthInteger = parseInt(this.state.month)
+    var yearInteger = parseInt(this.state.year)
+
     if (this.state.name === '' || this.state.surname === '' || this.state.email === '' || this.state.password === '' || !this.state.email.includes("@") || !this.state.email.includes(".com")) {
       Alert.alert('Oops', 'Please ensure valid data is entered in all fields!')
     }
-    else if (!day.test(this.state.day)) {
-      Alert.alert('Error posting date', 'Please ensure date is valid!');
+    else if (dayInteger > 31 | dayInteger < 1) {
+      Alert.alert('Error posting date', 'Please ensure a valid day is valid!');
     }
-    else if (!month.test(this.state.month)) {
-      Alert.alert('Error posting date', 'Please ensure date is valid!');
+    else if (monthInteger < 1 || monthInteger > 12) {
+      Alert.alert('Error posting date', 'Please ensure a valid month is entered!');
     }
-    else if (this.state.day > 29 && this.state.month == 2) {
-      Alert.alert('Error posting date', 'Please ensure date is valid!');
+    else if (dayInteger > 29 && monthInteger == 2) {
+      Alert.alert('Error posting date', 'Please ensure a valid date for February is entered!');
     }
-    else if (!year.test(this.state.year)) {
-      Alert.alert('Error posting date', 'Please ensure date is valid!');
+    else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
+      Alert.alert('Error posting date', 'Please ensure the date is valid!');
     }
-    else if (this.state.day > 30 && this.state.month == compareToMonths) {
-      Alert.alert('Error posting date', 'Please ensure date is valid');
+    else if(yearInteger>2020){
+      Alert.alert('Error posting date', 'Please ensure the year entered is valid!');
     }
-    else if (!regex.test(this.state.password)){
-      Alert.alert('Error','Password contains invalid characters!')
+    else if (!regex.test(this.state.password)) {
+      Alert.alert('Error', 'Password contains invalid characters!')
     }
-    else if(this.state.password !== this.state.confirmPassword){
-      Alert.alert('Error','Passwords do not match!')
+    else if (this.state.password !== this.state.confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match!')
     }
     else {
       this.apiCall();
@@ -179,7 +184,7 @@ export default class CreateAnAccountScreen extends React.Component {
           </View>
         </View>
 
-        <View style={[styles.loginSignupButton,{borderRadius:100, width:100, height:100, justifyContent:'space-around'}]}>
+        <View style={[styles.loginSignupButton, { borderRadius: 100, width: 100, height: 100, justifyContent: 'space-around' }]}>
           <TouchableOpacity onPress={() => this.setDOB()}>
             <Text style={{ fontSize: 15, textAlign: 'center' }}  >Sign up</Text>
           </TouchableOpacity>

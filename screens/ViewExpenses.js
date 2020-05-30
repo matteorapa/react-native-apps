@@ -42,6 +42,8 @@ export default class ViewExpenses extends React.Component {
       periodicMonth: '',
       periodicYear: '',
       date: '',
+
+      search: '',
     };
 
     this.navigateUser = this.navigateUser.bind(this);
@@ -387,7 +389,7 @@ export default class ViewExpenses extends React.Component {
     }
     else {
       let expenses = this.state.dataSource.map((val, key) => {
-        if (val.expenseType == this.state.filterCategory | this.state.filterCategory === '') {
+        if (val.expenseType == this.state.filterCategory || this.state.filterCategory === '' || this.state.search === '' || val.transactionTitle == this.state.search) {
           return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
             <View style={{ height: 10 }}></View>
 
@@ -551,12 +553,12 @@ export default class ViewExpenses extends React.Component {
                           <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '5%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
                             <TouchableOpacity onPress={() => this.setState({ cashcard: 'Cash' })}
                               disabled={this.state.cashcard === 'Periodic' ? true : false}
-                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash" ? global.color :global.dark === 'white' ?"darkgrey":'grey'  }}>
+                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                               <Text style={{ justifyContent: 'center', textAlign: "center" }} > {this.state.cashcard === 'Periodic' ? 'Periodic' : 'Cash'}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => this.setState({ cashcard: 'Card' })}
                               disabled={this.state.cashcard === 'Periodic' ? true : false}
-                              style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Card" ? global.color :global.dark === 'white' ?"darkgrey":'grey' }}>
+                              style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 50 : 0, borderTopRightRadius: Platform.OS === 'ios' ? 0 : 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Card" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                               <Text style={{ textAlign: "center" }}> {this.state.cashcard === 'Periodic' ? '' : 'Card'}</Text>
                             </TouchableOpacity>
                           </View>
@@ -573,7 +575,7 @@ export default class ViewExpenses extends React.Component {
 
                       <TouchableOpacity
                         style={{ backgroundColor: global.dark === 'white' ? 'lightgrey' : 'grey', width: 90, height: 90, borderRadius: 50, justifyContent: 'space-evenly', bottom: Platform.OS === 'ios' ? 20 : 10, right: 20 }}
-                        onPress={() => this.setState({edit:false})}
+                        onPress={() => this.setState({ edit: false })}
                       >
                         <Text style={{ justifyContent: 'center', textAlign: "center", color: 'black', fontWeight: '600' }}>Cancel</Text>
                       </TouchableOpacity>
@@ -604,37 +606,37 @@ export default class ViewExpenses extends React.Component {
           </View>
 
           <View style={styles.body}>
-            <View style={{ flex: 1, width: '100%', alignSelf: 'center', flexDirection: 'row' }}>
+            <View style={{ height: '5%', width: '100%', alignSelf: 'center', flexDirection: 'row'}}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
                 onPress={() => { this.getAllExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>ALL</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
                 onPress={() => { this.getWeekExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
                 onPress={() => { this.getMonthExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', height: '60%', top: '5%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
                 onPress={() => { this.getYearExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
               </TouchableOpacity>
-
             </View>
+
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
               <TouchableOpacity
                 style={{ padding: 10, backgroundColor: global.dark, width: 170, alignSelf: 'flex-start', marginLeft: '2.5%', borderWidth: 1, margin: 10, borderColor: global.dark === 'white' ? 'black' : '#909090' }}

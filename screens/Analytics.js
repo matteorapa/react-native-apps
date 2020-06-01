@@ -230,7 +230,8 @@ export default class Analytics extends React.Component {
                 chartConfig={{
                   backgroundGradientFrom: global.dark,
                   backgroundGradientTo: global.dark,
-                  fillShadowGradientOpacity: 0,
+                  fillShadowGradientOpacity: 0.1,
+                  fillShadowGradient: global.color,
                   color: (opacity = 0) => global.dark === 'white' ? '#505050' : global.color,
                   strokeWidth: 2,
 

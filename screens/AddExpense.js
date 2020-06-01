@@ -69,7 +69,7 @@ export default class AddExpense extends React.Component {
                     console.log('Expense successfully posted!')
                     this.state.nav.pop();
                     this.state.nav.navigate('Home');
-                    this.state.nav.navigate('viewPeriodicExpenses')
+                    this.state.nav.navigate('ViewExpenses')
                 }
                 else {
                     console.log('something went wrong!')
@@ -155,7 +155,7 @@ export default class AddExpense extends React.Component {
             Alert.alert('Error posting date', 'Please ensure the month entered is valid!');
         }
         else if (dayInteger > 29 && monthInteger == 2 ) {
-            Alert.alert('Error posting date', 'Please ensure a correct day in febuary is selected!');
+            Alert.alert('Error posting date', 'Please ensure a correct day in February is selected!');
         }
         else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
             Alert.alert('Error posting date', 'Please ensure the date is valid');

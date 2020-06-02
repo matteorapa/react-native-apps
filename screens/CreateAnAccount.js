@@ -4,9 +4,6 @@ import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 var compareToMonths = [2, 4, 6, 9, 11];
 const regex = new RegExp("^[a-zA-Z0-9.,?!@£$+€&*-]+$");
-const day = new RegExp("^[1-31]+$");
-const month = new RegExp("^[1-12]+$");
-const year = new RegExp("^[1900-2020]+$");
 export default class CreateAnAccountScreen extends React.Component {
 
   constructor({ navigation }) {
@@ -88,7 +85,7 @@ export default class CreateAnAccountScreen extends React.Component {
     else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
       Alert.alert('Error posting date', 'Please ensure the date is valid!');
     }
-    else if(yearInteger>2020){
+    else if (yearInteger > 2020) {
       Alert.alert('Error posting date', 'Please ensure the year entered is valid!');
     }
     else if (!regex.test(this.state.password)) {
@@ -170,13 +167,13 @@ export default class CreateAnAccountScreen extends React.Component {
 
               <View style={{ flex: 2, paddingTop: 10, paddingBottom: 10, flexDirection: 'row' }}>
                 <TextInput style={{ flex: 1, borderBottomWidth: 0.4, borderColor: 'grey', marginRight: 7, paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} placeholder={'DD'} maxLength={2}
-                  onChangeText={(day) => this.setState({ day })}
+                  keyboardType='numeric' onChangeText={(day) => this.setState({ day })}
                 />
                 <TextInput style={{ flex: 1, borderBottomWidth: 0.4, borderColor: 'grey', marginRight: 7, paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} placeholder={'MM'} maxLength={2}
-                  onChangeText={(month) => this.setState({ month })}
+                  keyboardType='numeric' onChangeText={(month) => this.setState({ month })}
                 />
                 <TextInput style={{ flex: 2, borderBottomWidth: 0.4, borderColor: 'grey', paddingTop: 5, paddingBottom: 5, textAlign: 'center' }} placeholder={'YYYY'} maxLength={4}
-                  onChangeText={(year) => this.setState({ year })}
+                  keyboardType='numeric' onChangeText={(year) => this.setState({ year })}
                 />
               </View>
             </View>

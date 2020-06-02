@@ -4,6 +4,7 @@ import styles from '../MyStyleSheet';
 
 import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
 var compareToMonths = [2, 4, 6, 9, 11];
+const digits = new RegExp("^[1-1000]+$");
 
 export default class AddExpense extends React.Component {
     constructor({ navigation }) {
@@ -142,6 +143,7 @@ export default class AddExpense extends React.Component {
 
         var dayInteger = parseInt(this.state.periodicDay)
         var monthInteger = parseInt(this.state.periodicMonth)
+        var intervalInteger = parseInt(this.state.interval)
 
         console.log("|" + this.state.periodicDay + "|" + this.state.periodicMonth + "|" + this.state.periodicYear+"|");
         
@@ -160,6 +162,9 @@ export default class AddExpense extends React.Component {
         else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
             Alert.alert('Error posting date', 'Please ensure the date is valid');
         }
+        else if (!intervalInteger) {
+            Alert.alert('Error posting date', 'Please ensure the date is valid');
+        }
         else {
             this.periodicApiCall();
         }
@@ -171,6 +176,8 @@ export default class AddExpense extends React.Component {
             date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay,
             requestInterval: this.state.interval + " " + this.state.periodicRepeat
         }, () => { this.postPeriodicExpense() });
+        console.log(this.state.requestInterval)
+
 
     }
 
@@ -221,6 +228,7 @@ export default class AddExpense extends React.Component {
                                             <TextInput style={[styles.amountInput, { backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                 placeholder={"0"}
                                                 onChangeText={(amount) => this.setState({ amount })}
+                                                keyboardType = 'numeric'
                                                 value={this.state.amount}
                                                 Amount={this.state.amount}
                                             />
@@ -325,6 +333,7 @@ export default class AddExpense extends React.Component {
                                                 <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 110 : 130, right: 0, backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                     placeholder={"0"}
                                                     onChangeText={(periodicAmount) => this.setState({ periodicAmount })}
+                                                    keyboardType = 'numeric'
                                                     value={this.state.periodicAmount}
                                                     Amount={this.state.periodicAmount}
                                                 />

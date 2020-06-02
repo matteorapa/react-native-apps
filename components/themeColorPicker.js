@@ -79,13 +79,13 @@ export default class themeColorPicker extends React.Component {
                             <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, right: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: this.state.color, justifyContent: 'center', borderWidth: 2 }}
                                 onPress={() => this.postNewTheme()}
                             >
-                                <Text style={[styles.text, { color: 'black' }]}>save</Text>
+                                <Text style={[styles.text, { color: 'black' }]}>SAVE</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={{ position: 'absolute', zIndex: 1, top: 15, left: 45, width: 75, height: 40, borderRadius: 25, backgroundColor: this.state.color, justifyContent: 'center', borderWidth: 2 }}
                                 onPress={() => this.state.nav.pop()}
                             >
-                                <Text style={[styles.text, { color: 'black' }]}>back</Text>
+                                <Text style={[styles.text, { color: 'black' }]}>BACK</Text>
                             </TouchableOpacity>
 
                             <View style={styles.body}>

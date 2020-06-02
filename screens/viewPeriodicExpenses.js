@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import styles from '../MyStyleSheet';
 
 var compareToMonths = [2, 4, 6, 9, 11];
+const digits = new RegExp("^[1-1000]+$");
+
 var APIDelLink = 'https://myvault.technology/api/expenses/periodic/del/';
 var APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
 var APISaveEditedExpense = 'https://myvault.technology/api/expenses/edit/';
@@ -44,6 +46,7 @@ export default class viewPeriodicExpenses extends React.Component {
             periodicYear: '',
             periodicDate: '',
             interval: '1',
+            requestInterval:''
         };
 
         this.navigateUser = this.navigateUser.bind(this);
@@ -145,7 +148,7 @@ export default class viewPeriodicExpenses extends React.Component {
                 amount: this.state.periodicAmount,
                 currency: this.state.periodicCurrency,
                 title: this.state.periodicTitle,
-                interval: '1 month',
+                interval: this.state.requestInterval,
                 date: this.state.date
             })
         })
@@ -169,7 +172,8 @@ export default class viewPeriodicExpenses extends React.Component {
 
     prepPeriodicExpenseSaveEdit() {
         this.setState({
-            date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay
+            date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay,
+            requestInterval: this.state.interval + " " + this.state.periodicRepeat
         }, () => { this.postPeriodicExpense() });
 
     }
@@ -178,6 +182,7 @@ export default class viewPeriodicExpenses extends React.Component {
 
         var dayInteger = parseInt(this.state.periodicDay)
         var monthInteger = parseInt(this.state.periodicMonth)
+        var intervalInteger = parseInt(this.state.interval)
 
         if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
@@ -193,7 +198,12 @@ export default class viewPeriodicExpenses extends React.Component {
         }
         else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
             Alert.alert('Error posting date', 'Please ensure the date is valid');
-        } else {
+            
+        }
+        else if (!intervalInteger){
+            Alert.alert('Error posting interval', 'Please ensure a valid digit is entered!')
+        } 
+        else {
             this.periodicApiCall();
             APISaveEditedPeriodicExpense = 'https://myvault.technology/api/expenses/periodic/edit/';
         }
@@ -269,11 +279,12 @@ export default class viewPeriodicExpenses extends React.Component {
         else {
             let expenses = this.state.dataSource.map((val, key) => {
                 if (val.expensetype == this.state.filterCategory | this.state.filterCategory === '') {
+                    console.log(val.interval)
+                    var splitString = val.interval.split(" ");
                     return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
                         <View style={{ height: 10 }}></View>
-
                         <TouchableOpacity style={{ width: '95%', height: 80, alignSelf: 'center', backgroundColor: global.dark === 'white' ? 'darkgrey' : '#505050', borderRadius: 20, borderWidth: global.dark === 'grey' ? 1 : 0, shadowOpacity: 0.2, shadowRadius: 7, elevation: 11, margin: 10, marginBottom: 10 }}
-                            onPress={() => this.setState({ show: true, periodicID: val.periodicid, periodicTitle: val.transactiontitle, periodicDate: val.lasttransdate, periodicCurrency: val.transactioncurrency, periodicCategory: val.expensetype, periodicAmount: val.expensecost, periodicYear: (val.lasttransdate).substring(0, 4), periodicMonth: (val.lasttransdate).substring(5, 7), periodicDay: (val.lasttransdate).substring(8, 10), interval: val.interval.substring(-1, 1), periodicRepeat: val.interval.substring(1) })} >
+                            onPress={() => this.setState({ show: true, periodicID: val.periodicid, periodicTitle: val.transactiontitle, periodicDate: val.lasttransdate, periodicCurrency: val.transactioncurrency, periodicCategory: val.expensetype, periodicAmount: val.expensecost, periodicYear: (val.lasttransdate).substring(0, 4), periodicMonth: (val.lasttransdate).substring(5, 7), periodicDay: (val.lasttransdate).substring(8, 10), interval: splitString[0], periodicRepeat: splitString[1] })} >
                             <Text style={{ fontSize: 40, fontWeight: '600', position: 'absolute', top: Platform.OS === 'ios' ? 18 : 13, left: 30, color: global.color }}>{this.convertCurrency(val.transactioncurrency)}{val.expensecost}</Text>
                             <Text style={{ position: 'absolute', fontSize: 15, right: 30, top: 10 }}>{val.lasttransdate.split('T00:00:00.000Z')}</Text>
                             <Text style={{ position: 'absolute', fontSize: 25, right: 30, top: 40, maxWidth: '45%' }}>{val.transactiontitle}</Text>
@@ -379,6 +390,7 @@ export default class viewPeriodicExpenses extends React.Component {
                                                         <TextInput style={[styles.amountInput, { top: Platform.OS === 'ios' ? 90 : -5, width: Platform.OS === 'ios' ? 110 : 130, right: 0, backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                             placeholder={"0"}
                                                             onChangeText={(periodicAmount) => this.setState({ periodicAmount })}
+                                                            keyboardType = 'numeric'
                                                             value={this.state.periodicAmount}
                                                             Amount={this.state.periodicAmount}
                                                         />
@@ -410,7 +422,7 @@ export default class viewPeriodicExpenses extends React.Component {
                                                 <View style={{ flexDirection: 'column', position: 'absolute', right: '5%', bottom: Platform.OS === 'ios' ? 100 : 80, width: '90%' }}>
 
                                                     <Text style={{ fontSize: 20, fontWeight: "600", position: 'absolute', textAlign: 'left', marginTop: '10%' }}>Repeat each</Text>
-                                                    <TextInput style={{ marginTop: 30, left: '35%', fontSize: 15, borderWidth: 1, position: 'absolute', padding: 10, width: 40, textAlign: 'center', justifyContent: 'space-around' }}
+                                                    <TextInput style={{ marginTop: 30, left: '35%', fontSize: 15, borderWidth: 1, position: 'absolute', padding: 10, width: 50, textAlign: 'center', justifyContent: 'space-around' }}
                                                         onChangeText={(interval) => this.setState({ interval })}
                                                         value={this.state.interval} />
 

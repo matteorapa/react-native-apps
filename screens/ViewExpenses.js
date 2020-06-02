@@ -401,7 +401,7 @@ export default class ViewExpenses extends React.Component {
             </TouchableOpacity>
 
             < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-              <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'center' }}>
+              <View style={{backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, justifyContent: 'center' }}>
                 <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 20, borderRadius: 40, width: '90%', height: '60%', alignSelf: 'center', justifyContent: 'center' }}>
                   <ScrollView>
 
@@ -525,6 +525,7 @@ export default class ViewExpenses extends React.Component {
                           <TextInput style={[styles.amountInput, { backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                             placeholder={"0"}
                             onChangeText={(amount) => this.setState({ amount })}
+                            keyboardType = 'numeric'
                             value={this.state.amount}
                             Amount={this.state.amount}
                           />
@@ -663,7 +664,7 @@ export default class ViewExpenses extends React.Component {
 
 
           < Modal transparent={true} visible={this.state.showFilter} animationType={'none'}>
-            <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'space-around' }}>
+            <View style={{backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, justifyContent: 'space-around' }}>
               <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 70, borderRadius: 40, width: '75%', alignSelf: 'center', justifyContent: 'center', height: '50%' }}>
 
 

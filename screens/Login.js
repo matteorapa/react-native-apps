@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert, Platform, KeyboardAvoidingView, BackHandler } from 'react-native';
-import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
+import { View, Text,  TouchableOpacity,  Alert, BackHandler } from 'react-native';
+import { TextInput, } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 const validPasswordChars = new RegExp("^[a-zA-Z0-9.,?!@£$+€&*-]+$");
 

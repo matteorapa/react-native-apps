@@ -19,10 +19,10 @@ export default class splashScreen extends React.Component {
         console.disableYellowBox = true;
         BackHandler.addEventListener('hardwareBackPress', this.backbutton);
         setTimeout(() => {
-            this.state.nav.navigate('Home')
+            this.state.nav.navigate('Login')
         }, 4000);
 
-        //this.delete();
+        this.delete();
     }
 
     delete() {
@@ -47,27 +47,11 @@ export default class splashScreen extends React.Component {
 
 
             <Modal animationType={'fade'} transparent={true}>
-                <View style={{ backgroundColor: 'transparent', flex: 1, width: 400, alignSelf: 'center', justifyContent: 'space-around' }}>
+                <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: 400, alignSelf: 'center', justifyContent: 'space-around' }}>
                     <View style={{ backgroundColor: global.color, height: 300, borderRadius: 40, justifyContent: 'space-around' }}>
                         <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold' }}>Goodbye</Text>
                         <View style={{flexDirection:'row', justifyContent:'center', top:40, margin:'5%'}}>
                             
-                            {/* <View style={{width:110, height:110, borderRadius:55, backgroundColor: global.dark, justifyContent:'space-around'}}>
-                                <Text style={{fontSize:50, textAlignVertical:'center', textAlign:'center'}}>€</Text>
-                            </View>
-                            <View style={{width:110, height:110, borderRadius:55, backgroundColor:global.dark, justifyContent:'space-around'}}>
-                                <Text style={{fontSize:50, textAlignVertical:'center', textAlign:'center'}}>£</Text>
-                            </View>
-                            <View style={{width:110, height:110, borderRadius:55, backgroundColor:global.dark, justifyContent:'space-around'}}>
-                                <Text style={{fontSize:50, textAlignVertical:'center', textAlign:'center'}}>$</Text>
-                            </View>
-                            <View style={{width:110, height:110, borderRadius:55, backgroundColor:global.dark, justifyContent:'space-around'}}>
-                                <Text style={{fontSize:50, textAlignVertical:'center', textAlign:'center'}}>€</Text>
-                            </View>
-                            <View style={{width:110, height:110, borderRadius:55, backgroundColor:global.dark, justifyContent:'space-around'}}>
-                                <Text style={{fontSize:50, textAlignVertical:'center', textAlign:'center'}}>£</Text>
-                            </View> */}
-
                             <Image style={{resizeMode:'contain', width:150, position:'absolute', top:-200}}source={require('../assets/vault.png')}>
 
                             </Image>

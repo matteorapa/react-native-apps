@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, BackHandler, Dimensions, Platform } from 'react-native';
-import { Switch, ScrollView } from 'react-native-gesture-handler';
+import { View, Text, TouchableOpacity, BackHandler, Dimensions, Platform } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { LineChart } from "react-native-chart-kit";
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';

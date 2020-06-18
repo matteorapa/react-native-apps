@@ -196,15 +196,6 @@ export default class ViewExpenses extends React.Component {
           console.log('something went wrong!')
           console.log(response)
           Alert.alert('Oops!', 'Something went wrong')
-          this.setState({ periodicTitle: '' })
-          this.setState({ periodicCurrency: 'eur' })
-          this.setState({ periodicCategory: '' })
-          this.setState({ periodicAmount: '' })
-          this.setState({ date: '' })
-          this.setState({ periodicDay: '' })
-          this.setState({ periodicMonth: '' })
-          this.setState({ periodicYear: '' })
-          this.setState({ periodicRepeat: '1 week' })
         }
       })
       .catch(error => console.warn(error))
@@ -219,25 +210,34 @@ export default class ViewExpenses extends React.Component {
   }
 
   async postPeriodicExpense() {
+    var dayInteger = parseInt(this.state.periodicDay)
+    var monthInteger = parseInt(this.state.periodicMonth)
+    var intervalInteger = parseInt(this.state.interval)
+
+    console.log("|" + this.state.periodicDay + "|" + this.state.periodicMonth + "|" + this.state.periodicYear + "|");
 
     if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
       Alert.alert('Oops!', 'Please ensure all fields are filled')
-      // }
-      // else if (!day.test(this.state.periodicDay)) {
-      //     Alert.alert('Error posting date', 'Please ensure date is valid 1!');
-      // }
-      // else if (!month.test(this.state.periodicMonth)) {
-      //     Alert.alert('Error posting date', 'Please ensure date is valid 2!');
-      // }
-      // else if (this.state.periodicDay > 29 && this.state.periodicMonth == 2) {
-      //     Alert.alert('Error posting date', 'Please ensure date is valid 3!');
-      // }
-      // else if (!year.test(this.state.periodicYear)) {
-      //     Alert.alert('Error posting date', 'Please ensure date is valid 4!');
-      // }
-      // else if (this.state.periodicDay > 30 && this.state.periodicMonth == compareToMonths) {
-      //     Alert.alert('Error posting date', 'Please ensure date is valid 5');
-    } else {
+    }
+    else if (dayInteger > 31 | dayInteger < 1) {
+      Alert.alert('Error posting date', 'Please ensure the day entered is valid!');
+    }
+    else if (monthInteger < 1 || monthInteger > 12) {
+      Alert.alert('Error posting date', 'Please ensure the month entered is valid!');
+    }
+    else if (dayInteger > 29 && monthInteger == 2) {
+      Alert.alert('Error posting date', 'Please ensure a correct day in February is selected!');
+    }
+    else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
+      Alert.alert('Error posting date', 'Please ensure the date is valid');
+    }
+    else if (!parseInt(this.state.interval)) {
+      Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
+    }
+    else if (intervalInteger == 0) {
+      Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
+    }
+    else {
       this.periodicApiCall();
       APISaveEditedPeriodicExpense = 'https://myvault.technology/api/expenses/periodic/';
     }
@@ -345,31 +345,31 @@ export default class ViewExpenses extends React.Component {
           </View>
 
           <View style={styles.body}>
-          <View style={{ height: '5%', width: '100%', alignSelf: 'center', flexDirection: 'row', marginTop: 10}}>
+            <View style={{ height: '5%', width: '100%', alignSelf: 'center', flexDirection: 'row', marginTop: 10 }}>
 
-            <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+              <TouchableOpacity
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, fontWeight: '300', borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
                 onPress={() => { this.getAllExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>ALL</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, fontWeight: '300', borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
                 onPress={() => { this.getWeekExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, fontWeight: '300', borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
                 onPress={() => { this.getMonthExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, fontWeight: '300', borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
                 onPress={() => { this.getYearExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
@@ -389,7 +389,7 @@ export default class ViewExpenses extends React.Component {
     }
     else {
       let expenses = this.state.dataSource.map((val, key) => {
-        if (val.expenseType == this.state.filterCategory || this.state.filterCategory === '' ) {
+        if (val.expenseType == this.state.filterCategory || this.state.filterCategory === '') {
           return <View key={key} style={[styles.container, { backgroundColor: global.dark }]} >
             <View style={{ height: 10 }}></View>
 
@@ -401,7 +401,7 @@ export default class ViewExpenses extends React.Component {
             </TouchableOpacity>
 
             < Modal transparent={true} visible={this.state.show} animationType={'fade'}>
-              <View style={{backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, justifyContent: 'center' }}>
+              <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, justifyContent: 'center' }}>
                 <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 20, borderRadius: 40, width: '90%', height: '60%', alignSelf: 'center', justifyContent: 'center' }}>
                   <ScrollView>
 
@@ -414,7 +414,7 @@ export default class ViewExpenses extends React.Component {
                       </TouchableOpacity>
                     </View>
 
-                    <View style={{ position: 'absolute', width: 1, height: '70%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 100 }}></View>
+                    <View style={{ position: 'absolute', width: 1, height: '70%', backgroundColor: global.dark, zIndex: -1, alignSelf: 'center', marginTop: 100 }}></View>
 
                     <View style={{ flexDirection: 'column', marginTop: 80 }}>
 
@@ -525,7 +525,7 @@ export default class ViewExpenses extends React.Component {
                           <TextInput style={[styles.amountInput, { backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                             placeholder={"0"}
                             onChangeText={(amount) => this.setState({ amount })}
-                            keyboardType = 'numeric'
+                            keyboardType='numeric'
                             value={this.state.amount}
                             Amount={this.state.amount}
                           />
@@ -554,7 +554,7 @@ export default class ViewExpenses extends React.Component {
                           <View style={{ flexDirection: Platform.OS === 'ios' ? 'column' : 'row', position: 'absolute', right: Platform.OS === 'ios' ? '5%' : '45%', bottom: Platform.OS === 'ios' ? 120 : -60 }}>
                             <TouchableOpacity onPress={() => this.setState({ cashcard: 'Cash' })}
                               disabled={this.state.cashcard === 'Periodic' ? true : false}
-                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
+                              style={{ borderTopRightRadius: Platform.OS === 'ios' ? 50 : 0, borderTopLeftRadius: 50, borderBottomLeftRadius: Platform.OS === 'ios' ? 0 : 50, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.cashcard === "Cash"|"Periodic" ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                               <Text style={{ justifyContent: 'center', textAlign: "center" }} > {this.state.cashcard === 'Periodic' ? 'Periodic' : 'Cash'}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => this.setState({ cashcard: 'Card' })}
@@ -607,31 +607,31 @@ export default class ViewExpenses extends React.Component {
           </View>
 
           <View style={styles.body}>
-            <View style={{ height: '5%', width: '100%', alignSelf: 'center', flexDirection: 'row', marginTop: 10}}>
+            <View style={{ height: '5%', width: '100%', alignSelf: 'center', flexDirection: 'row', marginTop: 10 }}>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'all' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'all' ? global.color : global.dark === 'white' ? "darkgrey" : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, fontWeight: '300' , borderWidth: this.state.isClicked === 'all' ? 1 : 0}}
                 onPress={() => { this.getAllExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>ALL</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this week' ? global.color : global.dark === 'white' ? "darkgrey" : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this week' ? 1 : 0 }}
                 onPress={() => { this.getWeekExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS WEEK</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this month' ? global.color : global.dark === 'white' ? "darkgrey" : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this month' ? 1 : 0 }}
                 onPress={() => { this.getMonthExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS MONTH</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === '#303030' ? '#505050' : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
+                style={{ backgroundColor: this.state.isClicked === 'this year' ? global.color : global.dark === 'white' ? "darkgrey" : 'lightgrey', width: '25%', justifyContent: 'space-around', borderBottomWidth: 1, borderTopWidth: 1, borderWidth: this.state.isClicked === 'this year' ? 1 : 0 }}
                 onPress={() => { this.getYearExpenses(), this.setState({ filterCategory: "" }) }}
               >
                 <Text style={styles.expenseViewSortText}>THIS YEAR</Text>
@@ -664,7 +664,7 @@ export default class ViewExpenses extends React.Component {
 
 
           < Modal transparent={true} visible={this.state.showFilter} animationType={'none'}>
-            <View style={{backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, justifyContent: 'space-around' }}>
+            <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, justifyContent: 'space-around' }}>
               <View style={{ backgroundColor: global.color, paddingLeft: 20, paddingRight: 20, paddingBottom: 50, paddingTop: 70, borderRadius: 40, width: '75%', alignSelf: 'center', justifyContent: 'center', height: '50%' }}>
 
 

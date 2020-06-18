@@ -304,7 +304,7 @@ export default class viewPeriodicExpenses extends React.Component {
                                             </TouchableOpacity>
                                         </View>
 
-                                        <View style={{ position: 'absolute', width: 1, height: '60%', backgroundColor: global.dark, zIndex: 1, alignSelf: 'center', marginTop: 100 }}></View>
+                                        <View style={{ position: 'absolute', width: 1, height: '70%', backgroundColor: global.dark, zIndex: -1, alignSelf: 'center', marginTop: 100}}></View>
 
                                         <View style={{ flexDirection: 'column', marginTop: 80 }}>
                                             <View style={{ flexDirection: 'row' }}>
@@ -367,7 +367,7 @@ export default class viewPeriodicExpenses extends React.Component {
 
                                     <View style={[styles.body, { marginTop: 50 }]}>
                                         <View style={{ flex: 4 }}>
-                                            <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'darkgrey' : '#707070' }]}>
+                                            <View style={[styles.AddExpenseContainer, { backgroundColor: global.dark === 'white' ? 'lightgrey' : '#707070'}]}>
 
                                                 <TextInput style={[styles.expenseTitleInput, { top: 10, backgroundColor: global.dark === 'white' ? "darkgrey" : 'grey' }]}
                                                     placeholder={'Expense Title'}
@@ -419,7 +419,7 @@ export default class viewPeriodicExpenses extends React.Component {
 
                                                 </View>
 
-                                                <View style={{ flexDirection: 'column', position: 'absolute', right: '5%', bottom: Platform.OS === 'ios' ? 100 : 80, width: '90%' }}>
+                                                <View style={{ flexDirection: 'column', position: 'absolute', right: '5%', bottom: Platform.OS === 'ios' ? 100 : 80, width:  '90%' }}>
 
                                                     <Text style={{ fontSize: 20, fontWeight: "600", position: 'absolute', textAlign: 'left', marginTop: '10%' }}>Repeat each</Text>
                                                     <TextInput style={{ marginTop: 30, left: '35%', fontSize: 15, borderWidth: 1, position: 'absolute', padding: 10, width: 50, textAlign: 'center', justifyContent: 'space-around' }}
@@ -428,21 +428,21 @@ export default class viewPeriodicExpenses extends React.Component {
 
                                                     <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'day' })}
-                                                            style={{ borderTopLeftRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("day") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
+                                                            style={{ borderTopLeftRadius: 25, width: Platform.OS ==='ios'? 90:80, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("day") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Day' : 'Days'}</Text>
                                                         </TouchableOpacity>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'week' })}
-                                                            style={{ borderTopRightRadius: 25, width: 90, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("week") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
+                                                            style={{ borderTopRightRadius: 25, width: Platform.OS ==='ios'? 90:80, height: 50, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("week") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ justifyContent: 'center', textAlign: "center" }} >{this.state.interval === '1' ? 'Week' : 'Weeks'}</Text>
                                                         </TouchableOpacity>
                                                     </View>
                                                     <View style={{ flexDirection: 'row', marginLeft: '50%' }}>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'month' })}
-                                                            style={{ width: 90, height: 50, justifyContent: 'space-around', borderBottomLeftRadius: 25, backgroundColor: this.state.periodicRepeat.includes("month") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
+                                                            style={{ width: Platform.OS ==='ios'? 90:80, height: 50, justifyContent: 'space-around', borderBottomLeftRadius: 25, backgroundColor: this.state.periodicRepeat.includes("month") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Month' : 'Months'}</Text>
                                                         </TouchableOpacity>
                                                         <TouchableOpacity onPress={() => this.setState({ periodicRepeat: 'year' })}
-                                                            style={{ width: 90, height: 50, borderBottomRightRadius: 50, borderBottomRightRadius: 25, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("year") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
+                                                            style={{ width: Platform.OS ==='ios'? 90:80, height: 50, borderBottomRightRadius: 50, borderBottomRightRadius: 25, justifyContent: 'space-around', backgroundColor: this.state.periodicRepeat.includes("year") ? global.color : global.dark === 'white' ? "darkgrey" : 'grey' }}>
                                                             <Text style={{ textAlign: "center" }}> {this.state.interval === '1' ? 'Year' : 'Years'}</Text>
                                                         </TouchableOpacity>
                                                     </View>

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { TextInput, Switch, ScrollView } from 'react-native-gesture-handler';
+import { View, Text,  TouchableOpacity, Alert } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import styles from '../MyStyleSheet';
 import Footer from '../components/Footer';
 export default class Profile extends React.Component {

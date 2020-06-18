@@ -195,7 +195,7 @@ export default class Analytics extends React.Component {
               <PieChart
                 data={this.state.pieData}
                 width={screenWidth-20}
-                height={screenHeight}
+                height={screenHeight-30}
                 style={{ backgroundColor: 'transparent', position: 'relative' }}
                 hasLegend={true}
                 absolute={false}

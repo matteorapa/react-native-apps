@@ -162,8 +162,11 @@ export default class AddExpense extends React.Component {
         else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
             Alert.alert('Error posting date', 'Please ensure the date is valid');
         }
-        else if (!intervalInteger) {
-            Alert.alert('Error posting date', 'Please ensure the date is valid');
+        else if (!parseInt(this.state.interval)){
+            Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
+        }
+        else if (intervalInteger == 0){
+            Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
         }
         else {
             this.periodicApiCall();

@@ -194,15 +194,18 @@ export default class viewPeriodicExpenses extends React.Component {
             Alert.alert('Error posting date', 'Please ensure the month entered is valid!');
         }
         else if (dayInteger > 29 && monthInteger == 2 ) {
-            Alert.alert('Error posting date', 'Please ensure a correct day in febuary is selected!');
+            Alert.alert('Error posting date', 'Please ensure a correct day in Febuary is selected!');
         }
         else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
             Alert.alert('Error posting date', 'Please ensure the date is valid');
             
         }
-        else if (!intervalInteger){
-            Alert.alert('Error posting interval', 'Please ensure a valid digit is entered!')
-        } 
+        else if (!parseInt(this.state.interval)) {
+            Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
+          }
+          else if (intervalInteger == 0) {
+            Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
+          }
         else {
             this.periodicApiCall();
             APISaveEditedPeriodicExpense = 'https://myvault.technology/api/expenses/periodic/edit/';
@@ -363,7 +366,6 @@ export default class viewPeriodicExpenses extends React.Component {
                         <Modal animationType={'fade'} transparent={true} visible={this.state.edit}>
                             <View style={{ backgroundColor: global.dark === '#303030' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)', flex: 1, width: '100%', alignSelf: 'flex-end', justifyContent: 'space-around' }}>
                                 <View style={{ backgroundColor: global.color, height: 600, borderRadius: 40, width: '100%' }}>
-
 
                                     <View style={[styles.body, { marginTop: 50 }]}>
                                         <View style={{ flex: 4 }}>

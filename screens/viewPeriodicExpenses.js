@@ -66,6 +66,7 @@ export default class viewPeriodicExpenses extends React.Component {
         this.fetchExpenses();
     }
 
+    //save expense edited by appending ID to link
     saveEditedExpense() {
         APISaveEditedExpense = APISaveEditedExpense + this.state.id;
         console.log(APISaveEditedExpense)
@@ -75,7 +76,7 @@ export default class viewPeriodicExpenses extends React.Component {
         console.log(this.state.title + " " + this.state.category + " " + this.state.amount + " " + this.state.cashcard + " " + this.state.currency + " " + this.state.online + " " + this.state.id + " " + this.state.date.split('T00:00:00.000Z'));
     }
 
-
+    //get all periodic expenses to be displayed
     fetchExpenses() {
         fetch('https://myvault.technology/api/expenses/periodic', {
             method: 'GET',
@@ -104,6 +105,7 @@ export default class viewPeriodicExpenses extends React.Component {
             });
     }
 
+    //call API to delete periodic expense by ID
     async apiCall() {
         APIDelLink = APIDelLink + this.state.periodicID;
         await fetch(APIDelLink, {
@@ -134,6 +136,7 @@ export default class viewPeriodicExpenses extends React.Component {
 
     }
 
+    //put requests update data to ensure all data instances are valid and proper data is shown
     async periodicApiCall() {
 
         await fetch(APISaveEditedPeriodicExpense + this.state.periodicID, {
@@ -142,7 +145,7 @@ export default class viewPeriodicExpenses extends React.Component {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + global.clientToken,
-            },
+            }, //send data as JSON to API
             body: JSON.stringify({
                 category: this.state.periodicCategory,
                 amount: this.state.periodicAmount,
@@ -170,6 +173,7 @@ export default class viewPeriodicExpenses extends React.Component {
 
     }
 
+    //format date to be recieved  by API
     prepPeriodicExpenseSaveEdit() {
         this.setState({
             date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay,
@@ -184,28 +188,28 @@ export default class viewPeriodicExpenses extends React.Component {
         var monthInteger = parseInt(this.state.periodicMonth)
         var intervalInteger = parseInt(this.state.interval)
 
+        //check if strings are empty
         if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
-        }
+        } //check if day is valid
         else if (dayInteger>31 | dayInteger < 1) {
             Alert.alert('Error posting date', 'Please ensure the day entered is valid!');
-        }
+        } //check if month is valid
         else if (monthInteger<1 || monthInteger>12) {
             Alert.alert('Error posting date', 'Please ensure the month entered is valid!');
-        }
+        } //check if valid day in Feb is entered
         else if (dayInteger > 29 && monthInteger == 2 ) {
             Alert.alert('Error posting date', 'Please ensure a correct day in Febuary is selected!');
-        }
+        } //check if no day 31 is in a month with 30 days
         else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
             Alert.alert('Error posting date', 'Please ensure the date is valid');
-            
-        }
+        } //ensure intetger is entered 
         else if (!parseInt(this.state.interval)) {
             Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
-          }
+        } // ensure no 0 interval is entered
           else if (intervalInteger == 0) {
             Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
-          }
+          }//if all is good then call API
         else {
             this.periodicApiCall();
             APISaveEditedPeriodicExpense = 'https://myvault.technology/api/expenses/periodic/edit/';

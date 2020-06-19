@@ -28,7 +28,9 @@ export default class Login extends React.Component {
   backbutton = () => {
     return true;
   }
-
+  //this spi call sends credentials to be verified 
+  //if a confirmation is returned then the user is admitted
+  //otherwise an alert will show
   async apiCall() {
 
     await fetch('https://myvault.technology/api/login', {
@@ -43,13 +45,14 @@ export default class Login extends React.Component {
       })
     })
 
-
+      //handling reponse
       .then(response => (response.json()))
       .then((response) => {
 
         if (response.token) {
           global.clientToken = response.token
 
+          //navigate to splashscreen
           this.state.nav.navigate('splashScreen')
           this.setState({ email: '' })
           this.setState({ password: '' })
@@ -57,6 +60,7 @@ export default class Login extends React.Component {
         else {
           console.log('Unsuccessful')
           console.log(response)
+          //alert if no account is located with the credentials entered
           Alert.alert(
             'Oops!',
             'No account is linked to those credentials!',
@@ -70,12 +74,14 @@ export default class Login extends React.Component {
           this.setState({ password: '' })
         }
       })
+      //in the event of an error contacting the database 
       .catch(error => {
           console.warn(error)
           Alert.alert("Error connecting to server!", "Please establish an internet connection and try again")
         })
 
   }
+  //this method checks for empty strings
   async login() {
     if (this.state.email === '' || this.state.password === '') {
       Alert.alert('Oops!', 'Please ensure all fields are filled')
@@ -84,6 +90,7 @@ export default class Login extends React.Component {
       Alert.alert('Error', 'Password contains invalid characters!')
     }
     else {
+      //if fields are not empty...
       this.apiCall();
       console.log('Sending credentials post to express server using username: ' + this.state.email + ' and password: ' + this.state.password);
     }

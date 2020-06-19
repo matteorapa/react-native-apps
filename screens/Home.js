@@ -31,15 +31,15 @@ export default class Home extends React.Component {
   componentDidMount() {
     console.disableYellowBox = true;
     BackHandler.addEventListener('hardwareBackPress', this.backbutton);
-    this.LineChartAPICall();
-    this.ExpensesAPICall();
+    this.LineChartAPICall(); //get line chart data
+    this.ExpensesAPICall(); //gets expenses list 
 
   }
 
   backbutton = () => {
     return true;
   }
-
+  //gets line chart data via api
   LineChartAPICall() {
     temp = [0];
     dataLabels = [''];
@@ -56,13 +56,16 @@ export default class Home extends React.Component {
         if (response.success) {
           if (temp = []) {
             for (i = 0; i < response.size; i++) {
+              //pushing elements to a temp array
               temp.push(parseInt(response.datasets[i].data));
             }
           }
           for (i = 0; i < response.size; i++) {
+            //pushing months from months array depending on data present
             dataLabels.push(months[i])
           }
           this.setState({
+            //once data is loaded it notifies the system that it is complete for chart to be rendered
             isLoading: false,
             array: temp
           })
@@ -80,6 +83,7 @@ export default class Home extends React.Component {
       });
   }
 
+  //this gets expenses to be displayed on home screen
   ExpensesAPICall() {
     fetch('https://myvault.technology/api/expenses/m', {
       method: 'GET',
@@ -107,7 +111,7 @@ export default class Home extends React.Component {
         console.log(error);
       });
   }
-
+  //this adapts the link accordingly to accomodate for 3 currencies  displaying relevant data
   LineChartLinkEdit() {
     temp = [0];
     dataLabels = [''];
@@ -116,7 +120,7 @@ export default class Home extends React.Component {
   }
 
   convertCurrency(c) {
-
+    //adding currency symbol before values 
     switch (c) {
       case 'eur':
         return '€';

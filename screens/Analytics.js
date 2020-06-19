@@ -33,13 +33,18 @@ export default class Analytics extends React.Component {
     }
   }
 
+  //run when screen is loaded
   componentDidMount() {
     console.disableYellowBox = true;
+    //get pie data
     this.PieChartAPICall();
+    //get line data
     this.LineChartAPICall();
+    //get bar data
     this.BarChartAPICall();
   }
 
+  //API request to get pie chart data
   PieChartAPICall() {
     fetch(pieChartLink + this.state.currencyFilter + '/' + this.state.timeFilter + '/', {
       method: 'GET',
@@ -68,6 +73,7 @@ export default class Analytics extends React.Component {
       });
   }
 
+  //API request to get line chart data
   LineChartAPICall() {
     dataLabels = [''];
     fetch(lineChartLink + this.state.lineCurrency, {
@@ -107,6 +113,7 @@ export default class Analytics extends React.Component {
       });
   }
 
+  //API request to get bar chart data 
   BarChartAPICall() {
     fetch('https://myvault.technology/api/analytics/CurrencyTotals', {
       method: 'GET',

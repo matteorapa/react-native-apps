@@ -10,6 +10,7 @@ export default class AddExpense extends React.Component {
     constructor({ navigation }) {
         super();
         this.state = {
+            //data for one time
             nav: navigation,
             title: '',
             amount: '',
@@ -17,7 +18,7 @@ export default class AddExpense extends React.Component {
             category: '',
             cashCard: 'Cash',
             onlineSwitch: false,
-
+            //data for periodic
             periodicTitle: '',
             periodicAmount: '',
             periodicCurrency: 'eur',
@@ -43,6 +44,7 @@ export default class AddExpense extends React.Component {
         this.setState({ cashCard: PurchaseLocation });
     }
 
+    //posts one time expense with relevant data 
     async apiCall() {
 
         await fetch('https://myvault.technology/api/expenses', {
@@ -76,6 +78,7 @@ export default class AddExpense extends React.Component {
                     console.log('something went wrong!')
                     console.log(response)
                     Alert.alert('Oops!', 'Something went wrong')
+                    //if something goes wrong empty all data as an indication and alert
                     this.setState({ title: '' })
                     this.setState({ currency: 'eur' })
                     this.setState({ category: '' })
@@ -88,6 +91,7 @@ export default class AddExpense extends React.Component {
 
     }
 
+    //post periodic expense with relevant data
     async periodicApiCall() {
         console.log(this.state.interval)
         await fetch('https://myvault.technology/api/expenses/periodic', {
@@ -109,7 +113,7 @@ export default class AddExpense extends React.Component {
 
             .then(response => (response.json()))
             .then((response) => {
-
+                //redirect if successful
                 if (response.success) {
                     console.log('Expense successfully posted!')
                     this.state.nav.pop();
@@ -120,6 +124,7 @@ export default class AddExpense extends React.Component {
                     console.log('something went wrong!')
                     console.log(response)
                     Alert.alert('Oops!', 'Something went wrong')
+                    //empty data and alert if something goes wrong
                     this.setState({ periodicCurrency: 'eur' })
                     this.setState({ periodicRepeat: '1 week' })
                 }
@@ -128,6 +133,7 @@ export default class AddExpense extends React.Component {
 
     }
 
+    //validates to ensure no empty fields are entered
     async postExpense() {
         if (this.state.title === '' || this.state.category === '' || this.state.cashCard === '' || this.state.amount === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
@@ -139,41 +145,43 @@ export default class AddExpense extends React.Component {
         }
     }
 
+    //validates periodic expense
     async postPeriodicExpense() {
 
+        //catsts date elements to int
         var dayInteger = parseInt(this.state.periodicDay)
         var monthInteger = parseInt(this.state.periodicMonth)
         var intervalInteger = parseInt(this.state.interval)
 
         console.log("|" + this.state.periodicDay + "|" + this.state.periodicMonth + "|" + this.state.periodicYear+"|");
-        
+        //ensures no empty data is sent
         if (this.state.periodicTitle === '' || this.state.periodicCategory === '' || this.state.periodicDay === '' || this.state.periodicMonth === '' || this.state.periodicYear === '') {
             Alert.alert('Oops!', 'Please ensure all fields are filled')
-        }
+        } //ensures valid day
         else if (dayInteger>31 | dayInteger < 1) {
             Alert.alert('Error posting date', 'Please ensure the day entered is valid!');
-        }
+        } //ensures valid month
         else if (monthInteger<1 || monthInteger>12) {
             Alert.alert('Error posting date', 'Please ensure the month entered is valid!');
-        }
+        } //ensures valid Feb date
         else if (dayInteger > 29 && monthInteger == 2 ) {
             Alert.alert('Error posting date', 'Please ensure a correct day in February is selected!');
-        }
+        } //ensures valid day in months with 30 days
         else if (dayInteger > 30 && compareToMonths.includes(monthInteger)) {
             Alert.alert('Error posting date', 'Please ensure the date is valid');
-        }
+        } //ensures integer interval is entered
         else if (!parseInt(this.state.interval)){
             Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
-        }
+        } //ensures no 0 interval is entered
         else if (intervalInteger == 0){
             Alert.alert('Interval error', 'Please ensure the interval is an integer greater than 0');
-        }
+        } //otherwise call api
         else {
             this.periodicApiCall();
         }
 
     }
-
+    //prepare date format to be sent for periodic
     prepPeriodicExpense() {
         this.setState({
             date: this.state.periodicYear + '-' + this.state.periodicMonth + '-' + this.state.periodicDay,

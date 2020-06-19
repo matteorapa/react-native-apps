@@ -31,16 +31,19 @@ export default class splashScreen extends React.Component {
         return true;
     }
 
+    //run when app is run
     componentDidMount() {
         console.disableYellowBox = true;
         this.periodicAPICall();
 
+        //disables the swipe back option on ios and android
         BackHandler.addEventListener('hardwareBackPress', this.backbutton);
         setTimeout(() => {
             this.state.nav.navigate('reloadPreferencesScreen')
             this.state.nav.navigate('Home')
         }, 5500);
 
+        //this method gets the colour preferences for the app to be configured accordingly
         fetch('https://myvault.technology/api/pref', {
             method: 'GET',
             headers: {
@@ -53,6 +56,7 @@ export default class splashScreen extends React.Component {
             .then((response) => {
                 if (response.success) {
                     this.setState({
+                        //setting states to the responses
                         color: response.output[0].colour,
                         dark: response.output[0].dark,
                     })
@@ -61,15 +65,15 @@ export default class splashScreen extends React.Component {
                 else {
                     alert('there was an error loading details')
                 }
-
+                //setting global dark mode variable
                 if (response.output[0].dark === 'grey') {
                     global.dark = '#303030'
                     
-                }
+                } //setting global dark mode variable
                 else if (response.output[0].dark === 'white') {
                     global.dark = 'white'
                     
-                }
+                }//setting the theme colour
                 global.color = this.state.color
             })
 
@@ -80,7 +84,7 @@ export default class splashScreen extends React.Component {
     }
 
     async periodicAPICall() {
-
+        //put request initiates an update of expenses calculating periodic expenses accordingly
         await fetch('https://myvault.technology/api/expenses/periodic', {
             method: 'PUT',
             headers: {
@@ -105,7 +109,7 @@ export default class splashScreen extends React.Component {
             .catch(error => console.warn(error))
 
     }
-
+    //animations for the test that shown on splash screen
     _fadeAnimation = () => {
         Animated.timing(this.state.fadeValue1, {
             toValue: 1,

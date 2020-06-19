@@ -58,23 +58,26 @@ export default class ViewExpenses extends React.Component {
     getAllExpenses();
   }
 
+  //called when screen is loaded
   componentDidMount() {
     console.disableYellowBox = true;
     this.periodicInstancesUpdateAPICall();
     this.fetchExpenses();
   }
 
+  //saves edited expense by refering to it by ID
   saveEditedExpense() {
     APISaveEditedExpense = APISaveEditedExpense + this.state.id;
     console.log(APISaveEditedExpense)
 
+    //saves periodic expense once edited identifying by ID
     this.editOneTimeExpenseSave();
     APISaveEditedExpense = 'https://myvault.technology/api/expenses/edit/';
     console.log(this.state.title + " " + this.state.category + " " + this.state.amount + " " + this.state.cashcard + " " + this.state.currency + " " + this.state.online + " " + this.state.id + " " + this.state.date.split('T00:00:00.000Z'));
   }
 
   async editOneTimeExpenseSave() {
-
+    //put updates list of periodic expenses by creating the necessary expenses calculating by current date
     await fetch(APISaveEditedExpense, {
       method: 'PUT',
       headers: {
@@ -95,7 +98,7 @@ export default class ViewExpenses extends React.Component {
 
       .then(response => (response.json()))
       .then((response) => {
-
+        //reload screen to show new data
         if (response.success) {
           this.componentDidMount();
           this.setState({ edit: false })
@@ -109,6 +112,7 @@ export default class ViewExpenses extends React.Component {
       .catch(error => console.warn(error))
   }
 
+  //gets all expenses to be displayed
   fetchExpenses() {
     fetch(APIGetByTimeLink, {
       method: 'GET',
@@ -137,6 +141,7 @@ export default class ViewExpenses extends React.Component {
       });
   }
 
+  //used to delete expenses by reference ID
   async apiCall() {
     APIDelLink = APIDelLink + this.state.id;
     await fetch(APIDelLink, {
@@ -166,6 +171,7 @@ export default class ViewExpenses extends React.Component {
 
   }
 
+  //updated periodic by time
   async periodicApiCall() {
 
     await fetch(APISaveEditedPeriodicExpense + this.state.id, {
@@ -202,6 +208,7 @@ export default class ViewExpenses extends React.Component {
 
   }
 
+  //update an instance of a periodic expense
   async periodicInstancesUpdateAPICall() {
 
     await fetch('https://myvault.technology/api/expenses/periodic', {
@@ -236,6 +243,7 @@ export default class ViewExpenses extends React.Component {
     this.componentDidMount();
   }
 
+  //alters link to get by all time
   getAllExpenses() {
     APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'all' })
@@ -243,18 +251,22 @@ export default class ViewExpenses extends React.Component {
     this.fetchExpenses();
   }
 
+  //alters link to get by week
   getWeekExpenses() {
     APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'this week' })
     APIGetByTimeLink = APIGetByTimeLink + 'w';
     this.fetchExpenses();
   }
+
+  //alters link to get by month
   getMonthExpenses() {
     APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'this month' })
     APIGetByTimeLink = APIGetByTimeLink + 'm';
     this.fetchExpenses();
   }
+  //alters link to get by year
   getYearExpenses() {
     APIGetByTimeLink = 'https://myvault.technology/api/expenses/';
     this.setState({ isClicked: 'this year' })
@@ -262,6 +274,7 @@ export default class ViewExpenses extends React.Component {
     this.fetchExpenses();
   }
 
+  //formats currency symmbol to be shown before value 
   convertCurrency(c) {
 
     switch (c) {
